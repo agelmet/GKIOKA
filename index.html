@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Μαρία Σ. Γκιόκα, ΜΑ | Συμβουλευτική Ψυχολόγος</title>
+    
+    <!-- FONTS: Playfair Display (Serif) & Lato (Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CONTENTFUL SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
+
+    <!-- LUCIDE ICONS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- TAILWIND CONFIGURATION -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f1ede7',  // Base Background (Warm White)
+                            100: '#f1e2db', // Secondary Background (Light Beige)
+                            200: '#f4e1da', // Accent (Pinkish Beige)
+                            300: '#dccfc8', 
+                            400: '#b69f93', 
+                            500: '#917767', // Primary Brand Color (Warm Brown)
+                            600: '#856b5c', 
+                            700: '#7a6b66', // Dark Taupe (Headings)
+                            800: '#5e504c', // Text
+                            900: '#423835', // Darkest Text
+                        },
+                        // New Palette Additions
+                        accent: {
+                            purple: '#ad9daf',
+                            purpleLight: '#f2eff2',
+                            green: '#708561',
+                            greenLight: '#eef3eb',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -15px rgba(0, 0, 0, 0.05)',
+                        'glass': '0 8px 32px 0 rgba(145, 119, 103, 0.1)',
+                        'glow': '0 0 20px rgba(112, 133, 97, 0.2)',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    },
+                    animation: {
+                        float: 'float 6s ease-in-out infinite',
+                        blob: 'blob 7s infinite',
+                    },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.brand.800'),
+                                h1: { fontFamily: theme('fontFamily.serif'), color: theme('colors.brand.900') },
+                                h2: { fontFamily: theme('fontFamily.serif'), color: theme('colors.brand.900') },
+                                h3: { fontFamily: theme('fontFamily.serif'), color: theme('colors.brand.900') },
+                                strong: { color: theme('colors.brand.900') },
+                                a: { color: theme('colors.brand.500'), '&:hover': { color: theme('colors.brand.700') } },
+                            },
+                        },
+                    }),
+                }
+            },
+            plugins: [
+                function({ addComponents, theme }) {
+                    addComponents({
+                        '.prose': { maxWidth: '65ch' },
+                        '.prose p': { marginBottom: '1.25em' },
+                    })
+                }
+            ]
+        }
+    </script>
+
+    <!-- CUSTOM CSS (Global & Animation) -->
+    <style>
+        /* Lenis-like Smooth Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            background-color: #f1ede7; /* brand-50 */
+        }
+
+        /* Utility: Hide Scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Animations for Reveal on Scroll */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.4s ease;
+        }
+        .glass-panel:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 40px -15px rgba(112, 133, 97, 0.15); /* sage shadow */
+        }
+
+        .glass-nav {
+            background: rgba(241, 237, 231, 0.85); /* brand-50 with opacity */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(145, 119, 103, 0.1);
+        }
+
+        /* Article content specific styles */
+        #modal-body p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        #modal-body h2 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-family: "Playfair Display", serif;
+            color: #423835;
+        }
+        
+        /* Bio Modal Specifics */
+        .bio-section-title {
+            font-family: "Playfair Display", serif;
+            color: #917767; /* brand-500 */
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            margin-top: 2rem;
+            border-bottom: 1px solid #dccfc8;
+            padding-bottom: 0.5rem;
+        }
+        .bio-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .bio-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .bio-list li::before {
+            content: '•';
+            color: #708561;
+            position: absolute;
+            left: 0;
+            font-size: 1.5em;
+            line-height: 1;
+            top: -2px;
+        }
+        
+        /* Service Modal Specifics */
+        .service-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+        .service-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #5e504c;
+        }
+        .service-list li::before {
+            content: '•';
+            color: #708561;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+
+        /* Mobile Menu Safe Area Fix */
+        #mobile-menu {
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        
+        /* Custom List Styles for CV */
+        .cv-list-item {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        .cv-list-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 0.5rem;
+            height: 0.5rem;
+            background-color: #708561; /* Sage Green Accent */
+            border-radius: 50%;
+        }
+
+        /* Accordion Transitions */
+        .accordion-content {
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-content.open {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="text-brand-800 font-sans selection:bg-brand-200 selection:text-brand-900">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo / Name -->
+                <div class="flex items-center gap-4">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69916ccc008498503da10cd2.jpg" alt="Logo" class="h-16 w-16 object-cover rounded-full mix-blend-multiply border border-brand-200">
+                    <a href="#" class="flex flex-col">
+                        <span class="font-serif text-xl lg:text-2xl font-semibold tracking-wide text-brand-900 leading-none">
+                            Μαρία Σ. Γκιόκα, ΜΑ
+                        </span>
+                        <span class="text-[0.65rem] lg:text-xs font-sans font-medium tracking-widest uppercase text-accent-green mt-1">
+                            Συμβουλευτικη Ψυχολογος <br class="hidden lg:block">παιδιων, εφηβων & νεων
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a href="#about" class="text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Η Ψυχολογος</a>
+                    <a href="#services" class="text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Υπηρεσιες</a>
+                    <a href="#articles-section" class="text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Αρθρα</a>
+                    <a href="#contact" class="text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Επικοινωνια</a>
+                    <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" 
+                       target="_blank"
+                       class="px-8 py-3 bg-brand-500 text-white rounded-full text-sm uppercase tracking-wider hover:bg-accent-green transition-all duration-300 transform hover:scale-105 shadow-lg">
+                       Κλειστε Ραντεβου
+                    </a>
+                </div>
+
+                <!-- Mobile Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-brand-900 focus:outline-none cursor-pointer p-2">
+                    <i data-lucide="menu" class="w-8 h-8"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 z-[60] bg-brand-100 flex flex-col opacity-0 pointer-events-none transition-opacity duration-300 w-full h-[100dvh]">
+            
+            <!-- Top Bar for Close Button -->
+            <div class="flex justify-end p-6 w-full shrink-0">
+                <button id="close-menu-btn" class="text-brand-900 cursor-pointer p-2 rounded-full hover:bg-brand-200 transition-colors">
+                    <i data-lucide="x" class="w-10 h-10"></i>
+                </button>
+            </div>
+
+            <!-- Scrollable Content Area -->
+            <div class="flex-1 flex flex-col items-center justify-center space-y-8 overflow-y-auto w-full pb-10">
+                <a href="#about" class="text-3xl font-serif text-brand-900 mobile-link hover:text-accent-green transition-colors">Η Ψυχολόγος</a>
+                <a href="#services" class="text-3xl font-serif text-brand-900 mobile-link hover:text-accent-green transition-colors">Υπηρεσίες</a>
+                <a href="#articles-section" class="text-3xl font-serif text-brand-900 mobile-link hover:text-accent-green transition-colors">Άρθρα</a>
+                <a href="#contact" class="text-3xl font-serif text-brand-900 mobile-link hover:text-accent-green transition-colors">Επικοινωνία</a>
+                <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" 
+                   target="_blank"
+                   class="px-10 py-4 bg-brand-500 text-white rounded-full text-lg uppercase tracking-wider shadow-xl mobile-link hover:bg-brand-800 transition-transform transform hover:scale-105">
+                   Κλειστε Ραντεβου
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative w-full h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://github.com/agelmet/Image-hosting-/blob/main/7.png?raw=true" 
+                 alt="Psychology Office Atmosphere" 
+                 class="w-full h-full object-cover object-center opacity-80 scale-105 animate-[pulse_10s_ease-in-out_infinite_alternate]">
+            <!-- Updated gradients to match new palette -->
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-100/90 via-brand-100/60 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-50 via-transparent to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <div class="max-w-2xl reveal-up">
+                <div class="h-12"></div>
+                
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight text-brand-900 mb-8">
+                    Ουσιαστική Σύνδεση <br/>
+                    <span class="italic text-brand-500">με τον Εαυτό σας</span>.
+                </h1>
+                
+                <p class="text-lg md:text-xl text-brand-800 mb-10 leading-relaxed max-w-lg border-l-2 border-brand-400 pl-6">
+                    Η ψυχοθεραπεία είναι πράξη ευθύνης, όχι αδυναμίας. Σας παρέχω τα κατάλληλα εργαλεία για να κατανοήσετε τα αίτια του άγχους και να προχωρήσετε σε σταθερά βήματα αλλαγής και προσωπικής εξέλιξης.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="#contact" 
+                       class="inline-flex items-center justify-center px-10 py-5 bg-brand-500 text-brand-50 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-brand-800 transition-all hover:scale-105 shadow-xl hover:shadow-2xl text-white">
+                        <span>Επικοινωνια</span>
+                        <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                    <a href="#about" class="inline-flex items-center justify-center px-10 py-5 bg-white/50 backdrop-blur-sm text-brand-900 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-white transition-all border border-brand-200">
+                        Μαθετε περισσοτερα
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce opacity-60">
+            <span class="text-[10px] uppercase tracking-[0.2em] mb-2 text-brand-900">Scroll</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-900"></i>
+        </div>
+    </header>
+
+    <!-- TRUST METRICS (Stats) -->
+    <section class="py-12 border-b border-brand-200 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-brand-100">
+                <div class="reveal-up delay-100">
+                    <span class="block text-4xl md:text-5xl font-serif font-bold text-accent-green mb-2">100%</span>
+                    <span class="text-xs uppercase tracking-widest text-brand-400">Εξατομικευμενη Φροντιδα</span>
+                </div>
+                <div class="reveal-up delay-200">
+                    <span class="block text-4xl md:text-5xl font-serif font-bold text-accent-green mb-2">200+</span>
+                    <span class="text-xs uppercase tracking-widest text-brand-400">Ευχαριστημενοι Θεραπευομενοι</span>
+                </div>
+                <div class="reveal-up delay-300">
+                    <span class="block text-4xl md:text-5xl font-serif font-bold text-accent-green mb-2">15+</span>
+                    <span class="text-xs uppercase tracking-widest text-brand-400">Ετη Κλινικης Εμπειριας</span>
+                </div>
+                <div class="reveal-up delay-100">
+                    <span class="block text-4xl md:text-5xl font-serif font-bold text-accent-green mb-2">10+</span>
+                    <span class="text-xs uppercase tracking-widest text-brand-400">Εξειδικευμενες Υπηρεσιες</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIO SECTION ("The Professional") -->
+    <section id="about" class="py-24 lg:py-32 relative overflow-hidden bg-brand-50">
+        <!-- Abstract Background Shapes (Blobs with new colors) -->
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-green/20 rounded-full blur-[100px] -z-10 translate-x-1/2 -translate-y-1/2 animate-blob"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent-purple/30 rounded-full blur-[80px] -z-10 -translate-x-1/2 translate-y-1/2 animate-blob animation-delay-2000"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
+                
+                <!-- Text Content Column -->
+                <div class="w-full lg:w-7/12 order-2 lg:order-1 reveal-up delay-200">
+                    <h4 class="text-accent-green font-bold uppercase tracking-widest text-sm mb-4">Σχετικα με εμενα</h4>
+                    <h2 class="font-serif text-4xl lg:text-5xl text-brand-900 mb-8 leading-tight">Μαρία Σ. Γκιόκα, ΜΑ <br/><span class="text-accent-purple italic text-2xl lg:text-3xl">Ψυχολόγος</span></h2>
+                    
+                    <!-- Short Bio Text -->
+                    <div class="space-y-6 text-brand-800 text-lg leading-relaxed font-light mb-8 text-justify">
+                        <p>
+                            Η Μαρία Γκιόκα είναι Ψυχολόγος και διατηρεί ιδιωτικό γραφείο στο Αιγάλεω, προσφέροντας έναν ασφαλή και υποστηρικτικό χώρο για παιδιά, εφήβους και ενήλικες, καθώς και συνεδρίες συμβουλευτικής γονέων.
+                        </p>
+                        <p>
+                            Η επιστημονική της προσέγγιση βασίζεται στη συνεχή εξέλιξη και στη βαθιά πίστη ότι κάθε άνθρωπος είναι μοναδικός. Στόχος της είναι ο σχεδιασμός εξατομικευμένων θεραπευτικών παρεμβάσεων, οι οποίες διαμορφώνονται με απόλυτο σεβασμό στις ιδιαίτερες ανάγκες και τα χαρακτηριστικά του κάθε ατόμου.
+                        </p>
+                    </div>
+
+                    <!-- Read More Button -->
+                    <button onclick="openBio()" class="inline-flex items-center px-8 py-3 border border-brand-500 text-brand-500 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-brand-500 hover:text-white transition-all mb-12 cursor-pointer shadow-sm hover:shadow-md">
+                        Διαβαστε Περισσοτερα
+                        <i data-lucide="plus" class="w-4 h-4 ml-2"></i>
+                    </button>
+
+                    <!-- Timeline / CV Dropdown -->
+                    <div class="border border-brand-300 rounded-2xl overflow-hidden bg-white/60 shadow-sm transition-all duration-300 hover:shadow-glass hover:border-accent-purple/50">
+                        <button onclick="toggleCV()" class="w-full flex justify-between items-center p-6 lg:p-8 bg-white/50 hover:bg-white transition-colors cursor-pointer group">
+                            <h3 class="font-serif text-2xl text-brand-900 flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-accent-greenLight flex items-center justify-center text-accent-green">
+                                    <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                                </div>
+                                Εκπαίδευση & Κατάρτιση
+                            </h3>
+                            <i id="cv-icon" data-lucide="chevron-down" class="text-brand-500 w-6 h-6 transition-transform duration-500 group-hover:text-accent-green"></i>
+                        </button>
+                        
+                        <div id="cv-content" class="accordion-content bg-brand-50/50">
+                            <div class="p-6 lg:p-8 pt-0 space-y-6 text-sm text-brand-700 border-t border-brand-100">
+                                <!-- Timeline Items -->
+                                <div class="cv-list-item">
+                                    <span class="font-bold text-brand-900 block text-base">2013- 2016: City University of Seattle</span>
+                                    <span>Master of Arts, Συμβουλευτική Ψυχολογία</span>
+                                </div>
+                                <div class="cv-list-item">
+                                    <span class="font-bold text-brand-900 block text-base">2009- 2012: University of Indianapolis</span>
+                                    <span>Bachelor of Arts, Ψυχολογία (Αρ. Αδείας: 1070)</span>
+                                </div>
+                                <div class="cv-list-item">
+                                    <span class="font-bold text-brand-900 block text-base">2025: Εταιρεία Γνωσιακών Συμπεριφοριστικών Σπουδών</span>
+                                    <span>Εξειδικευμένα Εργαστηρία στη γνωσιακή – συμπεριφοριστική θεραπεία παιδιών και εφήβων.</span>
+                                </div>
+                                <div class="cv-list-item">
+                                    <span class="font-bold text-brand-900 block text-base">2024: ΔΙ.ΚΕ.ΨΥ.</span>
+                                    <span>Παιγνιοθεραπεία σε παιδιά και εφήβους.</span>
+                                </div>
+                                <div class="cv-list-item">
+                                    <span class="font-bold text-brand-900 block text-base">2024: ΕΝΤΡΟΠΙΑ</span>
+                                    <span>Συστημική Συμβουλευτική και Ψυχοθεραπεία Παιδιών και Εφήβων & Συμβουλευτική Γονέων.</span>
+                                </div>
+                                <div class="cv-list-item">
+                                    <span class="font-bold text-brand-900 block text-base">2021: Πανεπιστήμιο Αιγαίου</span>
+                                    <span>Μετεκπαίδευση στην «Σχολική Ψυχολογία».</span>
+                                </div>
+                                <div class="cv-list-item">
+                                    <span class="font-bold text-brand-900 block text-base">2020: University of Minnesota & Coursera</span>
+                                    <span>Σεμινάριο 6 εβδομάδων: Resilience in Children Exposed to Trauma, Disaster and War: Global Perspectives.</span>
+                                </div>
+                                <div class="cv-list-item">
+                                    <span class="font-bold text-brand-900 block text-base">2017: Εταιρεία Ψυχολογικής Υποστήριξης και Θεραπείας</span>
+                                    <span>Μετεκπαίδευση στη Γνωσιακή – Συμπεριφορική Ψυχοθεραπεία.</span>
+                                </div>
+                                <div class="cv-list-item">
+                                    <span class="font-bold text-brand-900 block text-base">Online Training</span>
+                                    <span>Εκπαίδευση στις «Πρώτες Βοήθειες Ψυχικής Υγείας». The National Child Traumatic Stress Network Learning Center.</span>
+                                </div>
+                                <div class="cv-list-item">
+                                    <span class="font-bold text-brand-900 block text-base">Κέντρο ημέρας Βαβέλ</span>
+                                    <span>Σεμινάριο: «Προσφυγική συνθήκη: μεταξύ ανθεκτικότητας και ευαλωτότητας».</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Moved University Badges Here -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                        <div class="flex items-center p-4 bg-white/60 rounded-xl border border-brand-100 shadow-sm">
+                            <i data-lucide="graduation-cap" class="w-10 h-10 text-accent-green mr-3 shrink-0"></i>
+                            <span class="text-xs font-bold text-brand-900 uppercase tracking-wide leading-tight">BA University of Indianapolis</span>
+                        </div>
+                        <div class="flex items-center p-4 bg-white/60 rounded-xl border border-brand-100 shadow-sm">
+                            <i data-lucide="book-open-check" class="w-10 h-10 text-accent-green mr-3 shrink-0"></i>
+                            <span class="text-xs font-bold text-brand-900 uppercase tracking-wide leading-tight">MA City University of Seattle</span>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Image Container -->
+                 <div class="w-full lg:w-5/12 order-1 lg:order-2 relative reveal-up flex flex-col gap-8">
+                    <div class="relative rounded-[40px] overflow-hidden shadow-soft group">
+                        <img src="https://github.com/agelmet/Image-hosting-/blob/main/52f729ac-1e21-4951-a6fd-e1f917040141.webp?raw=true" 
+                             alt="Maria S. Gkioka Portrait" 
+                             class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-1000 ease-out grayscale-[10%] group-hover:grayscale-0">
+                         <!-- Color Overlay on Hover -->
+                         <div class="absolute inset-0 bg-accent-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <!-- Decorative border line -->
+                    <div class="absolute top-0 left-0 w-full h-full border border-accent-purple rounded-[40px] -z-10 translate-x-4 translate-y-4"></div>
+
+                    <!-- Highlight Box -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-accent-green reveal-up delay-200 relative">
+                         <!-- Quote Icon -->
+                         <i data-lucide="quote" class="absolute top-4 right-6 text-brand-100 w-12 h-12 fill-current"></i>
+                         <h4 class="font-serif text-xl text-brand-900 mb-2 relative z-10">Η προσέγγιση μου</h4>
+                         <p class="text-brand-700 text-sm italic leading-relaxed relative z-10">"Πιστεύω στη δύναμη της συνεργασίας, της ενσυναίσθησης και της επιστημονικής τεκμηρίωσης ως θεμέλια μιας ουσιαστικής και αποτελεσματικής θεραπευτικής σχέσης."</p>
+                    </div>
+
+                     <!-- Specialization Icons (Moved Universities to left, kept these 2 here) -->
+                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal-up delay-300">
+                        <div class="flex flex-col items-center justify-center p-4 bg-white/60 rounded-xl border border-brand-100 hover:shadow-md transition-shadow text-center h-full">
+                            <i data-lucide="brain-circuit" class="w-8 h-8 text-accent-purple mb-2"></i>
+                            <span class="text-xs font-bold text-brand-900 uppercase tracking-wide">Εξειδίκευση CBT</span>
+                        </div>
+                        <div class="flex flex-col items-center justify-center p-4 bg-white/60 rounded-xl border border-brand-100 hover:shadow-md transition-shadow text-center h-full">
+                            <i data-lucide="network" class="w-8 h-8 text-accent-purple mb-2"></i>
+                            <span class="text-xs font-bold text-brand-900 uppercase tracking-wide">Συστημική Συμβουλευτική</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION ("Path to Healing") -->
+    <section id="services" class="py-24 bg-brand-50 relative">
+         <!-- Geometric Background -->
+         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute top-10 right-10 w-64 h-64 border border-accent-purple/20 rounded-full"></div>
+            <div class="absolute bottom-20 left-10 w-96 h-96 border border-accent-green/20 rounded-full"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
+                <span class="text-accent-purple font-bold uppercase tracking-widest text-sm mb-2 block">Θεραπευτικοι Τομεις</span>
+                <h2 class="font-serif text-4xl lg:text-5xl text-brand-900 mb-4">Οι Υπηρεσίες μου</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-accent-purple to-accent-green mx-auto rounded-full mb-4"></div>
+                <p class="text-brand-600 text-lg">Εξειδικευμένες παρεμβάσεις προσαρμοσμένες στις δικές σας ανάγκες.</p>
+            </div>
+
+            <!-- Symmetrical Grid: 3 Top, 2 Bottom Centered -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+                
+                <!-- Service 1: Kids (Green Theme) -->
+                <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-2 reveal-up border-t-4 border-transparent hover:border-accent-green flex flex-col h-full">
+                    <div class="w-14 h-14 bg-accent-greenLight rounded-2xl flex items-center justify-center mb-6 text-accent-green group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="baby" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-brand-900 mb-4 font-bold group-hover:text-accent-green transition-colors leading-tight">Ψυχοσυναισθηματική Αξιολόγηση Παιδιών έως 12 ετών</h3>
+                    <p class="text-brand-700 text-sm mb-6 leading-relaxed opacity-80 flex-grow">
+                        Η ψυχοσυναισθηματική αξιολόγηση παιδιών έχει ως στόχο την ουσιαστική κατανόηση των αναγκών, των δυσκολιών αλλά και των δυνατοτήτων κάθε παιδιού. Πίσω από κάθε συμπεριφορά υπάρχει ένα μήνυμα που χρειάζεται προσεκτική, ευαίσθητη και επιστημονικά τεκμηριωμένη προσέγγιση.
+                    </p>
+                    <button onclick="openService(0)" class="text-accent-green text-sm font-bold uppercase tracking-widest hover:text-brand-800 transition-colors flex items-center group cursor-pointer mt-auto">
+                        Διαβαστε περισσοτερα 
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+
+                <!-- Service 2: Adolescents (Purple Theme) -->
+                <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-2 reveal-up delay-100 border-t-4 border-transparent hover:border-accent-purple flex flex-col h-full">
+                    <div class="w-14 h-14 bg-accent-purpleLight rounded-2xl flex items-center justify-center mb-6 text-accent-purple group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="users" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-brand-900 mb-4 font-bold group-hover:text-accent-purple transition-colors leading-tight">Αξιολόγηση και ψυχολογική υποστήριξη εφήβων</h3>
+                    <p class="text-brand-700 text-sm mb-6 leading-relaxed opacity-80 flex-grow">
+                        Η εφηβεία αποτελεί μια περίοδο έντονων αλλαγών σε συναισθηματικό, γνωστικό και κοινωνικό επίπεδο. Η αξιολόγηση και η ψυχολογική υποστήριξη στοχεύουν στην κατανόηση των αναγκών του εφήβου και στην ενίσχυση της ψυχικής του ανθεκτικότητας.
+                    </p>
+                    <button onclick="openService(1)" class="text-accent-purple text-sm font-bold uppercase tracking-widest hover:text-brand-800 transition-colors flex items-center group cursor-pointer mt-auto">
+                        Διαβαστε περισσοτερα 
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+
+                <!-- Service 3: Young Adults (Green Theme) -->
+                <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-2 reveal-up delay-200 border-t-4 border-transparent hover:border-accent-green flex flex-col h-full">
+                    <div class="w-14 h-14 bg-accent-greenLight rounded-2xl flex items-center justify-center mb-6 text-accent-green group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="graduation-cap" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-brand-900 mb-4 font-bold group-hover:text-accent-green transition-colors leading-tight">Αξιολόγηση & Ψυχολογική Υποστήριξη Νεαρών Ενηλίκων <span class="text-sm font-sans font-normal">(έως 21 ετών)</span></h3>
+                    <p class="text-brand-700 text-sm mb-6 leading-relaxed opacity-80 flex-grow">
+                        Η μετάβαση από την εφηβεία στην ενήλικη ζωή συνοδεύεται από σημαντικές αλλαγές και προκλήσεις: σπουδές, επαγγελματικός προσανατολισμός, ανεξαρτητοποίηση, διαπροσωπικές σχέσεις και διαμόρφωση ταυτότητας. Η ψυχολογική αξιολόγηση και υποστήριξη στοχεύουν στην ουσιαστική κατανόηση των δυσκολιών και στην ενίσχυση της προσωπικής ανάπτυξης.
+                    </p>
+                    <button onclick="openService(2)" class="text-accent-green text-sm font-bold uppercase tracking-widest hover:text-brand-800 transition-colors flex items-center group cursor-pointer mt-auto">
+                        Διαβαστε περισσοτερα 
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bottom Row Centered -->
+            <div class="flex flex-col md:flex-row justify-center gap-8">
+                
+                <!-- Service 4: Parents (Purple Theme) -->
+                <div class="w-full md:w-1/2 lg:w-1/3 glass-panel p-8 rounded-3xl group hover:-translate-y-2 reveal-up delay-100 border-t-4 border-transparent hover:border-accent-purple flex flex-col h-full">
+                    <div class="w-14 h-14 bg-accent-purpleLight rounded-2xl flex items-center justify-center mb-6 text-accent-purple group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="heart-handshake" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-brand-900 mb-4 font-bold group-hover:text-accent-purple transition-colors leading-tight">Συμβουλευτική Γονέων</h3>
+                    <p class="text-brand-700 text-sm mb-6 leading-relaxed opacity-80 flex-grow">
+                        Η γονεϊκότητα είναι μια απαιτητική αλλά και βαθιά ουσιαστική εμπειρία. Η συμβουλευτική γονέων προσφέρει ένα ασφαλές πλαίσιο κατανόησης, ενδυνάμωσης και καθοδήγησης, με στόχο την υποστήριξη του γονέα στον ρόλο του και τη βελτίωση της σχέσης με το παιδί ή τον έφηβο.
+                    </p>
+                    <button onclick="openService(3)" class="text-accent-purple text-sm font-bold uppercase tracking-widest hover:text-brand-800 transition-colors flex items-center group cursor-pointer mt-auto">
+                        Διαβαστε περισσοτερα 
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+
+                <!-- Service 5: Adults (Green Theme) -->
+                <div class="w-full md:w-1/2 lg:w-1/3 glass-panel p-8 rounded-3xl group hover:-translate-y-2 reveal-up delay-200 border-t-4 border-transparent hover:border-accent-green flex flex-col h-full">
+                    <div class="w-14 h-14 bg-accent-greenLight rounded-2xl flex items-center justify-center mb-6 text-accent-green group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="message-circle-heart" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-brand-900 mb-4 font-bold group-hover:text-accent-green transition-colors leading-tight">Ατομικές Συνεδρίες Ενηλίκων</h3>
+                    <p class="text-brand-700 text-sm mb-6 leading-relaxed opacity-80 flex-grow">
+                        Οι εμπειρίες της προσωπικής μας ιστορίας διαμορφώνουν τον τρόπο που σχετιζόμαστε — με τον εαυτό μας, με τον/τη σύντροφό μας και με τα παιδιά μας. Στις ατομικές συνεδρίες δίνεται χώρος στο προσωπικό βίωμα, με στόχο την κατανόηση των συναισθημάτων, των μοτίβων συμπεριφοράς και των ασυνείδητων δυναμικών που επηρεάζουν τις σχέσεις.
+                    </p>
+                    <button onclick="openService(4)" class="text-accent-green text-sm font-bold uppercase tracking-widest hover:text-brand-800 transition-colors flex items-center group cursor-pointer mt-auto">
+                        Διαβαστε περισσοτερα 
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ARTICLES SECTION (Contentful Integration) -->
+    <section id="articles-section" class="py-24 relative bg-brand-50 border-t border-brand-100">
+        <div class="max-w-4xl mx-auto px-6">
+             <div class="text-center mb-12 reveal-up">
+                <span class="text-brand-500 font-bold uppercase tracking-widest text-sm mb-2 block">Blog</span>
+                <h2 class="font-serif text-4xl text-brand-900 mb-2">Άρθρα & Νέα</h2>
+                <div class="w-24 h-1 bg-accent-green mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Dynamic Container -->
+            <div id="articles-list" class="space-y-8 min-h-[200px]">
+                <!-- Loading State Styled -->
+                <div class="animate-pulse space-y-4">
+                    <div class="h-64 bg-brand-100 rounded-2xl"></div>
+                    <div class="h-64 bg-brand-100 rounded-2xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact" class="bg-brand-900 text-brand-100 py-16 lg:py-24 relative overflow-hidden">
+        <!-- Abstract Decoration -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-accent-purple rounded-full mix-blend-overlay blur-3xl opacity-20 -mr-20 -mt-20"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 border-b border-brand-800 pb-12">
+                
+                <!-- Brand Info -->
+                <div class="col-span-1 lg:col-span-1">
+                    <h3 class="font-serif text-2xl text-white mb-6">Μαρία Σ. Γκιόκα, ΜΑ</h3>
+                    <p class="text-brand-300 mb-6 text-sm leading-relaxed">
+                        Συμβουλευτική Ψυχολόγος παιδιών, εφήβων και νέων.
+                    </p>
+                    <p class="text-brand-300 mb-6 text-sm leading-relaxed">
+                        Δημιουργώντας σχέσεις εμπιστοσύνης και ασφάλειας για την ψυχική σας υγεία.
+                    </p>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-accent-green font-bold uppercase tracking-widest text-xs mb-6">Επικοινωνια</h4>
+                    <ul class="space-y-4 text-brand-200">
+                        <li class="flex items-start">
+                            <i data-lucide="map-pin" class="w-5 h-5 mr-3 text-accent-green shrink-0"></i>
+                            <a href="https://maps.google.com/?q=Dimarchiou+16,+Egaleo+122+42" target="_blank" class="hover:text-white transition-colors">
+                                Δημαρχείου 16, <br/>Αιγάλεω 122 42
+                            </a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="phone" class="w-5 h-5 mr-3 text-accent-green shrink-0"></i>
+                            <a href="tel:6986673926" class="hover:text-white transition-colors">698 667 3926</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="mail" class="w-5 h-5 mr-3 text-accent-green shrink-0"></i>
+                            <a href="mailto:ma_gki@windowslive.com" class="hover:text-white transition-colors">ma_gki@windowslive.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hours -->
+                <div>
+                    <h4 class="text-accent-green font-bold uppercase tracking-widest text-xs mb-6">Ωραριο</h4>
+                    <p class="text-brand-200 mb-2">Δευτέρα - Παρασκευή</p>
+                    <p class="text-white font-serif italic mb-4">Κατόπιν Ραντεβού</p>
+                    <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" 
+                       target="_blank"
+                       class="inline-block mt-2 text-xs border-b border-accent-green pb-1 hover:text-accent-green transition-colors">
+                        Κλείστε Ραντεβού Online
+                    </a>
+                </div>
+
+                <!-- Map Embed -->
+                <div class="rounded-xl overflow-hidden h-48 bg-brand-800 relative group border border-brand-700">
+                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=Dimarchiou+16,+Egaleo+122+42&t=&z=15&ie=UTF8&iwloc=&output=embed" style="filter: grayscale(100%) contrast(1.2) opacity(0.6);"></iframe>
+                    <div class="absolute inset-0 pointer-events-none border border-white/10 rounded-xl"></div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-brand-400 pt-8">
+                <p>&copy; 2026 Μαρία Σ. Γκιόκα. All rights reserved.</p>
+                <p class="mt-2 md:mt-0">
+                    Designed by <a href="https://advonmedia.com" target="_blank" class="text-brand-300 hover:text-white transition-colors">Advon Media</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- BIO / READ MORE MODAL -->
+    <div id="bio-modal" class="fixed inset-0 z-[60] bg-brand-50 hidden overflow-y-auto">
+        <!-- Close Button -->
+        <button onclick="closeBio()" class="fixed top-6 right-6 z-[70] p-3 bg-white/80 backdrop-blur-md rounded-full shadow-lg text-brand-900 hover:bg-brand-900 hover:text-white transition-all duration-300 group cursor-pointer">
+            <span class="sr-only">Close</span>
+            <i data-lucide="x" class="w-6 h-6 group-hover:rotate-90 transition-transform"></i>
+        </button>
+
+        <div class="max-w-3xl mx-auto px-6 py-24 lg:py-32 min-h-screen">
+            <!-- Article Header -->
+            <div class="mb-12 text-center border-b border-brand-200 pb-12">
+                <span class="block text-accent-green font-bold uppercase tracking-widest text-sm mb-4">Βιογραφικο</span>
+                <h1 class="font-serif text-3xl md:text-5xl lg:text-5xl text-brand-900 leading-tight">Ακαδημαϊκή Κατάρτιση & Θεραπευτικές Προσεγγίσεις</h1>
+            </div>
+            
+            <!-- Article Body -->
+            <div class="prose prose-lg prose-brand mx-auto text-brand-700 leading-relaxed font-light">
+                
+                <h3 class="bio-section-title">Σπουδές</h3>
+                <p>Είναι πτυχιούχος Ψυχολογίας από το <strong>University of Indianapolis</strong> (αρ. άδειας: 1070) και κάτοχος Μεταπτυχιακού Τίτλου (MSc) στη Συμβουλευτική Ψυχολογία από το <strong>City University of Seattle</strong>.</p>
+
+                <h3 class="bio-section-title">Μετεκπαίδευση</h3>
+                <p>Έχει εκπαιδευτεί στη <strong>Γνωσιακή – Συμπεριφορική Ψυχοθεραπεία (CBT)</strong>, καθώς και στη <strong>Συστημική Συμβουλευτική</strong> και Ψυχοθεραπεία Παιδιών / Εφήβων.</p>
+
+                <h3 class="bio-section-title">Συνεχής Επιμόρφωση</h3>
+                <p>Παρακολουθεί συστηματικά σεμινάρια, επιδιώκοντας τη διαρκή επικαιροποίηση των γνώσεών της και δίνοντας ιδιαίτερη έμφαση στην έγκυρη και τεκμηριωμένη αξιολόγηση.</p>
+
+                <h3 class="bio-section-title">Επαγγελματική Πορεία</h3>
+                <p>Έχει αποκτήσει σημαντική εμπειρία τόσο ως κλινικός όσο και ως ερευνήτρια σε ιδιωτικά κέντρα και ΜΚΟ. Στο παρελθόν έχει διατελέσει:</p>
+                <ul class="bio-list">
+                    <li>Επιστημονική Συνεργάτης / Συμβουλευτική Ψυχολόγος στη Μονάδα Εφηβικής Υγείας της Β’ Παιδιατρικής Κλινικής του Πανεπιστημίου Αθηνών, στο Νοσοκομείο Παίδων «Π. & Α. Κυριακού».</li>
+                    <li>Συνεργάτης του Ελληνικού Ινστιτούτου για τον Ο.Η.Ε.</li>
+                </ul>
+
+                <h3 class="bio-section-title">Τομείς Εξειδίκευσης</h3>
+                <p>Στην κλινική της πράξη διαθέτει ιδιαίτερη εμπειρία στη διαχείριση και θεραπεία των παρακάτω:</p>
+                <ul class="bio-list">
+                    <li>Αγχώδεις Διαταραχές & Κατάθλιψη</li>
+                    <li>Διαχείριση Θυμού & Πένθους</li>
+                    <li>Δυσκολίες στις Διαπροσωπικές Σχέσεις & Σχέσεις Γονέων-Παιδιών</li>
+                    <li>Διαταραχές Πρόσληψης Τροφής</li>
+                    <li>Ενδοσχολικός Εκφοβισμός (Bullying)</li>
+                    <li>Υπερβολική Χρήση Παιχνιδιών & Διαδικτύου</li>
+                    <li>Μαθησιακές Δυσκολίες & ΔΕΠ-Υ (Διαταραχή Ελλειμματικής Προσοχής και Υπερκινητικότητας)</li>
+                </ul>
+            </div>
+
+            <!-- Footer of Article -->
+            <div class="mt-16 pt-16 border-t border-brand-200 text-center">
+                <button onclick="closeBio()" class="inline-flex items-center text-accent-green hover:text-brand-900 font-bold uppercase tracking-widest text-sm transition-colors cursor-pointer">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Πισω στην αρχικη
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ARTICLE READING MODAL (Hidden by default) -->
+    <div id="article-modal" class="fixed inset-0 z-[60] bg-brand-50 hidden overflow-y-auto">
+        <!-- Close Button -->
+        <button onclick="closeArticle()" class="fixed top-6 right-6 z-[70] p-3 bg-white/80 backdrop-blur-md rounded-full shadow-lg text-brand-900 hover:bg-brand-900 hover:text-white transition-all duration-300 group cursor-pointer">
+            <span class="sr-only">Close</span>
+            <i data-lucide="x" class="w-6 h-6 group-hover:rotate-90 transition-transform"></i>
+        </button>
+
+        <div class="max-w-3xl mx-auto px-6 py-24 lg:py-32 min-h-screen">
+            <!-- Article Header -->
+            <div class="mb-12 text-center border-b border-brand-200 pb-12">
+                <span id="modal-date" class="block text-accent-green font-bold uppercase tracking-widest text-sm mb-4"></span>
+                <h1 id="modal-title" class="font-serif text-4xl md:text-5xl lg:text-6xl text-brand-900 leading-tight"></h1>
+            </div>
+            
+            <!-- Article Body -->
+            <div id="modal-body" class="prose prose-lg prose-brand mx-auto text-brand-700 leading-relaxed font-light">
+                <!-- Content injected here -->
+            </div>
+
+            <!-- Footer of Article -->
+            <div class="mt-16 pt-16 border-t border-brand-200 text-center">
+                <button onclick="closeArticle()" class="inline-flex items-center text-accent-green hover:text-brand-900 font-bold uppercase tracking-widest text-sm transition-colors cursor-pointer">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Πισω στα αρθρα
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICES MODAL -->
+    <div id="service-modal" class="fixed inset-0 z-[60] bg-brand-50 hidden overflow-y-auto">
+        <!-- Close Button -->
+        <button onclick="closeService()" class="fixed top-6 right-6 z-[70] p-3 bg-white/80 backdrop-blur-md rounded-full shadow-lg text-brand-900 hover:bg-brand-900 hover:text-white transition-all duration-300 group cursor-pointer">
+            <span class="sr-only">Close</span>
+            <i data-lucide="x" class="w-6 h-6 group-hover:rotate-90 transition-transform"></i>
+        </button>
+
+        <div class="max-w-3xl mx-auto px-6 py-24 lg:py-32 min-h-screen">
+            <!-- Service Header -->
+            <div class="mb-12 text-center border-b border-brand-200 pb-12">
+                <span class="block text-accent-green font-bold uppercase tracking-widest text-sm mb-4">Υπηρεσιες</span>
+                <h1 id="service-modal-title" class="font-serif text-3xl md:text-5xl lg:text-5xl text-brand-900 leading-tight"></h1>
+            </div>
+            
+            <!-- Service Body -->
+            <div id="service-modal-body" class="prose prose-lg prose-brand mx-auto text-brand-700 leading-relaxed font-light">
+                <!-- Content injected here via JS -->
+            </div>
+
+            <!-- Footer of Service -->
+            <div class="mt-16 pt-16 border-t border-brand-200 text-center">
+                <button onclick="closeService()" class="inline-flex items-center text-accent-green hover:text-brand-900 font-bold uppercase tracking-widest text-sm transition-colors cursor-pointer">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Πισω στις υπηρεσιες
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Toggle CV Dropdown Function
+        function toggleCV() {
+            const content = document.getElementById('cv-content');
+            const icon = document.getElementById('cv-icon');
+            
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                content.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+        
+        // --- BIO MODAL LOGIC ---
+        function openBio() {
+            const modal = document.getElementById('bio-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeBio() {
+            const modal = document.getElementById('bio-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // --- SERVICES DATA & MODAL LOGIC ---
+        const servicesData = [
+            {
+                title: "Ψυχοσυναισθηματική Αξιολόγηση Παιδιών έως 12 ετών",
+                content: `
+                    <p>Η ψυχοσυναισθηματική αξιολόγηση παιδιών έχει ως στόχο την ουσιαστική κατανόηση των αναγκών, των δυσκολιών αλλά και των δυνατοτήτων κάθε παιδιού. Πίσω από κάθε συμπεριφορά υπάρχει ένα μήνυμα που χρειάζεται προσεκτική, ευαίσθητη και επιστημονικά τεκμηριωμένη προσέγγιση.</p>
+                    <p>Η αξιολόγηση πραγματοποιείται μέσα από σύγχρονα και έγκυρα εργαλεία, σε συνδυασμό με κλινική παρατήρηση και στενή συνεργασία με την οικογένεια. Στόχος είναι η διαμόρφωση μιας ολοκληρωμένης εικόνας για το παιδί, που θα αποτελέσει τη βάση για στοχευμένες και εξατομικευμένες παρεμβάσεις.</p>
+                    <p>Η Μαρία Γκιόκα παρακαλουθεί συστηματικά μετεκπαιδευτικά σεμινάρια και επιστημονικά προγράμματα, ώστε να ενημερώνεται διαρκώς για τις εξελίξεις στον τομέα της ψυχικής υγείας παιδιών. Δίνει ιδιαίτερη έμφαση στην έγκυρη αξιολόγηση και στη διαμόρφωση παρεμβάσεων προσαρμοσμένων στις μοναδικές ανάγκες κάθε παιδιού και της οικογένειάς του.</p>
+                    <p>Στόχος της είναι να δημιουργεί ένα ασφαλές και υποστηρικτικό πλαίσιο, όπου το παιδί μπορεί να εκφραστεί ελεύθερα και οι γονείς να αισθανθούν καθοδήγηση και σιγουριά.</p>
+                `
+            },
+            {
+                title: "Αξιολόγηση και ψυχολογική υποστήριξη εφήβων",
+                content: `
+                    <p>Η εφηβεία αποτελεί μια περίοδο έντονων αλλαγών σε συναισθηματικό, γνωστικό και κοινωνικό επίπεδο. Η αξιολόγηση και η ψυχολογική υποστήριξη στοχεύουν στην κατανόηση των αναγκών του εφήβου και στην ενίσχυση της ψυχικής του ανθεκτικότητας.</p>
+                    <h3 class="bio-section-title">🔎 Η ψυχολογική αξιολόγηση περιλαμβάνει:</h3>
+                    <ul class="service-list">
+                        <li>Λήψη αναπτυξιακού και οικογενειακού ιστορικού</li>
+                        <li>Κλινική συνέντευξη με τον έφηβο</li>
+                        <li>Συνεργασία με τους γονείς και το σχολικό περιβάλλον (όπου κρίνεται απαραίτητο)</li>
+                        <li>Χρήση έγκυρων και σταθμισμένων ψυχομετρικών εργαλείων</li>
+                        <li>Εκτίμηση συναισθηματικής κατάστασης, συμπεριφοράς και διαπροσωπικών σχέσεων</li>
+                        <li>Διερεύνηση πιθανών δυσκολιών όπως άγχος, χαμηλή αυτοεκτίμηση, καταθλιπτική διάθεση, σχολικές δυσκολίες ή προβλήματα προσαρμογής</li>
+                    </ul>
+                    <p>Στόχος είναι η διαμόρφωση μιας ολοκληρωμένης εικόνας, που θα αποτελέσει τη βάση για την κατάλληλη παρέμβαση.</p>
+                    <h3 class="bio-section-title">🌿 Η ψυχολογική υποστήριξη περιλαμβάνει:</h3>
+                    <ul class="service-list">
+                        <li>Ατομικές συνεδρίες με τον έφηβο σε ασφαλές και εμπιστευτικό πλαίσιο</li>
+                        <li>Ενίσχυση της αυτογνωσίας και της αυτοεκτίμησης</li>
+                        <li>Διαχείριση άγχους και έντονων συναισθημάτων</li>
+                        <li>Ανάπτυξη κοινωνικών, συναισθηματικών και επικοινωνιακών δεξιοτήτων</li>
+                        <li>Στήριξη σε θέματα ταυτότητας, σχέσεων και ορίων</li>
+                        <li>Συμβουλευτική γονέων</li>
+                    </ul>
+                    <p>Η προσέγγιση είναι εξατομικευμένη, με σεβασμό στην προσωπικότητα, το αναπτυξιακό στάδιο και τις ιδιαίτερες ανάγκες κάθε εφήβου.</p>
+                `
+            },
+            {
+                title: "Αξιολόγηση & Ψυχολογική Υποστήριξη Νεαρών Ενηλίκων (έως 21 ετών)",
+                content: `
+                    <p>Η μετάβαση από την εφηβεία στην ενήλικη ζωή συνοδεύεται από σημαντικές αλλαγές και προκλήσεις: σπουδές, επαγγελματικός προσανατολισμός, ανεξαρτητοποίηση, διαπροσωπικές σχέσεις και διαμόρφωση ταυτότητας. Η ψυχολογική αξιολόγηση και υποστήριξη στοχεύουν στην ουσιαστική κατανόηση των δυσκολιών και στην ενίσχυση της προσωπικής ανάπτυξης.</p>
+                    <h3 class="bio-section-title">🔎 Η ψυχολογική αξιολόγηση περιλαμβάνει:</h3>
+                    <ul class="service-list">
+                        <li>Κλινική συνέντευξη και διερεύνηση αιτήματος</li>
+                        <li>Λήψη ατομικού και οικογενειακού ιστορικού</li>
+                        <li>Χρήση έγκυρων και σταθμισμένων ψυχομετρικών εργαλείων (όπου απαιτείται)</li>
+                        <li>Εκτίμηση συναισθηματικής κατάστασης και επιπέδων άγχους ή διάθεσης</li>
+                        <li>Αξιολόγηση αυτοεκτίμησης, σχέσεων και λειτουργικότητας στην καθημερινότητα</li>
+                        <li>Διερεύνηση δυσκολιών προσαρμογής, ακαδημαϊκής πίεσης ή μεταβατικών φάσεων ζωής</li>
+                    </ul>
+                    <p>Στόχος είναι η διαμόρφωση μιας ολοκληρωμένης εικόνας, που θα καθοδηγήσει την κατάλληλη θεραπευτική παρέμβαση.</p>
+                    <h3 class="bio-section-title">🌿 Στις συνεδρίες εστιάζουμε σε:</h3>
+                    <ul class="service-list">
+                        <li>Ατομικές συνεδρίες σε ασφαλές και εμπιστευτικό πλαίσιο</li>
+                        <li>Διαχείριση άγχους, έντονων συναισθημάτων και κρίσεων</li>
+                        <li>Ενίσχυση αυτογνωσίας και αυτοεκτίμησης</li>
+                        <li>Υποστήριξη στη λήψη αποφάσεων και στη διαμόρφωση προσωπικών στόχων</li>
+                        <li>Βελτίωση διαπροσωπικών και επικοινωνιακών δεξιοτήτων</li>
+                        <li>Στήριξη σε ζητήματα ταυτότητας, ανεξαρτητοποίησης και οριοθέτησης</li>
+                    </ul>
+                    <p>Η προσέγγιση είναι εξατομικευμένη και βασίζεται στον σεβασμό, την επιστημονική τεκμηρίωση και τη δημιουργία μιας ουσιαστικής θεραπευτικής σχέσης.</p>
+                `
+            },
+            {
+                title: "Συμβουλευτική Γονέων",
+                content: `
+                    <p>Η γονεϊκότητα είναι μια απαιτητική αλλά και βαθιά ουσιαστική εμπειρία. Η συμβουλευτική γονέων προσφέρει ένα ασφαλές πλαίσιο κατανόησης, ενδυνάμωσης και καθοδήγησης, με στόχο την υποστήριξη του γονέα στον ρόλο του και τη βελτίωση της σχέσης με το παιδί ή τον έφηβο.</p>
+                    <h3 class="bio-section-title">🔎 Η συμβουλευτική γονέων περιλαμβάνει:</h3>
+                    <ul class="service-list">
+                        <li>Διερεύνηση δυσκολιών στη συμπεριφορά ή στη συναισθηματική κατάσταση του παιδιού</li>
+                        <li>Κατανόηση της αναπτυξιακής φάσης και των αναγκών του παιδιού</li>
+                        <li>Ενίσχυση αποτελεσματικών τρόπων επικοινωνίας</li>
+                        <li>Διαχείριση ορίων και καθημερινών συγκρούσεων</li>
+                        <li>Καθοδήγηση σε θέματα άγχους, φόβων, επιθετικότητας ή σχολικών δυσκολιών</li>
+                        <li>Υποστήριξη σε περιόδους μετάβασης (π.χ. διαζύγιο, αλλαγή σχολείου, απώλεια)</li>
+                    </ul>
+                    <p>Στόχος είναι η ενδυνάμωση του γονέα, ώστε να μπορεί να ανταποκρίνεται με σταθερότητα, κατανόηση και συνέπεια στις ανάγκες του παιδιού.</p>
+                    <p>Η συνεργασία βασίζεται στον σεβασμό, την αποδοχή και στην επιστημονικά τεκμηριωμένη προσέγγιση, με έμφαση στη δημιουργία ενός θετικού και ασφαλούς οικογενειακού πλαισίου.</p>
+                `
+            },
+            {
+                title: "Ατομικές Συνεδρίες Ενηλίκων",
+                content: `
+                    <p>Με έμφαση στο προσωπικό βίωμα και στις σχέσεις.</p>
+                    <p>Οι εμπειρίες της προσωπικής μας ιστορίας διαμορφώνουν τον τρόπο που σχετιζόμαστε — με τον εαυτό μας, με τον/τη σύντροφό μας και με τα παιδιά μας. Στις ατομικές συνεδρίες δίνεται χώρος στο προσωπικό βίωμα, με στόχο την κατανόηση των συναισθημάτων, των μοτίβων συμπεριφοράς και των ασυνείδητων δυναμικών που επηρεάζουν τις σχέσεις.</p>
+                    <h3 class="bio-section-title">🌿 Στις συνεδρίες εστιάζουμε σε:</h3>
+                    <ul class="service-list">
+                        <li>Διερεύνηση προσωπικών εμπειριών και οικογενειακών προτύπων</li>
+                        <li>Κατανόηση του τρόπου που το παρελθόν επηρεάζει τη γονεϊκή στάση</li>
+                        <li>Αναγνώριση επαναλαμβανόμενων μοτίβων στις συντροφικές σχέσεις</li>
+                        <li>Διαχείριση συγκρούσεων και δυσκολιών επικοινωνίας</li>
+                        <li>Ρύθμιση έντονων συναισθημάτων (θυμός, ενοχή, άγχος, απόρριψη)</li>
+                        <li>Ενίσχυση της συναισθηματικής διαθεσιμότητας προς το παιδί και τον/τη σύντροφο</li>
+                    </ul>
+                    <p>Η θεραπευτική διαδικασία στοχεύει στην ενίσχυση της αυτογνωσίας και της συναισθηματικής επίγνωσης, ώστε ο ενήλικας να μπορεί να ανταποκρίνεται με μεγαλύτερη συνειδητότητα, σταθερότητα και αυθεντικότητα στις σχέσεις του.</p>
+                    <p>Μέσα σε ένα ασφαλές πλάισιο, καλλιεργείται η δυνατότητα ουσιαστικής σύνδεσης — τόσο με τον εαυτό όσο και με τους σημαντικούς άλλους.</p>
+                `
+            }
+        ];
+
+        function openService(index) {
+            const data = servicesData[index];
+            if (!data) return;
+            
+            document.getElementById('service-modal-title').innerHTML = data.title;
+            document.getElementById('service-modal-body').innerHTML = data.content;
+            
+            const modal = document.getElementById('service-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeService() {
+            const modal = document.getElementById('service-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. ICON INITIALIZATION
+            lucide.createIcons();
+    
+            // 2. MOBILE MENU INTERACTION
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const closeBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+    
+            function toggleMenu() {
+                if (!mobileMenu) return;
+                const isClosed = mobileMenu.classList.contains('opacity-0');
+                if (isClosed) {
+                    mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                } else {
+                    mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                    document.body.style.overflow = '';
+                }
+            }
+    
+            if (mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
+            if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+            
+            // Close menu when clicking a link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+    
+            // 3. SCROLL ANIMATIONS (IntersectionObserver)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+    
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+    
+            document.querySelectorAll('.reveal-up').forEach(el => {
+                observer.observe(el);
+            });
+    
+            // 4. NAVBAR SCROLL EFFECT
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('shadow-sm');
+                        navbar.classList.replace('h-24', 'h-20');
+                    } else {
+                        navbar.classList.remove('shadow-sm');
+                        navbar.classList.replace('h-20', 'h-24');
+                    }
+                });
+            }
+    
+            // 5. CONTENTFUL INTEGRATION (Optimized)
+            const client = contentful.createClient({
+                space: 'q3pnkhzgn26g', 
+                accessToken: 'gBi6nx4IZtDkhmuCVcW5DptjG5EfGaMlMtGoZC4a2ME',
+                environment: 'master'
+            });
+    
+            // --- GLOBAL VARIABLES TO STORE FETCHED DATA ---
+            window.globalArticles = [];
+    
+            function formatDate(dateString) {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                return new Date(dateString).toLocaleDateString('el-GR', options);
+            }
+    
+            function renderBody(field) {
+                if (!field) return '';
+                // Rich text handling
+                if (field.nodeType === 'document') { 
+                    return field.content.map(node => {
+                        if (node.nodeType === 'paragraph') {
+                            const text = node.content.map(c => c.value).join('');
+                            return text ? `<p class="mb-4 text-brand-700 leading-relaxed">${text}</p>` : '';
+                        }
+                        return ''; 
+                    }).join('');
+                }
+                return `<p class="mb-4 text-brand-700 leading-relaxed">${field}</p>`;
+            }
+    
+            // --- ARTICLE MODAL LOGIC (Global Scope Helpers) ---
+            window.openArticle = function(index) {
+                const entry = window.globalArticles[index];
+                if (!entry) return;
+    
+                const title = entry.fields.article1 || "Τίτλος Άρθρου";
+                const body = renderBody(entry.fields.description);
+                const date = formatDate(entry.sys.createdAt);
+    
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('modal-date').textContent = date;
+                document.getElementById('modal-body').innerHTML = body;
+    
+                const modal = document.getElementById('article-modal');
+                if (modal) modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Lock scroll
+                
+                // Re-initialize icons inside modal just in case
+                lucide.createIcons();
+            }
+    
+            window.closeArticle = function() {
+                const modal = document.getElementById('article-modal');
+                if (modal) modal.classList.add('hidden');
+                document.body.style.overflow = ''; // Unlock scroll
+            }
+    
+            client.getEntries({ order: '-sys.createdAt' })
+                .then((response) => {
+                    const container = document.getElementById('articles-list');
+                    if (!container) return;
+                    
+                    if (response.items.length === 0) {
+                        container.innerHTML = "<p class='text-center text-brand-500'>Δεν βρέθηκαν άρθρα προς το παρόν.</p>";
+                        return;
+                    }
+    
+                    container.innerHTML = ""; // Clear loading state
+                    window.globalArticles = response.items; // Save for modal usage
+    
+                    response.items.forEach((entry, index) => {
+                        const title = entry.fields.article1 || "Τίτλος Άρθρου";
+                        const body = renderBody(entry.fields.description); 
+                        const date = formatDate(entry.sys.createdAt);
+    
+                        // Add animation delay based on index
+                        const delayClass = index % 2 === 0 ? 'delay-0' : 'delay-100';
+    
+                        // HTML Template for Article Card
+                        const articleHTML = `
+                            <article class="bg-white rounded-2xl p-8 border border-brand-100 shadow-soft hover:shadow-lg transition-all duration-500 transform hover:-translate-y-1 reveal-up ${delayClass}">
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="px-3 py-1 bg-brand-100 text-accent-green text-xs font-bold uppercase tracking-wider rounded-full">Blog</span>
+                                    <span class="text-xs text-brand-400 font-sans">${date}</span>
+                                </div>
+                                <h3 class="font-serif text-2xl text-brand-900 mb-4 hover:text-accent-green transition-colors cursor-pointer" onclick="openArticle(${index})">${title}</h3>
+                                <div class="prose prose-brand text-brand-600 line-clamp-3 mb-6">
+                                    ${body}
+                                </div>
+                                <button onclick="openArticle(${index})" class="text-accent-green text-sm font-bold uppercase tracking-widest hover:text-brand-800 transition-colors flex items-center group cursor-pointer">
+                                    Διαβαστε περισσοτερα 
+                                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                                </button>
+                            </article>
+                        `;
+                        container.innerHTML += articleHTML;
+                    });
+                    
+                    // Re-trigger observer for new elements
+                    document.querySelectorAll('#articles-list .reveal-up').forEach(el => {
+                        observer.observe(el);
+                    });
+                    lucide.createIcons(); // Refresh icons for new elements
+                })
+                .catch((error) => {
+                    console.error(error);
+                    const container = document.getElementById('articles-list');
+                    if (container) container.innerHTML = `<p class="text-center text-red-400">Σφάλμα φόρτωσης: ${error.message}</p>`;
+                });
+        });
+    </script>
+</body>
+</html>
