@@ -535,6 +535,77 @@ html.gx .gx-marquee:not(.in){opacity:0;transform:translateY(30px)}
 .gx-faq[open] .gx-faq-a{animation:gxUp .55s var(--gx-ease)}
 @media (prefers-reduced-motion:reduce){.gx-mtrack{animation:none!important}.gx-mrow{overflow-x:auto}.gx-dup{display:none}}
 
+/* 10 · «Διαβάστε περισσότερα» windows — two columns on desktop */
+.gx-mfoot{display:none}
+@media (max-width:1023px){.gx-maside .gx-mcta,.gx-maside .gx-mback{display:none}.gx-mfoot{display:block;margin-top:2.4rem}}
+
+#bio-modal,#service-modal{background:#f1ede7}
+.gx-mbar{position:fixed;top:0;left:0;right:0;height:3px;z-index:75;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#ad9daf,#708561,#917767);pointer-events:none}
+.gx-mwrap{max-width:1200px;margin:0 auto;padding:88px 22px 80px;min-height:100vh}
+@media (min-width:1024px){.gx-mwrap{display:grid;grid-template-columns:minmax(300px,360px) 1fr;gap:72px;padding:96px 40px 96px}}
+.gx-maside{margin-bottom:2.5rem}
+@media (min-width:1024px){.gx-maside{position:sticky;top:56px;align-self:start;margin:0;max-height:calc(100vh - 80px);overflow:auto;scrollbar-width:none}.gx-maside::-webkit-scrollbar{display:none}}
+.gx-mkick{display:block;color:#708561;font-weight:700;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:1rem}
+.gx-mtitle{font-size:clamp(1.9rem,3.2vw,2.6rem);line-height:1.15;color:#423835;margin:0 0 1.3rem}
+.gx-mname{font-family:"Literata",Georgia,serif;color:#423835;font-size:1.05rem;margin:-.4rem 0 1.6rem}
+.gx-mname span{display:block;font-family:"Lato",sans-serif;font-size:.85rem;color:#8f7d92;margin-top:.2rem;letter-spacing:.02em}
+.gx-mphoto{width:120px;aspect-ratio:1;border-radius:28px;overflow:hidden;box-shadow:var(--gx-sh2);margin-bottom:1.6rem}
+@media (min-width:1024px){.gx-mphoto{width:100%;max-width:260px;border-radius:32px}}
+.gx-mphoto img{width:100%;height:100%;object-fit:cover;display:block}
+.gx-mic{width:76px;height:76px;border-radius:24px;display:flex;align-items:center;justify-content:center;background:#eef3eb;color:#708561;margin-bottom:1.4rem;position:relative}
+.gx-mic.p{background:#f2eff2;color:#8f7d92}
+.gx-mic::before{content:"";position:absolute;inset:-7px;border-radius:28px;border:1px dashed currentColor;opacity:.3}
+.gx-mic svg{width:42px;height:42px}
+.gx-mic svg *{stroke-dasharray:1;animation:gxDrawIc 1.4s var(--gx-ease) .2s backwards}
+.gx-mtoc{display:none;flex-direction:column;border-left:1px solid rgba(145,119,103,.2);margin:0 0 1.8rem}
+@media (min-width:1024px){.gx-mtoc{display:flex}.gx-mtoc:empty{display:none}}
+.gx-mtoc a{position:relative;padding:.55rem 0 .55rem 1.1rem;color:#7a6b66;font-size:.92rem;line-height:1.4;transition:color .3s,padding .4s var(--gx-ease)}
+.gx-mtoc a::before{content:"";position:absolute;left:-1px;top:0;bottom:0;width:2px;background:#708561;transform:scaleY(0);transition:transform .45s var(--gx-ease)}
+.gx-mtoc a.on{color:#423835;padding-left:1.35rem}.gx-mtoc a.on::before{transform:scaleY(1)}
+@media (hover:hover){.gx-mtoc a:hover{color:#423835}}
+.gx-mcta{display:flex;flex-direction:column;gap:.7rem;padding:1.3rem;border-radius:22px;background:#fff;box-shadow:var(--gx-sh1);border:1px solid rgba(220,207,200,.6);margin-bottom:1.3rem}
+.gx-mcta-b{display:flex;align-items:center;justify-content:center;padding:.95rem 1.2rem;border-radius:999px;background:#917767;color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.gx-mcta-p{display:flex;align-items:center;justify-content:center;gap:.5rem;color:#423835;font-size:.95rem;padding:.3rem}
+.gx-mback{display:inline-flex;align-items:center;gap:.5rem;color:#708561;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;background:none;border:0;padding:.3rem 0}
+@media (hover:hover){.gx-mback:hover svg{transform:translateX(-4px)}}.gx-mback svg{transition:transform .4s var(--gx-ease)}
+.gx-mmain{min-width:0}
+.gx-prose{color:#5e504c;font-size:1.04rem;line-height:1.85;max-width:720px}
+.gx-prose p{margin:0 0 1.25rem;text-align:left}
+.gx-prose .gx-lead{font-family:"Literata",Georgia,serif;font-size:clamp(1.25rem,1.9vw,1.5rem);line-height:1.6;color:#423835;margin-bottom:1.8rem}
+.gx-prose .gx-lead::first-letter{float:left;font-size:3.6em;line-height:.9;margin:.06em .12em 0 0;color:#917767}
+.gx-block{margin:2.4rem 0;padding:1.8rem 1.8rem 1.4rem;border-radius:26px;background:#fff;box-shadow:var(--gx-sh1);border:1px solid rgba(220,207,200,.55);scroll-margin-top:40px}
+.gx-block h3{display:flex;align-items:center;gap:.7rem;font-family:"Literata",Georgia,serif;font-size:1.3rem;color:#423835;margin:0 0 1.2rem;font-weight:400;border:0;padding:0}
+.gx-block h3 .gx-mk{margin:0;top:0}
+.gx-block ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:.7rem}
+@media (min-width:768px){.gx-block ul{grid-template-columns:1fr 1fr}}
+.gx-block li{position:relative;margin:0;padding:.85rem 1rem .85rem 3rem;border-radius:16px;background:#f7f3ee;color:#5e504c;font-size:.96rem;line-height:1.55}
+.gx-block li::before{content:counter(gxi,decimal-leading-zero);counter-increment:gxi;position:absolute;left:1rem;top:.9rem;font:600 .72rem/1.6 "Lato",sans-serif;letter-spacing:.06em;color:#708561;background:none;width:auto;height:auto;border-radius:0}
+.gx-block ul{counter-reset:gxi}
+.gx-callout{margin:2.4rem 0 0;padding:1.4rem 1.6rem;border-radius:20px;background:linear-gradient(135deg,#f2eff2,#eef3eb);color:#423835;font-family:"Literata",Georgia,serif;font-size:1.1rem;line-height:1.7;border-left:3px solid #ad9daf}
+.gx-msec{scroll-margin-top:40px;margin-bottom:3.4rem}
+.gx-mh{font-family:"Literata",Georgia,serif;font-size:clamp(1.6rem,2.4vw,2rem);color:#423835;margin:0 0 1.5rem;font-weight:400;display:flex;align-items:center;gap:.8rem}
+.gx-mh::before{content:"";width:26px;height:2px;background:linear-gradient(90deg,#ad9daf,#708561);border-radius:2px}
+.gx-egrid{display:grid;grid-template-columns:1fr;gap:1rem}
+@media (min-width:768px){.gx-egrid{grid-template-columns:1fr 1fr}}
+.gx-ecard{padding:1.3rem 1.4rem;border-radius:20px;background:#fff;border:1px solid rgba(220,207,200,.55);box-shadow:var(--gx-sh1);transition:transform .45s var(--gx-ease),box-shadow .45s}
+@media (hover:hover){.gx-ecard:hover{transform:translateY(-4px);box-shadow:var(--gx-sh2)}}
+.gx-ecard h4,.gx-tl h4{font-family:"Literata",Georgia,serif;font-size:1.02rem;color:#423835;margin:.7rem 0 .35rem;font-weight:600;line-height:1.4}
+.gx-ecard p,.gx-tl p{margin:0;color:#7a6b66;font-size:.92rem;line-height:1.6}
+.gx-ecard p a{color:#708561;text-decoration:underline;text-underline-offset:3px}
+.gx-yr{display:inline-block;padding:.28rem .7rem;border-radius:999px;background:#eef3eb;color:#5f7352;font-size:.75rem;font-weight:700;letter-spacing:.06em}
+.gx-tl{list-style:none;margin:0;padding:0 0 0 1.8rem;position:relative}
+.gx-tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:linear-gradient(#ad9daf,#708561,#917767);border-radius:2px}
+.gx-tl li{position:relative;padding:0 0 1.7rem}
+.gx-tl li::before{content:"";position:absolute;left:calc(-1.8rem + 0px);top:.35rem;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #708561}
+/* entrance inside the windows */
+#bio-modal:not(.hidden) .gx-maside>*,#service-modal:not(.hidden) .gx-maside>*{animation:gxUp .7s var(--gx-ease) backwards}
+#bio-modal:not(.hidden) .gx-maside>*:nth-child(2),#service-modal:not(.hidden) .gx-maside>*:nth-child(2){animation-delay:.06s}
+#bio-modal:not(.hidden) .gx-maside>*:nth-child(3),#service-modal:not(.hidden) .gx-maside>*:nth-child(3){animation-delay:.12s}
+#bio-modal:not(.hidden) .gx-maside>*:nth-child(n+4),#service-modal:not(.hidden) .gx-maside>*:nth-child(n+4){animation-delay:.18s}
+#bio-modal:not(.hidden) .gx-mmain>*,#service-modal:not(.hidden) #service-modal-body>*{animation:gxUp .8s var(--gx-ease) backwards;animation-delay:calc(.15s + var(--i,0)*.07s)}
+.gx-ecard,.gx-tl li,.gx-block li{transition:opacity .6s,transform .7s var(--gx-ease)}
+html.gx .gx-mmain .gx-ecard:not(.in),html.gx .gx-mmain .gx-tl li:not(.in),html.gx #service-modal-body .gx-block li:not(.in){opacity:0;transform:translateY(16px)}
+
 @media (prefers-reduced-motion:reduce){
  .gx-hbg,.gx-amb,.gx-intro{display:none!important}
  .gx-kb,.gx-breathe,.gx-drift{animation:none!important}
@@ -568,9 +639,7 @@ html.gx .gx-marquee:not(.in){opacity:0;transform:translateY(30px)}
                     <a href="#services" class="gx-nl text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Υπηρεσιες</a>
                     <a href="#axiologiseis" class="gx-nl hidden xl:inline text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Αξιολογησεις</a>
                     <a href="#contact" class="gx-nl text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Επικοινωνια</a>
-                    <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" 
-                       target="_blank"
-                       class="gx-btn gx-mag px-8 py-3 bg-brand-500 text-white rounded-full text-sm uppercase tracking-wider hover:bg-accent-green transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" target="_blank" rel="noopener" class="gx-book gx-btn gx-mag px-8 py-3 bg-brand-500 text-white rounded-full text-sm uppercase tracking-wider hover:bg-accent-green transition-all duration-300 transform hover:scale-105 shadow-lg">
                        Κλειστε Ραντεβου
                     </a>
                 </div>
@@ -599,9 +668,7 @@ html.gx .gx-marquee:not(.in){opacity:0;transform:translateY(30px)}
                 <a href="#axiologiseis" class="text-3xl font-serif text-brand-900 mobile-link hover:text-accent-green transition-colors">Αξιολογήσεις</a>
                 <a href="#faq" class="text-3xl font-serif text-brand-900 mobile-link hover:text-accent-green transition-colors">Συχνές ερωτήσεις</a>
                 <a href="#contact" class="text-3xl font-serif text-brand-900 mobile-link hover:text-accent-green transition-colors">Επικοινωνία</a>
-                <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" 
-                   target="_blank"
-                   class="px-10 py-4 bg-brand-500 text-white rounded-full text-lg uppercase tracking-wider shadow-xl mobile-link hover:bg-brand-800 transition-transform transform hover:scale-105">
+                <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" target="_blank" rel="noopener" class="gx-book px-10 py-4 bg-brand-500 text-white rounded-full text-lg uppercase tracking-wider shadow-xl mobile-link hover:bg-brand-800 transition-transform transform hover:scale-105">
                    Κλειστε Ραντεβου
                 </a>
             </div>
@@ -1020,9 +1087,7 @@ html.gx .gx-marquee:not(.in){opacity:0;transform:translateY(30px)}
                     <p class="text-brand-200 mb-2">Δευτέρα - Παρασκευή</p>
                     <p class="text-white font-serif italic mb-4">Κατόπιν Ραντεβού</p>
                     <p class="text-brand-300 text-sm leading-relaxed mb-4">Δια ζώσης στο Αιγάλεω<br/>Online για εφήβους (15+), ενήλικες &amp; συμβουλευτική γονέων</p>
-                    <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" 
-                       target="_blank"
-                       class="gx-pulse inline-block mt-2 text-xs border-b border-accent-green pb-1 hover:text-accent-green transition-colors">
+                    <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" target="_blank" rel="noopener" class="gx-book gx-pulse inline-block mt-2 text-xs border-b border-accent-green pb-1 hover:text-accent-green transition-colors">
                         Κλείστε Ραντεβού Online
                     </a>
                 </div>
@@ -1051,123 +1116,42 @@ html.gx .gx-marquee:not(.in){opacity:0;transform:translateY(30px)}
             <i data-lucide="x" class="w-6 h-6 group-hover:rotate-90 transition-transform"></i>
         </button>
 
-        <div class="max-w-3xl mx-auto px-6 py-24 lg:py-32 min-h-screen">
-            <!-- Article Header -->
-            <div class="mb-12 text-center border-b border-brand-200 pb-12">
-                <span class="block text-accent-green font-bold uppercase tracking-widest text-sm mb-4">Βιογραφικο</span>
-                <h1 class="font-serif text-3xl md:text-5xl lg:text-5xl text-brand-900 leading-tight">Ακαδημαϊκή Κατάρτιση & Θεραπευτικές Προσεγγίσεις</h1>
+        <div class="gx-mwrap">
+                <aside class="gx-maside">
+                    <div class="gx-mphoto"><img src="assets/maria-gkioka.webp" alt="Μαρία Σ. Γκιόκα" width="500" height="500" loading="lazy"></div>
+                    <span class="gx-mkick">Βιογραφικο</span>
+                    <h1 class="font-serif gx-mtitle">Ακαδημαϊκή Κατάρτιση &amp; Θεραπευτικές Προσεγγίσεις</h1>
+                    <p class="gx-mname">Μαρία Σ. Γκιόκα, ΜΑ<span>Συμβουλευτική Ψυχολόγος</span></p>
+                    <nav class="gx-mtoc" aria-label="Ενότητες">
+                        <a href="#gxb-1" data-t="gxb-1">Βιογραφικό</a>
+                        <a href="#gxb-2" data-t="gxb-2">Εκπαίδευση &amp; Κατάρτιση</a>
+                        <a href="#gxb-3" data-t="gxb-3">Επαγγελματική Εμπειρία</a>
+                    </nav>
+                    <div class="gx-mcta">
+                        <a class="gx-btn gx-book gx-mcta-b" href="#" target="_blank" rel="noopener">Κλειστε Ραντεβου</a>
+                        <a class="gx-mcta-p" href="tel:6986673926"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>698 667 3926</a>
+                    </div>
+                    <button onclick="closeBio()" class="gx-mback"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Πισω στην αρχικη</button>
+                </aside>
+                <main class="gx-mmain bio-body2">
+                    <section id="gxb-1" class="gx-msec gx-prose">
+                        <p class="gx-lead">Είμαι Συμβουλευτική Ψυχολόγος, απόφοιτη του University of Indianapolis, Athens Campus και κάτοχος Master's στην Συμβουλευτική Ψυχολογία από το City University of Seattle. Έχω πολυετή επαγγελματική εμπειρία στην ψυχολογική αξιολόγηση και συμβουλευτική υποστήριξη παιδιών, εφήβων και ενηλίκων, καθώς και στη συμβουλευτική γονέων.</p><p>Η επαγγελματική μου πορεία έχει επικεντρωθεί ιδιαίτερα στην ψυχική υγεία παιδιών και εφήβων. Έχω συνεργαστεί με την Μονάδα Εφηβικής Υγείας της Β΄ Παιδιατρικής Κλινικής του Πανεπιστημίου Αθηνών, στο Νοσοκομείο Παίδων «Π. &amp; Α. Κυριακού», όπου παρείχα ατομική συμβουλευτική υποστήριξη σε εφήβους και νεαρούς ενήλικες, ενώ συμμετείχα και στον συντονισμό ομάδων με στόχο την ανάπτυξη κοινωνικών και συναισθηματικών δεξιοτήτων αλλά και στην ομαδική ψυχοεκπαίδευση γονέων εφήβων με διαταραχές πρόσληψης τροφής.</p><p>Έχω μετεκπαιδευτεί στη Γνωσιακή-Συμπεριφορική Θεραπεία, στη Συστημική Συμβουλευτική και Ψυχοθεραπεία παιδιών και εφήβων, στη Συμβουλευτική Γονέων και την Σχολική Ψυχολογία. Το 2026 ολοκλήρωσα επίσης εκπαίδευση στο WISC-V, ενισχύοντας περαιτέρω την κατάρτισή μου στην αξιολόγηση παιδιών ενώ συνεχίζω την επαγγελματική μου επιμόρφωση παρακολουθώντας το Διεθνές Μετεκπαιδευτικό Πρόγραμμα στην Συστημική Ψυχοθεραπεία στο ΕΚΠΑ.</p><p>Παράλληλα με την κλινική μου δραστηριότητα, έχω συμμετάσχει σε ερευνητικά και ευρωπαϊκά προγράμματα με αντικείμενο τον σχολικό εκφοβισμό, την κοινωνική και συναισθηματική ανάπτυξη παιδιών και εφήβων, την ψυχική ανθεκτικότητα, καθώς και την ψυχοκοινωνική υποστήριξη ευάλωτων ομάδων. Η ερευνητική μου εμπειρία περιλαμβάνει επίσης παρουσιάσεις σε ελληνικά και διεθνή συνέδρια.</p><p>Στην εργασία μου θεωρώ ιδιαίτερα σημαντική τη δημιουργία μιας σχέσης εμπιστοσύνης, αποδοχής και ασφάλειας. Προσεγγίζω κάθε άνθρωπο ως μοναδικό, λαμβάνοντας υπόψη τις προσωπικές του ανάγκες, τις σχέσεις και το ευρύτερο περιβάλλον του. Στόχος μου είναι να δημιουργείται ένας χώρος όπου το άτομο μπορεί να κατανοήσει καλύτερα τον εαυτό του και τις δυσκολίες που αντιμετωπίζει, να αναπτύξει νέες δεξιότητες και να ενισχύσει την ψυχική του ανθεκτικότητα.</p><p>Η συνεργασία με τους γονείς αποτελεί επίσης σημαντικό μέρος της δουλειάς μου, ιδιαίτερα όταν πρόκειται για παιδιά και εφήβους, καθώς θεωρώ ότι η υποστήριξη του οικογενειακού περιβάλλοντος μπορεί να συμβάλει ουσιαστικά στην ψυχική ευημερία και την ανάπτυξή τους.</p>
+                    </section>
+                    <section id="gxb-2" class="gx-msec">
+                        <h2 class="gx-mh">Εκπαίδευση &amp; Κατάρτιση</h2>
+                        <div class="gx-egrid"><div class="gx-ecard"><span class="gx-yr">2013- 2016</span><h4>City University of Seattle</h4><p>Master of Arts, Συμβουλευτική Ψυχολογία</p></div><div class="gx-ecard"><span class="gx-yr">2009- 2012</span><h4>University of Indianapolis</h4><p>Bachelor of Arts, Ψυχολογία (Αρ. Αδείας: 1070)</p></div><div class="gx-ecard"><span class="gx-yr">2026</span><h4>Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</h4><p><a class="underline decoration-accent-green/50 underline-offset-4 hover:text-accent-green transition-colors" href="https://www.psychotherapy.cce.uoa.gr/" rel="noopener" target="_blank">Διεθνές Μετεκπαιδευτικό Πρόγραμμα στη Συμβουλευτική και Ψυχοθεραπεία</a></p></div><div class="gx-ecard"><span class="gx-yr">2026</span><h4>ΔΙ.ΚΕ.ΨΥ.</h4><p>Ψυχομετρικές Δοκιμασίες Αξιολόγησης Νοημοσύνης WISC-V.</p></div><div class="gx-ecard"><span class="gx-yr">2025</span><h4>Εταιρεία Γνωσιακών Συμπεριφοριστικών Σπουδών</h4><p>Εξειδικευμένα Εργαστήρια στη Γνωσιακή – Συμπεριφοριστική Θεραπεία Παιδιών και Εφήβων.</p></div><div class="gx-ecard"><span class="gx-yr">2024</span><h4>ΔΙ.ΚΕ.ΨΥ.</h4><p>Παιγνιοθεραπεία σε Παιδιά και Εφήβους.</p></div><div class="gx-ecard"><span class="gx-yr">2024</span><h4>ΕΝΤΡΟΠΙΑ</h4><p>Συστημική Συμβουλευτική και Ψυχοθεραπεία Παιδιών και Εφήβων & Συμβουλευτική Γονέων.</p></div><div class="gx-ecard"><span class="gx-yr">2021</span><h4>Πανεπιστήμιο Αιγαίου</h4><p>Μετεκπαίδευση στη Σχολική Ψυχολογία.</p></div><div class="gx-ecard"><span class="gx-yr">2017</span><h4>Εταιρεία Ψυχολογικής Υποστήριξης και Θεραπείας</h4><p>Μετεκπαίδευση στη Γνωσιακή – Συμπεριφορική Ψυχοθεραπεία.</p></div><div class="gx-ecard"><span class="gx-yr">2015-2016</span><h4>Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</h4><p>Μετεκπαίδευση στις Ψυχικές Διαταραχές στην Εφηβεία: Διάγνωση και Θεραπευτική Αντιμετώπιση.</p></div><div class="gx-ecard"><span class="gx-yr">2015</span><h4>Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</h4><p>Σεμινάριο στη Διαπαιδαγώγηση Παιδιών και Εφήβων.</p></div></div>
+                    </section>
+                    <section id="gxb-3" class="gx-msec">
+                        <h2 class="gx-mh">Επαγγελματική Εμπειρία</h2>
+                        <ol class="gx-tl"><li><span class="gx-yr">2019 - Σήμερα</span><h4>Συμβουλευτική Ψυχολόγος, ΜΑ</h4><p>Ελλάδα</p></li><li><span class="gx-yr">2017 - 2019</span><h4>Ερευνήτρια / Εξωτερική Συνεργάτης</h4><p>Ελληνικό Ινστιτούτο για τον Ο.Η.Ε., Ελλάδα</p></li><li><span class="gx-yr">2016 - 2018</span><h4>Βοηθός Ερευνητή</h4><p>Μ.Κ.Ο. «ΦΑΡΟΣ», Ελλάδα</p></li><li><span class="gx-yr">2015 - 2018</span><h4>Επιστημονική Συνεργάτης / Συμβουλευτική Ψυχολόγος</h4><p>Μονάδα Εφηβικής Υγείας, Β΄ Παιδιατρική Κλινική Πανεπιστημίου Αθηνών, Νοσοκομείο Παίδων «Π. & Α. Κυριακού», Ελλάδα</p></li><li><span class="gx-yr">2015 - 2016</span><h4>Ερευνήτρια</h4><p>«Μαζί για την Εφηβική Υγεία» & Μονάδα Εφηβικής Υγείας, Β΄ Παιδιατρική Κλινική Πανεπιστημίου Αθηνών, Νοσοκομείο Παίδων «Π. & Α. Κυριακού», Ελλάδα</p></li><li><span class="gx-yr">2015</span><h4>Πρακτική άσκηση</h4><p>Νευροψυχιατρική Κλινική «Παναγία η Γρηγορούσα», Ελλάδα</p></li><li><span class="gx-yr">2012</span><h4>Πρακτική άσκηση</h4><p>Hellas Employee Assistance Programs (EAP), Ελλάδα</p></li><li><span class="gx-yr">2011</span><h4>Πρακτική άσκηση</h4><p>Σικιαρίδειο Ίδρυμα, Ελλάδα</p></li></ol>
+                    </section>
+                    <div class="gx-mfoot"><div class="gx-mcta">
+                        <a class="gx-btn gx-book gx-mcta-b" href="#" target="_blank" rel="noopener">Κλειστε Ραντεβου</a>
+                        <a class="gx-mcta-p" href="tel:6986673926"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>698 667 3926</a>
+                    </div>
+                    <button onclick="closeBio()" class="gx-mback"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Πισω στην αρχικη</button></div>
+                </main>
             </div>
-            
-            <!-- Article Body -->
-            <div class="prose prose-lg prose-brand mx-auto text-brand-700 leading-relaxed font-light bio-body">
-                <p>Είμαι Συμβουλευτική Ψυχολόγος, απόφοιτη του University of Indianapolis, Athens Campus και κάτοχος Master's στην Συμβουλευτική Ψυχολογία από το City University of Seattle. Έχω πολυετή επαγγελματική εμπειρία στην ψυχολογική αξιολόγηση και συμβουλευτική υποστήριξη παιδιών, εφήβων και ενηλίκων, καθώς και στη συμβουλευτική γονέων.</p>
-                <p>Η επαγγελματική μου πορεία έχει επικεντρωθεί ιδιαίτερα στην ψυχική υγεία παιδιών και εφήβων. Έχω συνεργαστεί με την Μονάδα Εφηβικής Υγείας της Β΄ Παιδιατρικής Κλινικής του Πανεπιστημίου Αθηνών, στο Νοσοκομείο Παίδων «Π. &amp; Α. Κυριακού», όπου παρείχα ατομική συμβουλευτική υποστήριξη σε εφήβους και νεαρούς ενήλικες, ενώ συμμετείχα και στον συντονισμό ομάδων με στόχο την ανάπτυξη κοινωνικών και συναισθηματικών δεξιοτήτων αλλά και στην ομαδική ψυχοεκπαίδευση γονέων εφήβων με διαταραχές πρόσληψης τροφής.</p>
-                <p>Έχω μετεκπαιδευτεί στη Γνωσιακή-Συμπεριφορική Θεραπεία, στη Συστημική Συμβουλευτική και Ψυχοθεραπεία παιδιών και εφήβων, στη Συμβουλευτική Γονέων και την Σχολική Ψυχολογία. Το 2026 ολοκλήρωσα επίσης εκπαίδευση στο WISC-V, ενισχύοντας περαιτέρω την κατάρτισή μου στην αξιολόγηση παιδιών ενώ συνεχίζω την επαγγελματική μου επιμόρφωση παρακολουθώντας το Διεθνές Μετεκπαιδευτικό Πρόγραμμα στην Συστημική Ψυχοθεραπεία στο ΕΚΠΑ.</p>
-                <p>Παράλληλα με την κλινική μου δραστηριότητα, έχω συμμετάσχει σε ερευνητικά και ευρωπαϊκά προγράμματα με αντικείμενο τον σχολικό εκφοβισμό, την κοινωνική και συναισθηματική ανάπτυξη παιδιών και εφήβων, την ψυχική ανθεκτικότητα, καθώς και την ψυχοκοινωνική υποστήριξη ευάλωτων ομάδων. Η ερευνητική μου εμπειρία περιλαμβάνει επίσης παρουσιάσεις σε ελληνικά και διεθνή συνέδρια.</p>
-                <p>Στην εργασία μου θεωρώ ιδιαίτερα σημαντική τη δημιουργία μιας σχέσης εμπιστοσύνης, αποδοχής και ασφάλειας. Προσεγγίζω κάθε άνθρωπο ως μοναδικό, λαμβάνοντας υπόψη τις προσωπικές του ανάγκες, τις σχέσεις και το ευρύτερο περιβάλλον του. Στόχος μου είναι να δημιουργείται ένας χώρος όπου το άτομο μπορεί να κατανοήσει καλύτερα τον εαυτό του και τις δυσκολίες που αντιμετωπίζει, να αναπτύξει νέες δεξιότητες και να ενισχύσει την ψυχική του ανθεκτικότητα.</p>
-                <p>Η συνεργασία με τους γονείς αποτελεί επίσης σημαντικό μέρος της δουλειάς μου, ιδιαίτερα όταν πρόκειται για παιδιά και εφήβους, καθώς θεωρώ ότι η υποστήριξη του οικογενειακού περιβάλλοντος μπορεί να συμβάλει ουσιαστικά στην ψυχική ευημερία και την ανάπτυξή τους.</p>
-
-                <h3 class="bio-section-title">Εκπαίδευση &amp; Κατάρτιση</h3>
-                <div class="space-y-5 text-brand-700 not-prose mt-6">
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2013- 2016: City University of Seattle</span>
-                        <span>Master of Arts, Συμβουλευτική Ψυχολογία</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2009- 2012: University of Indianapolis</span>
-                        <span>Bachelor of Arts, Ψυχολογία (Αρ. Αδείας: 1070)</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2026: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
-                        <span><a href="https://www.psychotherapy.cce.uoa.gr/" target="_blank" rel="noopener" class="underline decoration-accent-green/50 underline-offset-4 hover:text-accent-green transition-colors">Διεθνές Μετεκπαιδευτικό Πρόγραμμα στη Συμβουλευτική και Ψυχοθεραπεία</a></span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2026: ΔΙ.ΚΕ.ΨΥ.</span>
-                        <span>Ψυχομετρικές Δοκιμασίες Αξιολόγησης Νοημοσύνης WISC-V.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2025: Εταιρεία Γνωσιακών Συμπεριφοριστικών Σπουδών</span>
-                        <span>Εξειδικευμένα Εργαστήρια στη Γνωσιακή – Συμπεριφοριστική Θεραπεία Παιδιών και Εφήβων.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2024: ΔΙ.ΚΕ.ΨΥ.</span>
-                        <span>Παιγνιοθεραπεία σε Παιδιά και Εφήβους.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2024: ΕΝΤΡΟΠΙΑ</span>
-                        <span>Συστημική Συμβουλευτική και Ψυχοθεραπεία Παιδιών και Εφήβων &amp; Συμβουλευτική Γονέων.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2021: Πανεπιστήμιο Αιγαίου</span>
-                        <span>Μετεκπαίδευση στη Σχολική Ψυχολογία.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2017: Εταιρεία Ψυχολογικής Υποστήριξης και Θεραπείας</span>
-                        <span>Μετεκπαίδευση στη Γνωσιακή – Συμπεριφορική Ψυχοθεραπεία.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2015-2016: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
-                        <span>Μετεκπαίδευση στις Ψυχικές Διαταραχές στην Εφηβεία: Διάγνωση και Θεραπευτική Αντιμετώπιση.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2015: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
-                        <span>Σεμινάριο στη Διαπαιδαγώγηση Παιδιών και Εφήβων.</span>
-                    </div>
-                </div>
-
-                <h3 class="bio-section-title">Επαγγελματική Εμπειρία</h3>
-                <div class="space-y-5 text-brand-700 not-prose mt-6">
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Συμβουλευτική Ψυχολόγος, ΜΑ</span>
-                        <span class="block">Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2019 - Σήμερα</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Ερευνήτρια / Εξωτερική Συνεργάτης</span>
-                        <span class="block">Ελληνικό Ινστιτούτο για τον Ο.Η.Ε., Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2017 - 2019</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Βοηθός Ερευνητή</span>
-                        <span class="block">Μ.Κ.Ο. «ΦΑΡΟΣ», Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2016 - 2018</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Επιστημονική Συνεργάτης / Συμβουλευτική Ψυχολόγος</span>
-                        <span class="block">Μονάδα Εφηβικής Υγείας, Β΄ Παιδιατρική Κλινική Πανεπιστημίου Αθηνών, Νοσοκομείο Παίδων «Π. &amp; Α. Κυριακού», Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2015 - 2018</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Ερευνήτρια</span>
-                        <span class="block">«Μαζί για την Εφηβική Υγεία» &amp; Μονάδα Εφηβικής Υγείας, Β΄ Παιδιατρική Κλινική Πανεπιστημίου Αθηνών, Νοσοκομείο Παίδων «Π. &amp; Α. Κυριακού», Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2015 - 2016</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Πρακτική άσκηση</span>
-                        <span class="block">Νευροψυχιατρική Κλινική «Παναγία η Γρηγορούσα», Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2015</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Πρακτική άσκηση</span>
-                        <span class="block">Hellas Employee Assistance Programs (EAP), Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2012</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Πρακτική άσκηση</span>
-                        <span class="block">Σικιαρίδειο Ίδρυμα, Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2011</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer of Article -->
-            <div class="mt-16 pt-16 border-t border-brand-200 text-center">
-                <button onclick="closeBio()" class="inline-flex items-center text-accent-green hover:text-brand-900 font-bold uppercase tracking-widest text-sm transition-colors cursor-pointer">
-                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
-                    Πισω στην αρχικη
-                </button>
-            </div>
-        </div>
     </div>
 
 
@@ -1179,26 +1163,27 @@ html.gx .gx-marquee:not(.in){opacity:0;transform:translateY(30px)}
             <i data-lucide="x" class="w-6 h-6 group-hover:rotate-90 transition-transform"></i>
         </button>
 
-        <div class="max-w-3xl mx-auto px-6 py-24 lg:py-32 min-h-screen">
-            <!-- Service Header -->
-            <div class="mb-12 text-center border-b border-brand-200 pb-12">
-                <span class="block text-accent-green font-bold uppercase tracking-widest text-sm mb-4">Υπηρεσιες</span>
-                <h1 id="service-modal-title" class="font-serif text-3xl md:text-5xl lg:text-5xl text-brand-900 leading-tight"></h1>
+        <div class="gx-mwrap">
+                <aside class="gx-maside">
+                    <span class="gx-mkick">Υπηρεσιες</span>
+                    <div class="gx-mic" id="service-modal-icon" aria-hidden="true"></div>
+                    <h1 id="service-modal-title" class="font-serif gx-mtitle"></h1>
+                    <nav class="gx-mtoc" id="service-modal-toc" aria-label="Ενότητες"></nav>
+                    <div class="gx-mcta">
+                        <a class="gx-btn gx-book gx-mcta-b" href="#" target="_blank" rel="noopener">Κλειστε Ραντεβου</a>
+                        <a class="gx-mcta-p" href="tel:6986673926"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>698 667 3926</a>
+                    </div>
+                    <button onclick="closeService()" class="gx-mback"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Πισω στις υπηρεσιες</button>
+                </aside>
+                <main class="gx-mmain">
+                    <div id="service-modal-body" class="gx-prose"></div>
+                    <div class="gx-mfoot"><div class="gx-mcta">
+                        <a class="gx-btn gx-book gx-mcta-b" href="#" target="_blank" rel="noopener">Κλειστε Ραντεβου</a>
+                        <a class="gx-mcta-p" href="tel:6986673926"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>698 667 3926</a>
+                    </div>
+                    <button onclick="closeService()" class="gx-mback"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Πισω στις υπηρεσιες</button></div>
+                </main>
             </div>
-            
-            <!-- Service Body -->
-            <div id="service-modal-body" class="prose prose-lg prose-brand mx-auto text-brand-700 leading-relaxed font-light">
-                <!-- Content injected here via JS -->
-            </div>
-
-            <!-- Footer of Service -->
-            <div class="mt-16 pt-16 border-t border-brand-200 text-center">
-                <button onclick="closeService()" class="inline-flex items-center text-accent-green hover:text-brand-900 font-bold uppercase tracking-widest text-sm transition-colors cursor-pointer">
-                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
-                    Πισω στις υπηρεσιες
-                </button>
-            </div>
-        </div>
     </div>
 
     <!-- JAVASCRIPT LOGIC -->
@@ -1537,6 +1522,46 @@ var fs=[].slice.call(document.querySelectorAll('.gx-faq'));
 fs.forEach(function(d){d.addEventListener('toggle',function(){if(d.open)fs.forEach(function(o){if(o!==d)o.open=false})})});
 /* stagger + reveal for the new blocks */
 [].slice.call(document.querySelectorAll('.gx-faqlist')).forEach(function(c){[].slice.call(c.children).forEach(function(k,i){k.style.setProperty('--i',i)})});
+})();
+
+(function(){
+function $$(q,c){return [].slice.call((c||document).querySelectorAll(q))}
+/* one booking address for every «Κλείστε Ραντεβού» button */
+var GX_BOOK_URL='';
+var first=document.querySelector('a.gx-book[href^="http"]');var BOOK=GX_BOOK_URL||(first?first.getAttribute('href'):'#');
+$$('a.gx-book').forEach(function(a){a.setAttribute('href',BOOK);a.setAttribute('target','_blank');a.setAttribute('rel','noopener')});
+/* window helpers: progress bar, section menu, soft reveals inside the window */
+function setup(modal){
+  var bar=document.createElement('div');bar.className='gx-mbar';modal.appendChild(bar);
+  var tk=0;modal.addEventListener('scroll',function(){if(tk)return;tk=requestAnimationFrame(function(){tk=0;var m=modal.scrollHeight-modal.clientHeight;bar.style.transform='scaleX('+(m>0?modal.scrollTop/m:0).toFixed(4)+')';spy(modal)})},{passive:true});
+  modal.addEventListener('click',function(e){var a=e.target.closest('.gx-mtoc a');if(!a)return;e.preventDefault();var t=document.getElementById(a.dataset.t);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
+}
+function spy(modal){var links=$$('.gx-mtoc a',modal);if(!links.length)return;var cur=links[0];links.forEach(function(a){var t=document.getElementById(a.dataset.t);if(t&&t.getBoundingClientRect().top<innerHeight*.35)cur=a});links.forEach(function(a){a.classList.toggle('on',a===cur)})}
+var rio=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}})},{threshold:.05}):null;
+function reveal(root){$$('.gx-ecard,.gx-tl li,.gx-block li',root).forEach(function(el,i){el.style.transitionDelay=((i%6)*60)+'ms';if(rio&&document.documentElement.classList.contains('gx'))rio.observe(el);else el.classList.add('in')})}
+var bio=document.getElementById('bio-modal'),svc=document.getElementById('service-modal');
+if(bio){setup(bio);$$('.gx-mmain>*',bio).forEach(function(k,i){k.style.setProperty('--i',i)});reveal(bio);
+  var ob=window.openBio;window.openBio=function(){ob&&ob();bio.scrollTop=0;setTimeout(function(){spy(bio)},30)}}
+if(svc){setup(svc);
+  var os=window.openService;window.openService=function(i){os&&os(i);
+    var body=document.getElementById('service-modal-body'),toc=document.getElementById('service-modal-toc'),ic=document.getElementById('service-modal-icon');
+    var kids=[].slice.call(body.children),out=document.createDocumentFragment(),blocks=0,ps=kids.filter(function(k){return k.tagName==='P'});
+    for(var n=0;n<kids.length;n++){var k=kids[n];
+      if(k.tagName==='H3'){var sec=document.createElement('section');sec.className='gx-block';sec.id='gxs-'+(++blocks);sec.appendChild(k);
+        while(kids[n+1]&&kids[n+1].tagName==='UL'){sec.appendChild(kids[++n])}out.appendChild(sec)}
+      else out.appendChild(k)}
+    body.innerHTML='';body.appendChild(out);
+    if(ps[0])ps[0].classList.add('gx-lead');
+    if(ps.length>1){var last=ps[ps.length-1];if(last!==ps[0])last.classList.add('gx-callout')}
+    toc.innerHTML='';var hs=$$('.gx-block',body);
+    if(hs.length){var a0=document.createElement('a');a0.href='#';a0.dataset.t='service-modal-body';a0.textContent='Περιγραφή';toc.appendChild(a0);
+      hs.forEach(function(h){var a=document.createElement('a');a.href='#'+h.id;a.dataset.t=h.id;a.textContent=h.querySelector('h3').textContent.replace(/:\s*$/,'');toc.appendChild(a)})}
+    var card=document.querySelectorAll('.gx-card')[i];ic.innerHTML='';ic.className='gx-mic'+(card&&card.classList.contains('gx-purple')?' p':'');
+    if(card){var sv=card.querySelector('.gx-ic svg');if(sv)ic.appendChild(sv.cloneNode(true))}
+    $$('#service-modal-body>*').forEach(function(k,j){k.style.setProperty('--i',j)});
+    reveal(body);svc.scrollTop=0;setTimeout(function(){spy(svc)},30)}}
+/* Esc closes a window */
+addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(svc&&!svc.classList.contains('hidden')&&window.closeService)closeService();else if(bio&&!bio.classList.contains('hidden')&&window.closeBio)closeBio()});
 })();
 
 </script>
