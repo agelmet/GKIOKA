@@ -606,6 +606,13 @@ html.gx .gx-marquee:not(.in){opacity:0;transform:translateY(30px)}
 .gx-ecard,.gx-tl li,.gx-block li{transition:opacity .6s,transform .7s var(--gx-ease)}
 html.gx .gx-mmain .gx-ecard:not(.in),html.gx .gx-mmain .gx-tl li:not(.in),html.gx #service-modal-body .gx-block li:not(.in){opacity:0;transform:translateY(16px)}
 
+.gx-note{margin:4rem auto 0;max-width:980px;display:grid;grid-template-columns:auto 1fr;gap:1.8rem;align-items:start;padding:2.2rem 2.4rem;border-radius:28px;background:linear-gradient(135deg,#fff,#faf7f3);border:1px solid rgba(220,207,200,.7);border-left:4px solid #ad9daf;box-shadow:var(--gx-sh2)}
+.gx-note-ic{width:72px;height:72px;border-radius:22px;background:#f2eff2;color:#8f7d92;display:flex;align-items:center;justify-content:center}
+.gx-note-ic svg{width:40px;height:40px}
+.gx-note-k{display:block;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#8f7d92;margin-bottom:.6rem}
+.gx-note p{color:#5e504c;line-height:1.8;margin:0 0 .9rem;font-size:1rem}
+.gx-note p:last-child{margin-bottom:0}
+@media (max-width:767px){.gx-note{grid-template-columns:1fr;gap:1.1rem;padding:1.6rem 1.4rem;margin-top:3rem}.gx-note-ic{width:58px;height:58px;border-radius:18px}.gx-note-ic svg{width:32px;height:32px}}
 @media (prefers-reduced-motion:reduce){
  .gx-hbg,.gx-amb,.gx-intro{display:none!important}
  .gx-kb,.gx-breathe,.gx-drift{animation:none!important}
@@ -990,6 +997,16 @@ html.gx .gx-mmain .gx-ecard:not(.in),html.gx .gx-mmain .gx-tl li:not(.in),html.g
                     <span class="gx-step-k">Βήμα 04</span>
                     <h3 class="font-serif text-2xl text-brand-900 mb-3">Συνεδρίες &amp; πορεία</h3>
                     <p class="text-brand-700 leading-relaxed">Προχωράμε σε τακτικές συνεδρίες, παρακολουθώντας την πρόοδο. Για παιδιά και εφήβους, οι γονείς είναι μέρος της διαδικασίας.</p>
+                </div>
+            </div>
+            <div class="gx-note gx-rise" id="synainesi">
+                <div class="gx-note-ic" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="11" r="5"/><path d="M8 42V27a7 7 0 0 1 14 0v15"/><circle cx="34" cy="21" r="4"/><path d="M29 42v-9a5 5 0 0 1 10 0v9"/><path d="M22 30c3 1 5 1 7 0"/></svg></div>
+                <div>
+                    <span class="gx-note-k">Σημαντικη ενημερωση</span>
+                    <h3 class="font-serif text-2xl lg:text-[1.7rem] text-brand-900 leading-snug mb-4">Σημαντική ενημέρωση για συνεδρίες παιδιών και εφήβων</h3>
+                    <p>Σε περίπτωση που οι γονείς είναι διαζευγμένοι ή σε διάσταση, πριν από την έναρξη συνεδριών με ανήλικο παιδί ή έφηβο, είναι απαραίτητη η συναίνεση και των δύο γονέων, εφόσον εξακολουθούν να ασκούν από κοινού τη γονική μέριμνα.</p>
+                    <p>Παρακαλώ, πριν από τον προγραμματισμό της πρώτης συνεδρίας, να έχει προηγηθεί η σχετική ενημέρωση και συναίνεση και των δύο γονέων.</p>
+                    <p>Σε περίπτωση που υπάρχει δικαστική απόφαση ή έγγραφη συμφωνία που ρυθμίζει διαφορετικά την άσκηση της γονικής μέριμνας, παρακαλώ να ενημερωθώ σχετικά πριν από την έναρξη της συνεργασίας.</p>
                 </div>
             </div>
         </div>
