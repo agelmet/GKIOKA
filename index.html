@@ -253,6 +253,179 @@
             opacity: 1;
         }
     </style>
+<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("gx")}catch(e){}</script>
+<style id="gx-life">
+/* ===== life layer (Advon, Sept 2026) — transform/opacity only, off under reduced motion ===== */
+:root{--gx-l:#ad9daf;--gx-g:#708561;--gx-b:#917767;--gx-ease:cubic-bezier(.16,1,.3,1);--gx-sh1:0 8px 22px -10px rgba(66,56,53,.22);--gx-sh2:0 26px 60px -22px rgba(66,56,53,.32);--gx-sh3:0 44px 90px -34px rgba(145,119,103,.55)}
+@keyframes gxUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes gxPop{from{opacity:0;transform:scale(.6) rotate(-10deg)}to{opacity:1;transform:none}}
+@keyframes gxDraw{to{stroke-dashoffset:0}}
+@keyframes gxFade{from{opacity:0}to{opacity:1}}
+
+/* 1 · chrome */
+.gx-prog{position:fixed;top:0;left:0;right:0;height:3px;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--gx-l),var(--gx-g) 60%,var(--gx-b));z-index:90;pointer-events:none}
+.gx-nl{position:relative}
+.gx-nl::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--gx-g);transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s var(--gx-ease)}
+@media (hover:hover){.gx-nl:hover::after{transform:scaleX(1);transform-origin:0 50%}}
+.gx-navlogo.spin{animation:gxSpin 1.1s var(--gx-ease)}
+@keyframes gxSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.gx-btn{position:relative;overflow:hidden;isolation:isolate;box-shadow:0 14px 34px -12px rgba(145,119,103,.65)}
+.gx-btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg) translateX(0);transition:transform .8s var(--gx-ease);pointer-events:none;z-index:-1}
+@media (hover:hover){.gx-btn:hover::after{transform:skewX(-20deg) translateX(420%)}}
+.gx-top{position:fixed;right:26px;bottom:26px;width:54px;height:54px;border-radius:50%;background:#fff;box-shadow:var(--gx-sh2);display:none;align-items:center;justify-content:center;z-index:55;opacity:0;transform:translateY(20px) scale(.8);transition:opacity .5s,transform .5s var(--gx-ease);color:#423835;cursor:pointer;border:0}
+@media (min-width:768px){.gx-top{display:flex}}
+.gx-top.show{opacity:1;transform:none}
+.gx-top svg.r{position:absolute;inset:0;width:54px;height:54px;transform:rotate(-90deg)}
+.gx-top svg.r circle{fill:none;stroke-width:2}
+@media (hover:hover){.gx-top:hover{transform:translateY(-3px)}}
+
+/* 2 · intro (once per session) */
+.gx-intro{position:fixed;inset:0;z-index:120;background:#f1ede7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:transform 1s cubic-bezier(.76,0,.24,1),border-radius 1s cubic-bezier(.76,0,.24,1)}
+.gx-intro.lift{transform:translateY(-110%);border-radius:0 0 50% 50%/0 0 160px 160px}
+.gx-intro .lg{position:relative;width:118px;height:118px}
+.gx-intro .lg img{width:100%;height:100%;object-fit:cover;border-radius:50%;mix-blend-mode:multiply;opacity:0;animation:gxPop .9s .15s cubic-bezier(.34,1.56,.64,1) forwards}
+.gx-intro .lg svg{position:absolute;left:-12px;top:-12px;width:142px;height:142px;transform:rotate(-90deg)}
+.gx-intro .lg circle{fill:none;stroke:var(--gx-l);stroke-width:1.4;stroke-dasharray:1;stroke-dashoffset:1;animation:gxDraw 1.1s .05s var(--gx-ease) forwards}
+.gx-intro .nm{font-family:"Literata",Georgia,serif;font-size:26px;color:#423835;letter-spacing:.02em;white-space:nowrap}
+.gx-intro .nm span{display:inline-block;opacity:0;transform:translateY(16px);animation:gxUp .55s var(--gx-ease) forwards;animation-delay:calc(.4s + var(--i)*28ms)}
+.gx-intro .tg{font:600 11px/1 "Lato",sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--gx-g);opacity:0;animation:gxFade .6s .95s forwards}
+
+/* 3 · hero */
+.gx-herosec{--mx:0;--my:0;--gxx:50%;--gxy:40%}
+.gx-kb{animation:gxKb 26s ease-in-out infinite alternate;transform-origin:60% 40%}
+@keyframes gxKb{from{transform:scale(1.05) translate(0,0)}to{transform:scale(1.15) translate(-1.8%,-1.2%)}}
+.gx-hbg{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.gx-light{position:absolute;inset:0;background:radial-gradient(520px circle at var(--gxx) var(--gxy),rgba(255,255,255,.55),transparent 60%);opacity:.75}
+.gx-wash{position:absolute;border-radius:50%;will-change:transform}
+.gx-wash.a{width:62vw;height:62vw;left:-18vw;top:-22vw;background:radial-gradient(closest-side,rgba(173,157,175,.30),transparent);animation:gxWa 26s ease-in-out infinite alternate}
+.gx-wash.b{width:55vw;height:55vw;right:-16vw;bottom:-24vw;background:radial-gradient(closest-side,rgba(112,133,97,.22),transparent);animation:gxWb 31s ease-in-out infinite alternate}
+.gx-wash.c{width:36vw;height:36vw;right:12vw;top:8vh;background:radial-gradient(closest-side,rgba(244,225,218,.55),transparent);animation:gxWa 22s ease-in-out infinite alternate-reverse}
+@keyframes gxWa{from{transform:translate(calc(var(--mx)*-26px),calc(var(--my)*-20px)) scale(1)}to{transform:translate(calc(6vw + var(--mx)*-26px),calc(4vw + var(--my)*-20px)) scale(1.12)}}
+@keyframes gxWb{from{transform:translate(calc(var(--mx)*22px),calc(var(--my)*18px)) scale(1.1)}to{transform:translate(calc(-7vw + var(--mx)*22px),calc(-3vw + var(--my)*18px)) scale(.95)}}
+.gx-orbit{position:absolute;right:7%;top:50%;width:min(34vw,470px);aspect-ratio:1;transform:translate(calc(var(--mx)*14px),calc(-50% + var(--my)*12px));display:none}
+@media (min-width:1024px){.gx-orbit{display:block}}
+.gx-orbit .o1,.gx-orbit .o2{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(145,119,103,.32);animation:gxRot 70s linear infinite}
+.gx-orbit .o2{inset:14%;border:1px solid rgba(173,157,175,.28);animation-duration:48s;animation-direction:reverse}
+.gx-orbit .d{position:absolute;width:10px;height:10px;border-radius:50%;top:-5px;left:calc(50% - 5px);box-shadow:0 0 0 6px rgba(255,255,255,.35)}
+.gx-orbit .o1 .d.d2{top:auto;bottom:-5px}
+.gx-orbit .o2 .d{width:8px;height:8px;left:-4px;top:calc(50% - 4px)}
+@keyframes gxRot{to{transform:rotate(360deg)}}
+.gx-orbit svg{position:absolute;inset:27%;width:46%;height:46%;overflow:visible}
+.gx-orbit svg path{fill:none;stroke-width:1.3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+html.gx-go .gx-orbit svg path{animation:gxDraw 2.6s var(--gx-ease) forwards;animation-delay:calc(.9s + var(--i)*.35s)}
+.gx-orbit svg{animation:gxFloat 9s ease-in-out infinite alternate}
+@keyframes gxFloat{from{transform:translateY(-8px)}to{transform:translateY(10px)}}
+/* rising petals & leaves (from her logo: lavender lotus + sage leaves) */
+.gx-pt{position:absolute;bottom:-40px;left:var(--x);width:var(--s);height:calc(var(--s)*1.6);animation:gxRise var(--dur) linear infinite;animation-delay:var(--del);opacity:0}
+.gx-pt i{display:block;width:100%;height:100%;border-radius:0 100% 0 100%;background:var(--c);animation:gxSway calc(var(--dur)/3) ease-in-out infinite alternate;transform:rotate(var(--r))}
+@keyframes gxRise{0%{transform:translateY(0);opacity:0}10%{opacity:var(--op,.55)}85%{opacity:var(--op,.55)}100%{transform:translateY(calc(-1 * var(--h,900px) - 80px));opacity:0}}
+@keyframes gxSway{from{transform:translateX(calc(var(--sw)*-1)) rotate(var(--r))}to{transform:translateX(var(--sw)) rotate(calc(var(--r) + 50deg))}}
+.gx-fall{animation-name:gxFall;bottom:auto;top:-60px}
+@keyframes gxFall{0%{transform:translateY(0);opacity:0}12%{opacity:var(--op,.4)}85%{opacity:var(--op,.4)}100%{transform:translateY(calc(var(--h,900px) + 80px));opacity:0}}
+.gx-tw{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);border-radius:50%;background:var(--c);opacity:0;animation:gxTw var(--dur) ease-in-out infinite;animation-delay:var(--del)}
+@keyframes gxTw{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:var(--op,.6);transform:scale(1)}}
+.gx-amb{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.gx-off *,.gx-off{animation-play-state:paused!important}
+/* hero entrance */
+.gx-w{display:inline-block;overflow:hidden;vertical-align:top;padding:.04em .02em .16em;margin:-.04em -.02em -.16em}
+.gx-wi{display:inline-block}
+html.gx .gx-wi{transform:translateY(110%) rotate(5deg);opacity:0}
+html.gx.gx-go .gx-wi{transform:none;opacity:1;transition:transform 1s var(--gx-ease),opacity .7s;transition-delay:var(--d)}
+.gx-swash{display:block;width:min(300px,62%);height:22px;margin:-18px 0 26px;overflow:visible}
+.gx-swash path{fill:none;stroke:var(--gx-l);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+html:not(.gx) .gx-swash path{stroke-dashoffset:0}
+html.gx-go .gx-swash path{animation:gxDraw 1.3s var(--gx-ease) 1s forwards}
+html.gx .gx-hp,html.gx .gx-chips>*,html.gx .gx-hbtns>*,html.gx .gx-cue{opacity:0}
+html.gx-go .gx-hp{animation:gxHp 1s var(--gx-ease) .75s backwards;opacity:1}
+@keyframes gxHp{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
+html.gx-go .gx-chips>*{opacity:1;animation:gxPop .7s cubic-bezier(.34,1.56,.64,1) backwards}
+html.gx-go .gx-chips>*:nth-child(1){animation-delay:1s}html.gx-go .gx-chips>*:nth-child(2){animation-delay:1.15s}
+html.gx-go .gx-hbtns>*{opacity:1;animation:gxUp .8s var(--gx-ease) backwards}
+html.gx-go .gx-hbtns>*:nth-child(1){animation-delay:1.25s}html.gx-go .gx-hbtns>*:nth-child(2){animation-delay:1.38s}
+html.gx-go .gx-cue{opacity:.6;transition:opacity .8s 1.8s}
+html.gx-scrolled .gx-cue{opacity:0!important;transition-delay:0s}
+
+/* 4 · scroll reveals — every section its own entrance */
+html.gx .gx-kick,html.gx .gx-rise,html.gx .gx-seq>*,html.gx .gx-flip,html.gx .gx-polaroid,html.gx .gx-frame,html.gx .gx-rows>li,html.gx .gx-deck>*,html.gx .gx-shead>*,html.gx .gx-deal,html.gx .gx-steps>*{opacity:0}
+.in.gx-kick,.in .gx-kick{opacity:1!important;animation:gxKick 1s var(--gx-ease) backwards}
+@keyframes gxKick{from{opacity:0;letter-spacing:.6em}to{opacity:1}}
+.gx-rise.in{opacity:1!important;animation:gxUp .95s var(--gx-ease) backwards;animation-delay:var(--d,0s)}
+.gx-seq.in>*{opacity:1!important;animation:gxUp .9s var(--gx-ease) backwards;animation-delay:calc(var(--i)*.16s)}
+.gx-flipwrap{perspective:900px}
+.gx-flip{transform-origin:50% 100%}
+.gx-flip.in{opacity:1!important;animation:gxFlip 1s var(--gx-ease) backwards;animation-delay:var(--d,0s)}
+@keyframes gxFlip{from{opacity:0;transform:rotateX(-75deg) translateY(10px)}to{opacity:1;transform:none}}
+.gx-polaroid.in{opacity:1!important;animation:gxPola 1.3s var(--gx-ease) backwards}
+@keyframes gxPola{from{opacity:0;transform:rotate(-7deg) scale(.86) translateY(40px)}to{opacity:1;transform:none}}
+.gx-frame.in{opacity:1!important;animation:gxFrame 1.4s var(--gx-ease) .35s backwards}
+@keyframes gxFrame{from{opacity:0;transform:translate(0,0)}to{opacity:1;transform:translate(1rem,1rem)}}
+.gx-polaroid{box-shadow:var(--gx-sh3)}
+.gx-rows>li.in{opacity:1!important;animation:gxRow .8s var(--gx-ease) backwards;animation-delay:calc(var(--i)*.09s)}
+@keyframes gxRow{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+.gx-rows>li.in::before{animation:gxDot .5s cubic-bezier(.34,1.56,.64,1) backwards;animation-delay:calc(.25s + var(--i)*.09s)}
+@keyframes gxDot{from{transform:scale(0)}to{transform:scale(1)}}
+.gx-mark{background-image:linear-gradient(transparent 62%,rgba(173,157,175,.38) 62%);background-repeat:no-repeat;background-size:0% 100%;transition:background-size 1.4s var(--gx-ease) .6s}
+html:not(.gx) .gx-mark,.gx-quote.in .gx-mark{background-size:100% 100%}
+.gx-quote .lucide-quote,.gx-quote [data-lucide="quote"]{transition:transform 1s cubic-bezier(.34,1.56,.64,1) .3s}
+html.gx .gx-quote:not(.in) svg{transform:scale(0) rotate(-30deg)}
+.gx-deck>*{box-shadow:var(--gx-sh1);transition:transform .45s var(--gx-ease),box-shadow .45s}
+.gx-deck>*.in{opacity:1!important;animation:gxFan 1s var(--gx-ease) backwards;animation-delay:calc(var(--i)*.1s)}
+@keyframes gxFan{from{opacity:0;transform:translateY(34px) rotate(var(--rot,6deg)) scale(.92)}to{opacity:1;transform:none}}
+@media (hover:hover){.gx-deck>*:hover{transform:translateY(-4px);box-shadow:var(--gx-sh2)}}
+/* timeline in the education dropdown draws itself */
+#cv-content>div{position:relative}
+#cv-content>div::after{content:"";position:absolute;left:calc(1.5rem + 3.5px);top:2.4rem;bottom:1.5rem;width:1px;background:linear-gradient(var(--gx-g),var(--gx-l));transform:scaleY(0);transform-origin:50% 0;transition:transform 1.4s var(--gx-ease) .15s}
+@media (min-width:1024px){#cv-content>div::after{left:calc(2rem + 3.5px)}}
+#cv-content.open>div::after{transform:scaleY(1)}
+#cv-content .cv-list-item::before{z-index:1;transform:scale(0);transition:transform .45s cubic-bezier(.34,1.56,.64,1);transition-delay:calc(.2s + var(--i,0)*.08s)}
+#cv-content.open .cv-list-item::before{transform:scale(1)}
+#cv-content .cv-list-item{transition:opacity .5s,transform .6s var(--gx-ease);transition-delay:calc(.15s + var(--i,0)*.06s)}
+html.gx #cv-content:not(.open) .cv-list-item{opacity:0;transform:translateX(-12px)}
+/* services: dealt onto the table, then tilt + spotlight */
+.gx-shead.in>*{opacity:1!important;animation:gxUp .9s var(--gx-ease) backwards;animation-delay:calc(var(--i)*.12s)}
+.gx-bar{transform-origin:50% 50%}
+.gx-shead.in .gx-bar{animation:gxBar 1.1s var(--gx-ease) .35s backwards}
+@keyframes gxBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.gx-deal{position:relative;box-shadow:var(--gx-sh1);transition:transform .35s var(--gx-ease),box-shadow .4s,border-color .4s,background .4s!important;transform-style:preserve-3d}
+.gx-deal.in{opacity:1!important;animation:gxDeal 1.05s var(--gx-ease) backwards;animation-delay:var(--d,0s)}
+@keyframes gxDeal{from{opacity:0;transform:translateY(70px) scale(.9) rotate(var(--rot,3deg))}to{opacity:1;transform:none}}
+.gx-deal::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(360px circle at var(--px,50%) var(--py,50%),rgba(173,157,175,.20),transparent 60%);opacity:0;transition:opacity .4s;pointer-events:none}
+@media (hover:hover){
+ .gx-deal.in:hover{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-8px);box-shadow:var(--gx-sh2)}
+ .gx-deal:hover::before{opacity:1}
+ .gx-deal:hover .w-14 i,.gx-deal:hover .w-14 svg{animation:gxWig .7s ease}
+}
+@keyframes gxWig{0%,100%{transform:rotate(0)}30%{transform:rotate(-12deg)}60%{transform:rotate(9deg)}}
+.gx-breathe{animation:gxBr 18s ease-in-out infinite alternate}
+.gx-breathe2{animation-duration:24s;animation-direction:alternate-reverse}
+@keyframes gxBr{from{transform:scale(1) translate(0,0)}to{transform:scale(1.12) translate(-14px,10px)}}
+/* footer: rounded shoulders, columns step in, map frame, pulse */
+.gx-shoulder{border-radius:56px 56px 0 0;margin-top:-56px;position:relative;z-index:2}
+@media (max-width:767px){.gx-shoulder{border-radius:32px 32px 0 0;margin-top:-32px}}
+.gx-drift{animation:gxDr 28s ease-in-out infinite alternate}
+@keyframes gxDr{from{transform:translate(0,0) scale(1)}to{transform:translate(-120px,80px) scale(1.25)}}
+.gx-steps.in>*{opacity:1!important;animation:gxUp .9s var(--gx-ease) backwards;animation-delay:calc(var(--i)*.13s)}
+.gx-map{box-shadow:0 0 0 0 rgba(173,157,175,0)}
+.gx-steps.in .gx-map{animation:gxUp .9s var(--gx-ease) .4s backwards,gxRing 2.2s ease 1.2s 1}
+@keyframes gxRing{0%{box-shadow:0 0 0 0 rgba(173,157,175,.5)}100%{box-shadow:0 0 0 18px rgba(173,157,175,0)}}
+.gx-steps.in .gx-pulse{animation:gxPulse 1.2s ease 1.3s 2}
+@keyframes gxPulse{0%,100%{transform:none}50%{transform:scale(1.08)}}
+.gx-pulse{display:inline-block}
+/* modals open with a lift */
+#bio-modal:not(.hidden),#service-modal:not(.hidden){animation:gxFade .45s ease}
+#bio-modal:not(.hidden)>div,#service-modal:not(.hidden)>div{animation:gxUp .8s var(--gx-ease) .05s backwards}
+#bio-modal:not(.hidden) .bio-body>*{animation:gxUp .7s var(--gx-ease) backwards;animation-delay:calc(.15s + var(--i,0)*.06s)}
+.gx-orbit{opacity:.75}
+.gx-dot{font-style:normal;color:#423835}
+.gx-herosec{padding-top:96px}.gx-herosec>.relative.z-10 .h-12{display:none}
+@media (max-width:767px){.gx-herosec{height:auto!important;min-height:100svh!important;padding-top:128px;padding-bottom:72px}.gx-herosec>.relative.z-10 .h-12{display:none}.gx-cue{display:none!important}}
+@media (prefers-reduced-motion:reduce){
+ .gx-hbg,.gx-amb,.gx-intro{display:none!important}
+ .gx-kb,.gx-breathe,.gx-drift{animation:none!important}
+ *{scroll-behavior:auto!important}
+}
+
+</style>
 </head>
 <body class="text-brand-800 font-sans selection:bg-brand-200 selection:text-brand-900">
 
@@ -262,7 +435,7 @@
             <div class="flex justify-between items-center h-24">
                 <!-- Logo / Name -->
                 <div class="flex items-center gap-4">
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69916ccc008498503da10cd2.jpg" alt="Logo" class="h-16 w-16 object-cover rounded-full mix-blend-multiply border border-brand-200">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69916ccc008498503da10cd2.jpg" alt="Logo" class="h-16 w-16 object-cover rounded-full mix-blend-multiply border border-brand-200 gx-navlogo">
                     <a href="#" class="flex flex-col">
                         <span class="font-serif text-xl lg:text-2xl font-semibold tracking-wide text-brand-900 leading-none">
                             Μαρία Σ. Γκιόκα, ΜΑ
@@ -275,12 +448,12 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-10 items-center">
-                    <a href="#about" class="text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Η Ψυχολογος</a>
-                    <a href="#services" class="text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Υπηρεσιες</a>
-                    <a href="#contact" class="text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Επικοινωνια</a>
+                    <a href="#about" class="gx-nl text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Η Ψυχολογος</a>
+                    <a href="#services" class="gx-nl text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Υπηρεσιες</a>
+                    <a href="#contact" class="gx-nl text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Επικοινωνια</a>
                     <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" 
                        target="_blank"
-                       class="px-8 py-3 bg-brand-500 text-white rounded-full text-sm uppercase tracking-wider hover:bg-accent-green transition-all duration-300 transform hover:scale-105 shadow-lg">
+                       class="gx-btn gx-mag px-8 py-3 bg-brand-500 text-white rounded-full text-sm uppercase tracking-wider hover:bg-accent-green transition-all duration-300 transform hover:scale-105 shadow-lg">
                        Κλειστε Ραντεβου
                     </a>
                 </div>
@@ -317,31 +490,31 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <header class="relative w-full h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+    <header id="top" class="gx-herosec relative w-full h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0 z-0">
             <img src="assets/hero.webp" 
                  alt="Psychology Office Atmosphere" 
-                 class="w-full h-full object-cover object-center opacity-80 scale-105 animate-[pulse_10s_ease-in-out_infinite_alternate]">
+                 class="w-full h-full object-cover object-center opacity-80 gx-kb">
             <!-- Updated gradients to match new palette -->
             <div class="absolute inset-0 bg-gradient-to-r from-brand-100/90 via-brand-100/60 to-transparent"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-brand-50 via-transparent to-transparent"></div>
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
-            <div class="max-w-2xl reveal-up">
+            <div class="max-w-2xl gx-hero">
                 <div class="h-12"></div>
                 
-                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight text-brand-900 mb-8">
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight text-brand-900 mb-8 gx-h1">
                     Ουσιαστική Σύνδεση <br/>
                     <span class="italic text-brand-500">με τον Εαυτό σας</span>.
                 </h1>
                 
-                <p class="text-lg md:text-xl text-brand-800 mb-8 leading-relaxed max-w-lg border-l-2 border-brand-400 pl-6">
+                <p class="text-lg md:text-xl text-brand-800 mb-8 leading-relaxed max-w-lg border-l-2 border-brand-400 pl-6 gx-hp">
                     Η ψυχοθεραπεία είναι πράξη ευθύνης, όχι αδυναμίας. Σας παρέχω τα κατάλληλα εργαλεία για να κατανοήσετε τα αίτια του άγχους και να προχωρήσετε σε σταθερά βήματα αλλαγής και προσωπικής εξέλιξης.
                 </p>
 
-                <div class="flex flex-wrap gap-3 mb-10 max-w-xl">
+                <div class="flex flex-wrap gap-3 mb-10 max-w-xl gx-chips">
                     <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-brand-200 text-sm text-brand-900 shadow-sm">
                         <i data-lucide="map-pin" class="w-4 h-4 text-accent-green shrink-0"></i>
                         Συνεδρίες δια ζώσης στο Αιγάλεω
@@ -352,13 +525,13 @@
                     </span>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="flex flex-col sm:flex-row gap-6 gx-hbtns">
                     <a href="#contact" 
-                       class="inline-flex items-center justify-center px-10 py-5 bg-brand-500 text-brand-50 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-brand-800 transition-all hover:scale-105 shadow-xl hover:shadow-2xl text-white">
+                       class="gx-btn gx-mag inline-flex items-center justify-center px-10 py-5 bg-brand-500 text-brand-50 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-brand-800 transition-all hover:scale-105 shadow-xl hover:shadow-2xl text-white">
                         <span>Επικοινωνια</span>
                         <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
                     </a>
-                    <a href="#about" class="inline-flex items-center justify-center px-10 py-5 bg-white/50 backdrop-blur-sm text-brand-900 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-white transition-all border border-brand-200">
+                    <a href="#about" class="gx-mag inline-flex items-center justify-center px-10 py-5 bg-white/50 backdrop-blur-sm text-brand-900 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-white transition-all border border-brand-200">
                         Μαθετε περισσοτερα
                     </a>
                 </div>
@@ -366,208 +539,168 @@
         </div>
         
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce opacity-60">
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce opacity-60 gx-cue">
             <span class="text-[10px] uppercase tracking-[0.2em] mb-2 text-brand-900">Scroll</span>
             <i data-lucide="chevron-down" class="w-5 h-5 text-brand-900"></i>
         </div>
     </header>
 
     <!-- BIO SECTION ("The Professional") -->
-    <section id="about" class="py-24 lg:py-32 relative overflow-hidden bg-brand-50">
-        <!-- Abstract Background Shapes (Blobs with new colors) -->
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-green/20 rounded-full blur-[100px] -z-10 translate-x-1/2 -translate-y-1/2 animate-blob"></div>
-        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent-purple/30 rounded-full blur-[80px] -z-10 -translate-x-1/2 translate-y-1/2 animate-blob animation-delay-2000"></div>
-
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
-                
-                <!-- Text Content Column -->
-                <div class="w-full lg:w-7/12 order-2 lg:order-1 reveal-up delay-200">
-                    <h4 class="text-accent-green font-bold uppercase tracking-widest text-sm mb-4">Σχετικα με εμενα</h4>
-                    <h2 class="font-serif text-4xl lg:text-5xl text-brand-900 mb-8 leading-tight">Μαρία Σ. Γκιόκα, ΜΑ <br/><span class="text-accent-purple italic text-2xl lg:text-3xl">Συμβουλευτική Ψυχολόγος</span></h2>
-                    
-                    <!-- Short Bio Text -->
-                    <div class="space-y-6 text-brand-800 text-lg leading-relaxed font-light mb-8 text-justify">
-                        <p>
+    <section class="py-24 lg:py-32 relative overflow-hidden bg-brand-50" id="about">
+<!-- Abstract Background Shapes (Blobs with new colors) -->
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-green/20 rounded-full blur-[100px] -z-10 translate-x-1/2 -translate-y-1/2 animate-blob"></div>
+<div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent-purple/30 rounded-full blur-[80px] -z-10 -translate-x-1/2 translate-y-1/2 animate-blob animation-delay-2000"></div>
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-14 lg:mb-16 gx-about-head"><h4 class="text-accent-green font-bold uppercase tracking-widest text-sm mb-4 gx-kick">Σχετικα με εμενα</h4><h2 class="font-serif text-4xl lg:text-5xl text-brand-900 leading-tight gx-rise mb-0">Μαρία Σ. Γκιόκα, ΜΑ <br/><span class="text-accent-purple italic text-2xl lg:text-3xl">Συμβουλευτική Ψυχολόγος</span></h2></div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+<div class="order-2 lg:order-1 gx-col-text"><div class="space-y-6 text-brand-800 text-lg leading-relaxed font-light text-justify gx-seq mb-8">
+<p>
                             Είμαι Συμβουλευτική Ψυχολόγος, με εξειδίκευση στην ψυχολογική υποστήριξη παιδιών, εφήβων και ενηλίκων, καθώς και στη Συμβουλευτική Γονέων.
                         </p>
-                        <p>
+<p>
                             Με πολυετή εμπειρία στον χώρο της ψυχικής υγείας και ιδιαίτερη ενασχόληση με την παιδική και εφηβική ηλικία, έχω μετεκπαιδευτεί στη Γνωσιακή-Συμπεριφορική Θεραπεία και τη Συστημική Συμβουλευτική και Ψυχοθεραπεία.
                         </p>
-                        <p>
+<p>
                             Στόχος μου είναι να δημιουργώ ένα ασφαλές και υποστηρικτικό πλαίσιο, όπου κάθε άνθρωπος μπορεί να εκφραστεί χωρίς κριτική, να κατανοήσει καλύτερα τον εαυτό του και να αναπτύξει τις δυνατότητές του.
                         </p>
-                    </div>
-
-                    <!-- Where sessions take place -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                        <div class="flex items-start gap-4 p-5 bg-white/70 rounded-2xl border border-brand-200 shadow-sm">
-                            <div class="w-10 h-10 rounded-full bg-accent-greenLight flex items-center justify-center text-accent-green shrink-0"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
-                            <div>
-                                <span class="block font-serif text-lg text-brand-900 leading-snug">Δια ζώσης</span>
-                                <span class="block text-sm text-brand-700 leading-relaxed mt-1">Στο γραφείο μου, Δημαρχείου 16, Αιγάλεω</span>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-5 bg-white/70 rounded-2xl border border-brand-200 shadow-sm">
-                            <div class="w-10 h-10 rounded-full bg-accent-purpleLight flex items-center justify-center text-accent-purple shrink-0"><i data-lucide="video" class="w-5 h-5"></i></div>
-                            <div>
-                                <span class="block font-serif text-lg text-brand-900 leading-snug">Online συνεδρίες</span>
-                                <span class="block text-sm text-brand-700 leading-relaxed mt-1">Για εφήβους (15+), ενήλικες και συμβουλευτική γονέων</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Read More Button -->
-                    <button onclick="openBio()" class="inline-flex items-center px-8 py-3 border border-brand-500 text-brand-500 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-brand-500 hover:text-white transition-all mb-12 cursor-pointer shadow-sm hover:shadow-md">
+</div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 gx-flipwrap">
+<div class="flex items-start gap-4 p-5 bg-white/70 rounded-2xl border border-brand-200 shadow-sm gx-flip">
+<div class="w-10 h-10 rounded-full bg-accent-greenLight flex items-center justify-center text-accent-green shrink-0"><i class="w-5 h-5" data-lucide="map-pin"></i></div>
+<div>
+<span class="block font-serif text-lg text-brand-900 leading-snug">Δια ζώσης</span>
+<span class="block text-sm text-brand-700 leading-relaxed mt-1">Στο γραφείο μου, Δημαρχείου 16, Αιγάλεω</span>
+</div>
+</div>
+<div class="flex items-start gap-4 p-5 bg-white/70 rounded-2xl border border-brand-200 shadow-sm gx-flip">
+<div class="w-10 h-10 rounded-full bg-accent-purpleLight flex items-center justify-center text-accent-purple shrink-0"><i class="w-5 h-5" data-lucide="video"></i></div>
+<div>
+<span class="block font-serif text-lg text-brand-900 leading-snug">Online συνεδρίες</span>
+<span class="block text-sm text-brand-700 leading-relaxed mt-1">Για εφήβους (15+), ενήλικες και συμβουλευτική γονέων</span>
+</div>
+</div>
+</div><button class="inline-flex items-center px-8 py-3 border border-brand-500 text-brand-500 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-brand-500 hover:text-white transition-all cursor-pointer shadow-sm hover:shadow-md gx-rise gx-mag mb-0" onclick="openBio()">
                         Διαβαστε Περισσοτερα
-                        <i data-lucide="plus" class="w-4 h-4 ml-2"></i>
-                    </button>
-
-                    <!-- Τομείς Εξειδίκευσης -->
-                    <div class="border border-brand-300 rounded-2xl bg-white/60 shadow-sm p-6 lg:p-8 mb-6">
-                        <h3 class="font-serif text-2xl text-brand-900 flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-accent-purpleLight flex items-center justify-center text-accent-purple shrink-0">
-                                <i data-lucide="sparkles" class="w-5 h-5"></i>
-                            </div>
+                        <i class="w-4 h-4 ml-2" data-lucide="plus"></i>
+</button></div>
+<div class="order-1 lg:order-2 relative gx-col-photo"><div class="relative max-w-[500px] mx-auto"><div class="relative rounded-[40px] overflow-hidden shadow-soft group gx-polaroid">
+<img alt="Maria S. Gkioka Portrait" class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-1000 ease-out grayscale-[10%] group-hover:grayscale-0" src="assets/maria-gkioka.webp"/>
+<!-- Color Overlay on Hover -->
+<div class="absolute inset-0 bg-accent-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+</div><div class="absolute top-0 left-0 w-full h-full border border-accent-purple rounded-[40px] -z-10 translate-x-4 translate-y-4 gx-frame"></div></div></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-14 lg:mt-20 items-start">
+<div class="gx-col-a"><div class="border border-brand-300 rounded-2xl bg-white/60 shadow-sm p-6 lg:p-8 gx-rise">
+<h3 class="font-serif text-2xl text-brand-900 flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-accent-purpleLight flex items-center justify-center text-accent-purple shrink-0">
+<i class="w-5 h-5" data-lucide="sparkles"></i>
+</div>
                             Τομείς Εξειδίκευσης
                         </h3>
-                        <p class="text-brand-700 mb-5 leading-relaxed">Στην κλινική μου πράξη έχω ιδιαίτερη εμπειρία στη διαχείριση και θεραπεία των παρακάτω:</p>
-                        <ul class="space-y-3 text-brand-800">
-                            <li class="cv-list-item !mb-0">Αγχώδεις Διαταραχές &amp; Κατάθλιψη</li>
-                            <li class="cv-list-item !mb-0">Διαχείριση Θυμού &amp; Πένθους</li>
-                            <li class="cv-list-item !mb-0">Δυσκολίες στις Διαπροσωπικές Σχέσεις &amp; Σχέσεις Γονέων-Παιδιών</li>
-                            <li class="cv-list-item !mb-0">Διαταραχές Πρόσληψης Τροφής</li>
-                            <li class="cv-list-item !mb-0">Ενδοσχολικός Εκφοβισμός (Bullying)</li>
-                            <li class="cv-list-item !mb-0">Υπερβολική Χρήση Παιχνιδιών &amp; Διαδικτύου</li>
-                            <li class="cv-list-item !mb-0">Μαθησιακές Δυσκολίες &amp; ΔΕΠ-Υ (Διαταραχή Ελλειμματικής Προσοχής και Υπερκινητικότητας)</li>
-                        </ul>
-                    </div>
-
-                    <!-- Timeline / CV Dropdown -->
-                    <div class="border border-brand-300 rounded-2xl overflow-hidden bg-white/60 shadow-sm transition-all duration-300 hover:shadow-glass hover:border-accent-purple/50">
-                        <button onclick="toggleCV()" class="w-full flex justify-between items-center p-6 lg:p-8 bg-white/50 hover:bg-white transition-colors cursor-pointer group">
-                            <h3 class="font-serif text-2xl text-brand-900 flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-accent-greenLight flex items-center justify-center text-accent-green">
-                                    <i data-lucide="graduation-cap" class="w-6 h-6"></i>
-                                </div>
-                                Εκπαίδευση & Κατάρτιση
+<p class="text-brand-700 mb-5 leading-relaxed">Στην κλινική μου πράξη έχω ιδιαίτερη εμπειρία στη διαχείριση και θεραπεία των παρακάτω:</p>
+<ul class="space-y-3 text-brand-800 gx-rows">
+<li class="cv-list-item !mb-0">Αγχώδεις Διαταραχές &amp; Κατάθλιψη</li>
+<li class="cv-list-item !mb-0">Διαχείριση Θυμού &amp; Πένθους</li>
+<li class="cv-list-item !mb-0">Δυσκολίες στις Διαπροσωπικές Σχέσεις &amp; Σχέσεις Γονέων-Παιδιών</li>
+<li class="cv-list-item !mb-0">Διαταραχές Πρόσληψης Τροφής</li>
+<li class="cv-list-item !mb-0">Ενδοσχολικός Εκφοβισμός (Bullying)</li>
+<li class="cv-list-item !mb-0">Υπερβολική Χρήση Παιχνιδιών &amp; Διαδικτύου</li>
+<li class="cv-list-item !mb-0">Μαθησιακές Δυσκολίες &amp; ΔΕΠ-Υ (Διαταραχή Ελλειμματικής Προσοχής και Υπερκινητικότητας)</li>
+</ul>
+</div></div>
+<div class="flex flex-col gap-6 gx-col-b"><div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-accent-green relative gx-rise gx-quote">
+<!-- Quote Icon -->
+<i class="absolute top-4 right-6 text-brand-100 w-12 h-12 fill-current" data-lucide="quote"></i>
+<h4 class="font-serif text-xl text-brand-900 mb-2 relative z-10">Η προσέγγιση μου</h4>
+<p class="text-brand-700 text-sm italic leading-relaxed relative z-10">"Πιστεύω στη δύναμη <span class="gx-mark">της συνεργασίας, της ενσυναίσθησης και της επιστημονικής τεκμηρίωσης</span> ως θεμέλια μιας ουσιαστικής και αποτελεσματικής θεραπευτικής σχέσης."</p>
+</div><div class="border border-brand-300 rounded-2xl overflow-hidden bg-white/60 shadow-sm transition-all duration-300 hover:shadow-glass hover:border-accent-purple/50 gx-rise">
+<button class="w-full flex justify-between items-center p-6 lg:p-8 bg-white/50 hover:bg-white transition-colors cursor-pointer group" onclick="toggleCV()">
+<h3 class="font-serif text-2xl text-brand-900 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-accent-greenLight flex items-center justify-center text-accent-green">
+<i class="w-6 h-6" data-lucide="graduation-cap"></i>
+</div>
+                                Εκπαίδευση &amp; Κατάρτιση
                             </h3>
-                            <i id="cv-icon" data-lucide="chevron-down" class="text-brand-500 w-6 h-6 transition-transform duration-500 group-hover:text-accent-green"></i>
-                        </button>
-                        
-                        <div id="cv-content" class="accordion-content bg-brand-50/50">
-                            <div class="p-6 lg:p-8 pt-0 space-y-6 text-sm text-brand-700 border-t border-brand-100">
-                                <!-- Timeline Items -->
-                                <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2013- 2016: City University of Seattle</span>
-                                    <span>Master of Arts, Συμβουλευτική Ψυχολογία</span>
-                                </div>
-                                <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2009- 2012: University of Indianapolis</span>
-                                    <span>Bachelor of Arts, Ψυχολογία (Αρ. Αδείας: 1070)</span>
-                                </div>
-                                <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2026: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
-                                    <span><a href="https://www.psychotherapy.cce.uoa.gr/" target="_blank" rel="noopener" class="underline decoration-accent-green/50 underline-offset-4 hover:text-accent-green transition-colors">Διεθνές Μετεκπαιδευτικό Πρόγραμμα στη Συμβουλευτική και Ψυχοθεραπεία</a></span>
-                                </div>
-                                <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2026: ΔΙ.ΚΕ.ΨΥ.</span>
-                                    <span>Ψυχομετρικές Δοκιμασίες Αξιολόγησης Νοημοσύνης WISC-V.</span>
-                                </div>
-                                <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2025: Εταιρεία Γνωσιακών Συμπεριφοριστικών Σπουδών</span>
-                                    <span>Εξειδικευμένα Εργαστήρια στη Γνωσιακή – Συμπεριφοριστική Θεραπεία Παιδιών και Εφήβων.</span>
-                                </div>
-                                <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2024: ΔΙ.ΚΕ.ΨΥ.</span>
-                                    <span>Παιγνιοθεραπεία σε Παιδιά και Εφήβους.</span>
-                                </div>
-                                <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2024: ΕΝΤΡΟΠΙΑ</span>
-                                    <span>Συστημική Συμβουλευτική και Ψυχοθεραπεία Παιδιών και Εφήβων &amp; Συμβουλευτική Γονέων.</span>
-                                </div>
-                                <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2021: Πανεπιστήμιο Αιγαίου</span>
-                                    <span>Μετεκπαίδευση στη Σχολική Ψυχολογία.</span>
-                                </div>
-                                <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2017: Εταιρεία Ψυχολογικής Υποστήριξης και Θεραπείας</span>
-                                    <span>Μετεκπαίδευση στη Γνωσιακή – Συμπεριφορική Ψυχοθεραπεία.</span>
-                                </div>
-                                <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2015-2016: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
-                                    <span>Μετεκπαίδευση στις Ψυχικές Διαταραχές στην Εφηβεία: Διάγνωση και Θεραπευτική Αντιμετώπιση.</span>
-                                </div>
-                                <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2015: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
-                                    <span>Σεμινάριο στη Διαπαιδαγώγηση Παιδιών και Εφήβων.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Moved University Badges Here -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                        <div class="flex items-center p-4 bg-white/60 rounded-xl border border-brand-100 shadow-sm">
-                            <i data-lucide="graduation-cap" class="w-10 h-10 text-accent-green mr-3 shrink-0"></i>
-                            <span class="text-xs font-bold text-brand-900 uppercase tracking-wide leading-tight">BA University of Indianapolis</span>
-                        </div>
-                        <div class="flex items-center p-4 bg-white/60 rounded-xl border border-brand-100 shadow-sm">
-                            <i data-lucide="book-open-check" class="w-10 h-10 text-accent-green mr-3 shrink-0"></i>
-                            <span class="text-xs font-bold text-brand-900 uppercase tracking-wide leading-tight">MA City University of Seattle</span>
-                        </div>
-                    </div>
-                </div>
-
-                 <!-- Image Container -->
-                 <div class="w-full lg:w-5/12 order-1 lg:order-2 relative reveal-up flex flex-col gap-8 lg:sticky lg:top-28 lg:self-start">
-                    <div class="relative rounded-[40px] overflow-hidden shadow-soft group">
-                        <img src="assets/maria-gkioka.webp" 
-                             alt="Maria S. Gkioka Portrait" 
-                             class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-1000 ease-out grayscale-[10%] group-hover:grayscale-0">
-                         <!-- Color Overlay on Hover -->
-                         <div class="absolute inset-0 bg-accent-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    </div>
-                    <!-- Decorative border line -->
-                    <div class="absolute top-0 left-0 w-full h-full border border-accent-purple rounded-[40px] -z-10 translate-x-4 translate-y-4"></div>
-
-                    <!-- Highlight Box -->
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-accent-green reveal-up delay-200 relative">
-                         <!-- Quote Icon -->
-                         <i data-lucide="quote" class="absolute top-4 right-6 text-brand-100 w-12 h-12 fill-current"></i>
-                         <h4 class="font-serif text-xl text-brand-900 mb-2 relative z-10">Η προσέγγιση μου</h4>
-                         <p class="text-brand-700 text-sm italic leading-relaxed relative z-10">"Πιστεύω στη δύναμη της συνεργασίας, της ενσυναίσθησης και της επιστημονικής τεκμηρίωσης ως θεμέλια μιας ουσιαστικής και αποτελεσματικής θεραπευτικής σχέσης."</p>
-                    </div>
-
-                     <!-- Specialization Icons (Moved Universities to left, kept these 2 here) -->
-                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal-up delay-300">
-                        <div class="flex flex-col items-center justify-center p-4 bg-white/60 rounded-xl border border-brand-100 hover:shadow-md transition-shadow text-center h-full">
-                            <i data-lucide="brain-circuit" class="w-8 h-8 text-accent-purple mb-2"></i>
-                            <span class="text-xs font-bold text-brand-900 uppercase tracking-wide">Εξειδίκευση CBT</span>
-                        </div>
-                        <div class="flex flex-col items-center justify-center p-4 bg-white/60 rounded-xl border border-brand-100 hover:shadow-md transition-shadow text-center h-full">
-                            <i data-lucide="network" class="w-8 h-8 text-accent-purple mb-2"></i>
-                            <span class="text-xs font-bold text-brand-900 uppercase tracking-wide">Συστημική Συμβουλευτική</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<i class="text-brand-500 w-6 h-6 transition-transform duration-500 group-hover:text-accent-green" data-lucide="chevron-down" id="cv-icon"></i>
+</button>
+<div class="accordion-content bg-brand-50/50" id="cv-content">
+<div class="p-6 lg:p-8 pt-0 space-y-6 text-sm text-brand-700 border-t border-brand-100">
+<!-- Timeline Items -->
+<div class="cv-list-item">
+<span class="font-bold text-brand-900 block text-base">2013- 2016: City University of Seattle</span>
+<span>Master of Arts, Συμβουλευτική Ψυχολογία</span>
+</div>
+<div class="cv-list-item">
+<span class="font-bold text-brand-900 block text-base">2009- 2012: University of Indianapolis</span>
+<span>Bachelor of Arts, Ψυχολογία (Αρ. Αδείας: 1070)</span>
+</div>
+<div class="cv-list-item">
+<span class="font-bold text-brand-900 block text-base">2026: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
+<span><a class="underline decoration-accent-green/50 underline-offset-4 hover:text-accent-green transition-colors" href="https://www.psychotherapy.cce.uoa.gr/" rel="noopener" target="_blank">Διεθνές Μετεκπαιδευτικό Πρόγραμμα στη Συμβουλευτική και Ψυχοθεραπεία</a></span>
+</div>
+<div class="cv-list-item">
+<span class="font-bold text-brand-900 block text-base">2026: ΔΙ.ΚΕ.ΨΥ.</span>
+<span>Ψυχομετρικές Δοκιμασίες Αξιολόγησης Νοημοσύνης WISC-V.</span>
+</div>
+<div class="cv-list-item">
+<span class="font-bold text-brand-900 block text-base">2025: Εταιρεία Γνωσιακών Συμπεριφοριστικών Σπουδών</span>
+<span>Εξειδικευμένα Εργαστήρια στη Γνωσιακή – Συμπεριφοριστική Θεραπεία Παιδιών και Εφήβων.</span>
+</div>
+<div class="cv-list-item">
+<span class="font-bold text-brand-900 block text-base">2024: ΔΙ.ΚΕ.ΨΥ.</span>
+<span>Παιγνιοθεραπεία σε Παιδιά και Εφήβους.</span>
+</div>
+<div class="cv-list-item">
+<span class="font-bold text-brand-900 block text-base">2024: ΕΝΤΡΟΠΙΑ</span>
+<span>Συστημική Συμβουλευτική και Ψυχοθεραπεία Παιδιών και Εφήβων &amp; Συμβουλευτική Γονέων.</span>
+</div>
+<div class="cv-list-item">
+<span class="font-bold text-brand-900 block text-base">2021: Πανεπιστήμιο Αιγαίου</span>
+<span>Μετεκπαίδευση στη Σχολική Ψυχολογία.</span>
+</div>
+<div class="cv-list-item">
+<span class="font-bold text-brand-900 block text-base">2017: Εταιρεία Ψυχολογικής Υποστήριξης και Θεραπείας</span>
+<span>Μετεκπαίδευση στη Γνωσιακή – Συμπεριφορική Ψυχοθεραπεία.</span>
+</div>
+<div class="cv-list-item">
+<span class="font-bold text-brand-900 block text-base">2015-2016: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
+<span>Μετεκπαίδευση στις Ψυχικές Διαταραχές στην Εφηβεία: Διάγνωση και Θεραπευτική Αντιμετώπιση.</span>
+</div>
+<div class="cv-list-item">
+<span class="font-bold text-brand-900 block text-base">2015: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
+<span>Σεμινάριο στη Διαπαιδαγώγηση Παιδιών και Εφήβων.</span>
+</div>
+</div>
+</div>
+</div><div class="grid grid-cols-2 gap-4 gx-deck"><div class="flex items-center p-4 bg-white/60 rounded-xl border border-brand-100 shadow-sm h-full">
+<i class="w-10 h-10 text-accent-green mr-3 shrink-0" data-lucide="graduation-cap"></i>
+<span class="text-xs font-bold text-brand-900 uppercase tracking-wide leading-tight">BA University of Indianapolis</span>
+</div><div class="flex items-center p-4 bg-white/60 rounded-xl border border-brand-100 shadow-sm h-full">
+<i class="w-10 h-10 text-accent-green mr-3 shrink-0" data-lucide="book-open-check"></i>
+<span class="text-xs font-bold text-brand-900 uppercase tracking-wide leading-tight">MA City University of Seattle</span>
+</div><div class="flex p-4 bg-white/60 rounded-xl border border-brand-100 hover:shadow-md transition-shadow h-full flex-row justify-start text-left gap-3 items-center">
+<i class="text-accent-purple mb-0 shrink-0 w-10 h-10 mr-0" data-lucide="brain-circuit"></i>
+<span class="text-xs font-bold text-brand-900 uppercase tracking-wide">Εξειδίκευση CBT</span>
+</div><div class="flex p-4 bg-white/60 rounded-xl border border-brand-100 hover:shadow-md transition-shadow h-full flex-row justify-start text-left gap-3 items-center">
+<i class="text-accent-purple mb-0 shrink-0 w-10 h-10 mr-0" data-lucide="network"></i>
+<span class="text-xs font-bold text-brand-900 uppercase tracking-wide">Συστημική Συμβουλευτική</span>
+</div></div></div>
+</div>
+</div>
+</section>
 
     <!-- SERVICES SECTION ("Path to Healing") -->
     <section id="services" class="py-24 bg-brand-50 relative">
          <!-- Geometric Background -->
          <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-            <div class="absolute top-10 right-10 w-64 h-64 border border-accent-purple/20 rounded-full"></div>
-            <div class="absolute bottom-20 left-10 w-96 h-96 border border-accent-green/20 rounded-full"></div>
+            <div class="absolute top-10 right-10 w-64 h-64 border border-accent-purple/20 rounded-full gx-breathe"></div>
+            <div class="absolute bottom-20 left-10 w-96 h-96 border border-accent-green/20 rounded-full gx-breathe gx-breathe2"></div>
         </div>
 
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
+            <div class="text-center max-w-3xl mx-auto mb-16 gx-shead">
                 <span class="text-accent-purple font-bold uppercase tracking-widest text-sm mb-2 block">Θεραπευτικοι Τομεις</span>
                 <h2 class="font-serif text-4xl lg:text-5xl text-brand-900 mb-4">Οι Υπηρεσίες μου</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-accent-purple to-accent-green mx-auto rounded-full mb-4"></div>
+                <div class="w-20 h-1 bg-gradient-to-r from-accent-purple to-accent-green mx-auto rounded-full mb-4 gx-bar"></div>
                 <p class="text-brand-600 text-lg">Εξειδικευμένες παρεμβάσεις προσαρμοσμένες στις δικές σας ανάγκες.</p>
             </div>
 
@@ -575,7 +708,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                 
                 <!-- Service 1: Kids (Green Theme) -->
-                <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-2 reveal-up border-t-4 border-transparent hover:border-accent-green flex flex-col h-full">
+                <div class="glass-panel p-8 rounded-3xl group gx-deal gx-tilt border-t-4 border-transparent hover:border-accent-green flex flex-col h-full">
                     <div class="w-14 h-14 bg-accent-greenLight rounded-2xl flex items-center justify-center mb-6 text-accent-green group-hover:scale-110 transition-transform duration-300">
                         <i data-lucide="baby" class="w-7 h-7"></i>
                     </div>
@@ -590,7 +723,7 @@
                 </div>
 
                 <!-- Service 2: Adolescents (Purple Theme) -->
-                <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-2 reveal-up delay-100 border-t-4 border-transparent hover:border-accent-purple flex flex-col h-full">
+                <div class="glass-panel p-8 rounded-3xl group gx-deal gx-tilt border-t-4 border-transparent hover:border-accent-purple flex flex-col h-full">
                     <div class="w-14 h-14 bg-accent-purpleLight rounded-2xl flex items-center justify-center mb-6 text-accent-purple group-hover:scale-110 transition-transform duration-300">
                         <i data-lucide="users" class="w-7 h-7"></i>
                     </div>
@@ -605,7 +738,7 @@
                 </div>
 
                 <!-- Service 3: Young Adults (Green Theme) -->
-                <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-2 reveal-up delay-200 border-t-4 border-transparent hover:border-accent-green flex flex-col h-full">
+                <div class="glass-panel p-8 rounded-3xl group gx-deal gx-tilt border-t-4 border-transparent hover:border-accent-green flex flex-col h-full">
                     <div class="w-14 h-14 bg-accent-greenLight rounded-2xl flex items-center justify-center mb-6 text-accent-green group-hover:scale-110 transition-transform duration-300">
                         <i data-lucide="graduation-cap" class="w-7 h-7"></i>
                     </div>
@@ -624,7 +757,7 @@
             <div class="flex flex-col md:flex-row justify-center gap-8">
                 
                 <!-- Service 4: Parents (Purple Theme) -->
-                <div class="w-full md:w-1/2 lg:w-1/3 glass-panel p-8 rounded-3xl group hover:-translate-y-2 reveal-up delay-100 border-t-4 border-transparent hover:border-accent-purple flex flex-col h-full">
+                <div class="w-full md:w-1/2 lg:w-1/3 glass-panel p-8 rounded-3xl group gx-deal gx-tilt border-t-4 border-transparent hover:border-accent-purple flex flex-col">
                     <div class="w-14 h-14 bg-accent-purpleLight rounded-2xl flex items-center justify-center mb-6 text-accent-purple group-hover:scale-110 transition-transform duration-300">
                         <i data-lucide="heart-handshake" class="w-7 h-7"></i>
                     </div>
@@ -639,7 +772,7 @@
                 </div>
 
                 <!-- Service 5: Adults (Green Theme) -->
-                <div class="w-full md:w-1/2 lg:w-1/3 glass-panel p-8 rounded-3xl group hover:-translate-y-2 reveal-up delay-200 border-t-4 border-transparent hover:border-accent-green flex flex-col h-full">
+                <div class="w-full md:w-1/2 lg:w-1/3 glass-panel p-8 rounded-3xl group gx-deal gx-tilt border-t-4 border-transparent hover:border-accent-green flex flex-col">
                     <div class="w-14 h-14 bg-accent-greenLight rounded-2xl flex items-center justify-center mb-6 text-accent-green group-hover:scale-110 transition-transform duration-300">
                         <i data-lucide="message-circle-heart" class="w-7 h-7"></i>
                     </div>
@@ -658,12 +791,12 @@
     </section>
 
     <!-- FOOTER / CONTACT -->
-    <footer id="contact" class="bg-brand-900 text-brand-100 py-16 lg:py-24 relative overflow-hidden">
+    <footer id="contact" class="gx-shoulder bg-brand-900 text-brand-100 py-16 lg:py-24 relative overflow-hidden">
         <!-- Abstract Decoration -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-accent-purple rounded-full mix-blend-overlay blur-3xl opacity-20 -mr-20 -mt-20"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-accent-purple rounded-full mix-blend-overlay blur-3xl opacity-20 -mr-20 -mt-20 gx-drift"></div>
 
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 border-b border-brand-800 pb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 border-b border-brand-800 pb-12 gx-steps">
                 
                 <!-- Brand Info -->
                 <div class="col-span-1 lg:col-span-1">
@@ -705,13 +838,13 @@
                     <p class="text-brand-300 text-sm leading-relaxed mb-4">Δια ζώσης στο Αιγάλεω<br/>Online για εφήβους (15+), ενήλικες &amp; συμβουλευτική γονέων</p>
                     <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" 
                        target="_blank"
-                       class="inline-block mt-2 text-xs border-b border-accent-green pb-1 hover:text-accent-green transition-colors">
+                       class="gx-pulse inline-block mt-2 text-xs border-b border-accent-green pb-1 hover:text-accent-green transition-colors">
                         Κλείστε Ραντεβού Online
                     </a>
                 </div>
 
                 <!-- Map Embed -->
-                <div class="rounded-xl overflow-hidden h-48 bg-brand-800 relative group border border-brand-700">
+                <div class="rounded-xl overflow-hidden h-48 bg-brand-800 relative group border border-brand-700 gx-map">
                     <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=Dimarchiou+16,+Egaleo+122+42&t=&z=15&ie=UTF8&iwloc=&output=embed" style="filter: grayscale(100%) contrast(1.2) opacity(0.6);"></iframe>
                     <div class="absolute inset-0 pointer-events-none border border-white/10 rounded-xl"></div>
                 </div>
@@ -1107,5 +1240,98 @@
             }
         });
     </script>
+<script id="gx-life-js">
+(function(){
+var H=document.documentElement, RM=matchMedia('(prefers-reduced-motion: reduce)').matches, FINE=matchMedia('(hover:hover)').matches, SM=innerWidth<768;
+function $(q,c){return (c||document).querySelector(q)} function $$(q,c){return Array.prototype.slice.call((c||document).querySelectorAll(q))}
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h)e.innerHTML=h;return e}
+function rnd(a,b){return a+Math.random()*(b-a)}
+
+/* hero headline: split into words (solid colours, never gradient text) */
+var h1=$('.gx-h1'),n=0,dot=null;
+if(h1){var it=h1.querySelector('span.italic');if(it&&it.nextSibling&&it.nextSibling.nodeType===3&&/^\s*\.\s*$/.test(it.nextSibling.textContent)){it.parentNode.removeChild(it.nextSibling);dot=el('span','gx-dot');dot.textContent='.'}(function walk(node){$$('*',node);Array.prototype.slice.call(node.childNodes).forEach(function(c){
+  if(c.nodeType===3){var parts=c.textContent.split(/(\s+)/);var f=document.createDocumentFragment();parts.forEach(function(p){if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(' '));return}
+    var w=el('span','gx-w'),i=el('span','gx-wi');i.textContent=p;i.style.setProperty('--d',(0.18+n*0.11)+'s');n++;w.appendChild(i);f.appendChild(w)});c.parentNode.replaceChild(f,c)}
+  else if(c.nodeType===1&&c.tagName!=='BR')walk(c)})})(h1);
+  var sw=document.createElementNS('http://www.w3.org/2000/svg','svg');sw.setAttribute('class','gx-swash');sw.setAttribute('viewBox','0 0 300 22');sw.setAttribute('aria-hidden','true');
+  if(dot){var ws=$$('.gx-wi',h1);ws[ws.length-1].appendChild(dot)}
+  sw.innerHTML='<path pathLength="1" d="M3 15 C 60 4, 120 4, 170 11 S 260 18, 297 6"/>';h1.parentNode.insertBefore(sw,h1.nextSibling)}
+
+/* hero background: washes, pointer light, orbit with the lotus of her logo, rising petals */
+var hero=$('.gx-herosec');
+if(hero&&!RM){
+  var bg=el('div','gx-hbg');bg.setAttribute('aria-hidden','true');
+  bg.innerHTML='<div class="gx-wash a"></div><div class="gx-wash b"></div><div class="gx-wash c"></div><div class="gx-light"></div>'+
+   '<div class="gx-orbit"><div class="o1"><span class="d" style="background:#ad9daf"></span><span class="d d2" style="background:#708561"></span></div><div class="o2"><span class="d" style="background:#917767"></span></div>'+
+   '<svg viewBox="0 0 100 100"><path pathLength="1" style="--i:0;stroke:#ad9daf" d="M50 18 C 62 32, 62 50, 50 64 C 38 50, 38 32, 50 18 Z"/><path pathLength="1" style="--i:1;stroke:#ad9daf" d="M50 64 C 34 58, 24 44, 24 30 C 38 32, 48 44, 50 64 Z"/><path pathLength="1" style="--i:1;stroke:#ad9daf" d="M50 64 C 66 58, 76 44, 76 30 C 62 32, 52 44, 50 64 Z"/><path pathLength="1" style="--i:2;stroke:#708561" d="M50 64 L 50 90 M 36 70 C 38 80, 44 84, 50 84 C 56 84, 62 80, 64 70"/></svg></div>';
+  var cols=['rgba(173,157,175,.75)','rgba(112,133,97,.55)','rgba(173,157,175,.55)','rgba(145,119,103,.45)'];
+  var N=SM?5:11;for(var i=0;i<N;i++){var p=el('span','gx-pt');var s=rnd(9,18);p.style.cssText='--x:'+rnd(2,96).toFixed(1)+'%;--s:'+s.toFixed(0)+'px;--dur:'+rnd(16,26).toFixed(1)+'s;--del:-'+rnd(0,24).toFixed(1)+'s;--sw:'+rnd(14,34).toFixed(0)+'px;--r:'+rnd(-40,40).toFixed(0)+'deg;--c:'+cols[i%4]+';--op:'+rnd(.35,.7).toFixed(2);p.appendChild(el('i'));bg.appendChild(p)}
+  hero.insertBefore(bg,hero.children[1]||null);
+  hero.style.setProperty('--h',hero.offsetHeight+'px');
+  if(FINE){var raf=0;hero.addEventListener('pointermove',function(e){if(raf)return;raf=requestAnimationFrame(function(){raf=0;var r=hero.getBoundingClientRect();
+    hero.style.setProperty('--mx',((e.clientX-r.left)/r.width-.5).toFixed(3));hero.style.setProperty('--my',((e.clientY-r.top)/r.height-.5).toFixed(3));
+    hero.style.setProperty('--gxx',(e.clientX-r.left)+'px');hero.style.setProperty('--gxy',(e.clientY-r.top)+'px')})})}
+}
+
+/* ambient life for every other section — one kind of motion each */
+function amb(sec,kind){if(!sec||RM)return;var a=el('div','gx-amb');a.setAttribute('aria-hidden','true');
+  if(getComputedStyle(sec).position==='static')sec.style.position='relative';sec.style.isolation='isolate';a.style.zIndex='-1';
+  var cs=['rgba(173,157,175,.5)','rgba(112,133,97,.4)','rgba(145,119,103,.35)'];
+  if(kind==='fall'){for(var i=0;i<(SM?3:6);i++){var p=el('span','gx-pt gx-fall');p.style.cssText='--x:'+rnd(3,95)+'%;--s:'+rnd(9,15).toFixed(0)+'px;--dur:'+rnd(22,32).toFixed(1)+'s;--del:-'+rnd(0,30).toFixed(1)+'s;--sw:'+rnd(18,40).toFixed(0)+'px;--r:'+rnd(-60,60).toFixed(0)+'deg;--c:'+cs[i%3]+';--op:.35';p.appendChild(el('i'));a.appendChild(p)}}
+  if(kind==='twinkle'){for(var j=0;j<(SM?8:16);j++){var t=el('span','gx-tw');t.style.cssText='--x:'+rnd(2,98)+'%;--y:'+rnd(4,96)+'%;--s:'+rnd(3,6).toFixed(1)+'px;--dur:'+rnd(4,8).toFixed(1)+'s;--del:-'+rnd(0,8).toFixed(1)+'s;--c:'+(j%2?'#ad9daf':'#b5c4a8')+';--op:'+rnd(.3,.7).toFixed(2);a.appendChild(t)}}
+  if(kind==='rise'){for(var k=0;k<(SM?3:6);k++){var q=el('span','gx-pt');q.style.cssText='--x:'+rnd(3,95)+'%;--s:'+rnd(8,13).toFixed(0)+'px;--dur:'+rnd(24,34).toFixed(1)+'s;--del:-'+rnd(0,30).toFixed(1)+'s;--sw:'+rnd(14,30).toFixed(0)+'px;--r:'+rnd(-40,40).toFixed(0)+'deg;--c:'+cs[k%3]+';--op:.3';q.appendChild(el('i'));a.appendChild(q)}}
+  sec.insertBefore(a,sec.firstChild);sec.style.setProperty('--h',sec.offsetHeight+'px');return a}
+var ambs=[amb($('#about'),'fall'),amb($('#services'),'rise'),amb($('#contact'),'twinkle')].filter(Boolean);
+if(hero&&$('.gx-hbg'))ambs.push($('.gx-hbg'));
+if('IntersectionObserver' in window){var ao=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('gx-off',!e.isIntersecting)})},{rootMargin:'120px'});ambs.forEach(function(a){ao.observe(a)})}
+
+/* stagger indexes */
+function idx(sel){$$(sel).forEach(function(c){Array.prototype.slice.call(c.children).forEach(function(k,i){k.style.setProperty('--i',i)})})}
+idx('.gx-seq');idx('.gx-rows');idx('.gx-deck');idx('.gx-shead');idx('.gx-steps');idx('#cv-content>div');idx('#bio-modal .bio-body');
+$$('.gx-deck>*').forEach(function(k,i){k.style.setProperty('--rot',(i%2?-6:6)+'deg')});
+$$('.gx-flip').forEach(function(k,i){k.style.setProperty('--d',(i*.15)+'s')});
+$$('.gx-deal').forEach(function(k,i){k.style.setProperty('--d',((i%3)*.14+(i>2?.1:0))+'s');k.style.setProperty('--rot',(i%2?-3.5:3.5)+'deg')});
+$$('.gx-col-text .gx-rise').forEach(function(k){k.style.setProperty('--d','.35s')});
+$$('.gx-col-b>.gx-rise').forEach(function(k,i){k.style.setProperty('--d',(i*.14)+'s')});
+
+/* reveals */
+var targets=$$('.gx-kick,.gx-rise,.gx-seq,.gx-flip,.gx-polaroid,.gx-frame,.gx-rows>li,.gx-deck>*,.gx-shead,.gx-deal,.gx-steps,.gx-quote');
+if(!('IntersectionObserver' in window)||RM){targets.forEach(function(t){t.classList.add('in')})}
+else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.01});
+  targets.forEach(function(t){io.observe(t)});
+  if(document.hidden)targets.forEach(function(t){t.classList.add('in')});}
+
+/* services: tilt + spotlight */
+if(FINE&&!RM){$$('.gx-tilt').forEach(function(c){var r2=0;c.addEventListener('pointermove',function(e){if(r2)return;r2=requestAnimationFrame(function(){r2=0;var b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width,y=(e.clientY-b.top)/b.height;
+  c.style.setProperty('--ry',((x-.5)*9).toFixed(2)+'deg');c.style.setProperty('--rx',((.5-y)*9).toFixed(2)+'deg');c.style.setProperty('--px',(x*100).toFixed(1)+'%');c.style.setProperty('--py',(y*100).toFixed(1)+'%')})});
+  c.addEventListener('pointerleave',function(){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')})});
+ /* magnetic buttons */
+ $$('.gx-mag').forEach(function(b){b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.18).toFixed(1)+'px '+((e.clientY-r.top-r.height/2)*.25).toFixed(1)+'px'});
+  b.addEventListener('pointerleave',function(){b.style.translate=''});b.style.transition=(getComputedStyle(b).transition?getComputedStyle(b).transition+',':'')+'translate .35s cubic-bezier(.16,1,.3,1)'})}
+
+/* chrome: progress bar, nav logo turn, back-to-top ring, scroll cue */
+var prog=el('div','gx-prog');document.body.appendChild(prog);
+var top=el('button','gx-top','<svg class="r" viewBox="0 0 54 54"><circle cx="27" cy="27" r="25" stroke="rgba(145,119,103,.18)"/><circle class="rp" cx="27" cy="27" r="25" stroke="#708561" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>');
+top.setAttribute('aria-label','Επιστροφή στην κορυφή');top.addEventListener('click',function(){scrollTo({top:0,behavior:RM?'auto':'smooth'})});document.body.appendChild(top);
+var rp=top.querySelector('.rp'),logo=$('.gx-navlogo'),spun=false,tick=0;
+function onScroll(){tick=0;var y=scrollY,max=document.documentElement.scrollHeight-innerHeight,f=max>0?y/max:0;
+  prog.style.transform='scaleX('+f.toFixed(4)+')';rp.style.strokeDashoffset=(1-f).toFixed(4);
+  top.classList.toggle('show',y>innerHeight*.8);H.classList.toggle('gx-scrolled',y>60);
+  if(logo&&!RM){if(y>50&&!spun){spun=true;logo.classList.remove('spin');void logo.offsetWidth;logo.classList.add('spin')}else if(y<=50)spun=false}}
+addEventListener('scroll',function(){if(!tick){tick=requestAnimationFrame(onScroll)}},{passive:true});onScroll();
+
+/* intro: her logo draws in, name lands, curtain lifts — once per session */
+function go(){H.classList.add('gx-go')}
+var seen=false;try{seen=sessionStorage.getItem('gxIntro')==='1'}catch(e){}
+var lg=$('.gx-navlogo');
+if(RM||!H.classList.contains('gx')||seen||document.hidden||!lg||scrollY>50){go()}
+else{try{sessionStorage.setItem('gxIntro','1')}catch(e){}
+  var name='Μαρία Σ. Γκιόκα',spans='';for(var c=0;c<name.length;c++){spans+='<span style="--i:'+c+'">'+(name[c]===' '?'&nbsp;':name[c])+'</span>'}
+  var it=el('div','gx-intro','<div class="lg"><img alt="" src="'+lg.getAttribute('src')+'"><svg viewBox="0 0 142 142"><circle cx="71" cy="71" r="69" pathLength="1"/></svg></div><div class="nm">'+spans+'</div><div class="tg">Συμβουλευτική Ψυχολόγος</div>');
+  it.setAttribute('aria-hidden','true');document.body.appendChild(it);document.body.style.overflow='hidden';
+  setTimeout(function(){it.classList.add('lift');document.body.style.overflow='';setTimeout(go,250);setTimeout(function(){it.remove()},1100)},1450)}
+})();
+
+</script>
 </body>
 </html>
