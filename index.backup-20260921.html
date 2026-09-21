@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Μαρία Σ. Γκιόκα, ΜΑ | Συμβουλευτική Ψυχολόγος</title>
     
-    <!-- FONTS: Literata (Greek-native serif) & Lato (Sans) -->
+    <!-- FONTS: Playfair Display (Serif) & Lato (Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <!-- TAILWIND CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CONTENTFUL SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
 
     <!-- LUCIDE ICONS -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -43,7 +46,7 @@
                         }
                     },
                     fontFamily: {
-                        serif: ['"Literata"', 'Georgia', 'serif'],
+                        serif: ['"Playfair Display"', 'serif'],
                         sans: ['"Lato"', 'sans-serif'],
                     },
                     boxShadow: {
@@ -162,13 +165,13 @@
             font-size: 1.5rem;
             margin-top: 2rem;
             margin-bottom: 1rem;
-            font-family: "Literata", Georgia, serif;
+            font-family: "Playfair Display", serif;
             color: #423835;
         }
         
         /* Bio Modal Specifics */
         .bio-section-title {
-            font-family: "Literata", Georgia, serif;
+            font-family: "Playfair Display", serif;
             color: #917767; /* brand-500 */
             font-size: 1.25rem;
             font-weight: 700;
@@ -177,8 +180,6 @@
             border-bottom: 1px solid #dccfc8;
             padding-bottom: 0.5rem;
         }
-        .bio-body > p { margin-bottom: 1.4rem; line-height: 1.85; text-align: justify; }
-        .bio-body .bio-section-title { margin-top: 3rem; }
         .bio-list {
             list-style-type: none;
             padding-left: 0;
@@ -277,6 +278,7 @@
                 <div class="hidden md:flex space-x-10 items-center">
                     <a href="#about" class="text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Η Ψυχολογος</a>
                     <a href="#services" class="text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Υπηρεσιες</a>
+                    <a href="#articles-section" class="text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Αρθρα</a>
                     <a href="#contact" class="text-sm uppercase tracking-widest hover:text-accent-green transition-colors">Επικοινωνια</a>
                     <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" 
                        target="_blank"
@@ -306,6 +308,7 @@
             <div class="flex-1 flex flex-col items-center justify-center space-y-8 overflow-y-auto w-full pb-10">
                 <a href="#about" class="text-3xl font-serif text-brand-900 mobile-link hover:text-accent-green transition-colors">Η Ψυχολόγος</a>
                 <a href="#services" class="text-3xl font-serif text-brand-900 mobile-link hover:text-accent-green transition-colors">Υπηρεσίες</a>
+                <a href="#articles-section" class="text-3xl font-serif text-brand-900 mobile-link hover:text-accent-green transition-colors">Άρθρα</a>
                 <a href="#contact" class="text-3xl font-serif text-brand-900 mobile-link hover:text-accent-green transition-colors">Επικοινωνία</a>
                 <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" 
                    target="_blank"
@@ -337,20 +340,9 @@
                     <span class="italic text-brand-500">με τον Εαυτό σας</span>.
                 </h1>
                 
-                <p class="text-lg md:text-xl text-brand-800 mb-8 leading-relaxed max-w-lg border-l-2 border-brand-400 pl-6">
+                <p class="text-lg md:text-xl text-brand-800 mb-10 leading-relaxed max-w-lg border-l-2 border-brand-400 pl-6">
                     Η ψυχοθεραπεία είναι πράξη ευθύνης, όχι αδυναμίας. Σας παρέχω τα κατάλληλα εργαλεία για να κατανοήσετε τα αίτια του άγχους και να προχωρήσετε σε σταθερά βήματα αλλαγής και προσωπικής εξέλιξης.
                 </p>
-
-                <div class="flex flex-wrap gap-3 mb-10 max-w-xl">
-                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-brand-200 text-sm text-brand-900 shadow-sm">
-                        <i data-lucide="map-pin" class="w-4 h-4 text-accent-green shrink-0"></i>
-                        Συνεδρίες δια ζώσης στο Αιγάλεω
-                    </span>
-                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-brand-200 text-sm text-brand-900 shadow-sm">
-                        <i data-lucide="video" class="w-4 h-4 text-accent-green shrink-0"></i>
-                        Online για εφήβους (15+), ενήλικες &amp; συμβουλευτική γονέων
-                    </span>
-                </div>
 
                 <div class="flex flex-col sm:flex-row gap-6">
                     <a href="#contact" 
@@ -372,6 +364,30 @@
         </div>
     </header>
 
+    <!-- TRUST METRICS (Stats) -->
+    <section class="py-12 border-b border-brand-200 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-brand-100">
+                <div class="reveal-up delay-100">
+                    <span class="block text-4xl md:text-5xl font-serif font-bold text-accent-green mb-2">100%</span>
+                    <span class="text-xs uppercase tracking-widest text-brand-400">Εξατομικευμενη Φροντιδα</span>
+                </div>
+                <div class="reveal-up delay-200">
+                    <span class="block text-4xl md:text-5xl font-serif font-bold text-accent-green mb-2">200+</span>
+                    <span class="text-xs uppercase tracking-widest text-brand-400">Ευχαριστημενοι Θεραπευομενοι</span>
+                </div>
+                <div class="reveal-up delay-300">
+                    <span class="block text-4xl md:text-5xl font-serif font-bold text-accent-green mb-2">15+</span>
+                    <span class="text-xs uppercase tracking-widest text-brand-400">Ετη Κλινικης Εμπειριας</span>
+                </div>
+                <div class="reveal-up delay-100">
+                    <span class="block text-4xl md:text-5xl font-serif font-bold text-accent-green mb-2">10+</span>
+                    <span class="text-xs uppercase tracking-widest text-brand-400">Εξειδικευμενες Υπηρεσιες</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- BIO SECTION ("The Professional") -->
     <section id="about" class="py-24 lg:py-32 relative overflow-hidden bg-brand-50">
         <!-- Abstract Background Shapes (Blobs with new colors) -->
@@ -384,37 +400,16 @@
                 <!-- Text Content Column -->
                 <div class="w-full lg:w-7/12 order-2 lg:order-1 reveal-up delay-200">
                     <h4 class="text-accent-green font-bold uppercase tracking-widest text-sm mb-4">Σχετικα με εμενα</h4>
-                    <h2 class="font-serif text-4xl lg:text-5xl text-brand-900 mb-8 leading-tight">Μαρία Σ. Γκιόκα, ΜΑ <br/><span class="text-accent-purple italic text-2xl lg:text-3xl">Συμβουλευτική Ψυχολόγος</span></h2>
+                    <h2 class="font-serif text-4xl lg:text-5xl text-brand-900 mb-8 leading-tight">Μαρία Σ. Γκιόκα, ΜΑ <br/><span class="text-accent-purple italic text-2xl lg:text-3xl">Ψυχολόγος</span></h2>
                     
                     <!-- Short Bio Text -->
                     <div class="space-y-6 text-brand-800 text-lg leading-relaxed font-light mb-8 text-justify">
                         <p>
-                            Είμαι Συμβουλευτική Ψυχολόγος, με εξειδίκευση στην ψυχολογική υποστήριξη παιδιών, εφήβων και ενηλίκων, καθώς και στη Συμβουλευτική Γονέων.
+                            Η Μαρία Γκιόκα είναι Ψυχολόγος και διατηρεί ιδιωτικό γραφείο στο Αιγάλεω, προσφέροντας έναν ασφαλή και υποστηρικτικό χώρο για παιδιά, εφήβους και ενήλικες, καθώς και συνεδρίες συμβουλευτικής γονέων.
                         </p>
                         <p>
-                            Με πολυετή εμπειρία στον χώρο της ψυχικής υγείας και ιδιαίτερη ενασχόληση με την παιδική και εφηβική ηλικία, έχω μετεκπαιδευτεί στη Γνωσιακή-Συμπεριφορική Θεραπεία και τη Συστημική Συμβουλευτική και Ψυχοθεραπεία.
+                            Η επιστημονική της προσέγγιση βασίζεται στη συνεχή εξέλιξη και στη βαθιά πίστη ότι κάθε άνθρωπος είναι μοναδικός. Στόχος της είναι ο σχεδιασμός εξατομικευμένων θεραπευτικών παρεμβάσεων, οι οποίες διαμορφώνονται με απόλυτο σεβασμό στις ιδιαίτερες ανάγκες και τα χαρακτηριστικά του κάθε ατόμου.
                         </p>
-                        <p>
-                            Στόχος μου είναι να δημιουργώ ένα ασφαλές και υποστηρικτικό πλαίσιο, όπου κάθε άνθρωπος μπορεί να εκφραστεί χωρίς κριτική, να κατανοήσει καλύτερα τον εαυτό του και να αναπτύξει τις δυνατότητές του.
-                        </p>
-                    </div>
-
-                    <!-- Where sessions take place -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                        <div class="flex items-start gap-4 p-5 bg-white/70 rounded-2xl border border-brand-200 shadow-sm">
-                            <div class="w-10 h-10 rounded-full bg-accent-greenLight flex items-center justify-center text-accent-green shrink-0"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
-                            <div>
-                                <span class="block font-serif text-lg text-brand-900 leading-snug">Δια ζώσης</span>
-                                <span class="block text-sm text-brand-700 leading-relaxed mt-1">Στο γραφείο μου, Δημαρχείου 16, Αιγάλεω</span>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-5 bg-white/70 rounded-2xl border border-brand-200 shadow-sm">
-                            <div class="w-10 h-10 rounded-full bg-accent-purpleLight flex items-center justify-center text-accent-purple shrink-0"><i data-lucide="video" class="w-5 h-5"></i></div>
-                            <div>
-                                <span class="block font-serif text-lg text-brand-900 leading-snug">Online συνεδρίες</span>
-                                <span class="block text-sm text-brand-700 leading-relaxed mt-1">Για εφήβους (15+), ενήλικες και συμβουλευτική γονέων</span>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Read More Button -->
@@ -422,26 +417,6 @@
                         Διαβαστε Περισσοτερα
                         <i data-lucide="plus" class="w-4 h-4 ml-2"></i>
                     </button>
-
-                    <!-- Τομείς Εξειδίκευσης -->
-                    <div class="border border-brand-300 rounded-2xl bg-white/60 shadow-sm p-6 lg:p-8 mb-6">
-                        <h3 class="font-serif text-2xl text-brand-900 flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-accent-purpleLight flex items-center justify-center text-accent-purple shrink-0">
-                                <i data-lucide="sparkles" class="w-5 h-5"></i>
-                            </div>
-                            Τομείς Εξειδίκευσης
-                        </h3>
-                        <p class="text-brand-700 mb-5 leading-relaxed">Στην κλινική μου πράξη έχω ιδιαίτερη εμπειρία στη διαχείριση και θεραπεία των παρακάτω:</p>
-                        <ul class="space-y-3 text-brand-800">
-                            <li class="cv-list-item !mb-0">Αγχώδεις Διαταραχές &amp; Κατάθλιψη</li>
-                            <li class="cv-list-item !mb-0">Διαχείριση Θυμού &amp; Πένθους</li>
-                            <li class="cv-list-item !mb-0">Δυσκολίες στις Διαπροσωπικές Σχέσεις &amp; Σχέσεις Γονέων-Παιδιών</li>
-                            <li class="cv-list-item !mb-0">Διαταραχές Πρόσληψης Τροφής</li>
-                            <li class="cv-list-item !mb-0">Ενδοσχολικός Εκφοβισμός (Bullying)</li>
-                            <li class="cv-list-item !mb-0">Υπερβολική Χρήση Παιχνιδιών &amp; Διαδικτύου</li>
-                            <li class="cv-list-item !mb-0">Μαθησιακές Δυσκολίες &amp; ΔΕΠ-Υ (Διαταραχή Ελλειμματικής Προσοχής και Υπερκινητικότητας)</li>
-                        </ul>
-                    </div>
 
                     <!-- Timeline / CV Dropdown -->
                     <div class="border border-brand-300 rounded-2xl overflow-hidden bg-white/60 shadow-sm transition-all duration-300 hover:shadow-glass hover:border-accent-purple/50">
@@ -467,40 +442,36 @@
                                     <span>Bachelor of Arts, Ψυχολογία (Αρ. Αδείας: 1070)</span>
                                 </div>
                                 <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2026: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
-                                    <span><a href="https://www.psychotherapy.cce.uoa.gr/" target="_blank" rel="noopener" class="underline decoration-accent-green/50 underline-offset-4 hover:text-accent-green transition-colors">Διεθνές Μετεκπαιδευτικό Πρόγραμμα στη Συμβουλευτική και Ψυχοθεραπεία</a></span>
-                                </div>
-                                <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2026: ΔΙ.ΚΕ.ΨΥ.</span>
-                                    <span>Ψυχομετρικές Δοκιμασίες Αξιολόγησης Νοημοσύνης WISC-V.</span>
-                                </div>
-                                <div class="cv-list-item">
                                     <span class="font-bold text-brand-900 block text-base">2025: Εταιρεία Γνωσιακών Συμπεριφοριστικών Σπουδών</span>
-                                    <span>Εξειδικευμένα Εργαστήρια στη Γνωσιακή – Συμπεριφοριστική Θεραπεία Παιδιών και Εφήβων.</span>
+                                    <span>Εξειδικευμένα Εργαστηρία στη γνωσιακή – συμπεριφοριστική θεραπεία παιδιών και εφήβων.</span>
                                 </div>
                                 <div class="cv-list-item">
                                     <span class="font-bold text-brand-900 block text-base">2024: ΔΙ.ΚΕ.ΨΥ.</span>
-                                    <span>Παιγνιοθεραπεία σε Παιδιά και Εφήβους.</span>
+                                    <span>Παιγνιοθεραπεία σε παιδιά και εφήβους.</span>
                                 </div>
                                 <div class="cv-list-item">
                                     <span class="font-bold text-brand-900 block text-base">2024: ΕΝΤΡΟΠΙΑ</span>
-                                    <span>Συστημική Συμβουλευτική και Ψυχοθεραπεία Παιδιών και Εφήβων &amp; Συμβουλευτική Γονέων.</span>
+                                    <span>Συστημική Συμβουλευτική και Ψυχοθεραπεία Παιδιών και Εφήβων & Συμβουλευτική Γονέων.</span>
                                 </div>
                                 <div class="cv-list-item">
                                     <span class="font-bold text-brand-900 block text-base">2021: Πανεπιστήμιο Αιγαίου</span>
-                                    <span>Μετεκπαίδευση στη Σχολική Ψυχολογία.</span>
+                                    <span>Μετεκπαίδευση στην «Σχολική Ψυχολογία».</span>
+                                </div>
+                                <div class="cv-list-item">
+                                    <span class="font-bold text-brand-900 block text-base">2020: University of Minnesota & Coursera</span>
+                                    <span>Σεμινάριο 6 εβδομάδων: Resilience in Children Exposed to Trauma, Disaster and War: Global Perspectives.</span>
                                 </div>
                                 <div class="cv-list-item">
                                     <span class="font-bold text-brand-900 block text-base">2017: Εταιρεία Ψυχολογικής Υποστήριξης και Θεραπείας</span>
                                     <span>Μετεκπαίδευση στη Γνωσιακή – Συμπεριφορική Ψυχοθεραπεία.</span>
                                 </div>
                                 <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2015-2016: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
-                                    <span>Μετεκπαίδευση στις Ψυχικές Διαταραχές στην Εφηβεία: Διάγνωση και Θεραπευτική Αντιμετώπιση.</span>
+                                    <span class="font-bold text-brand-900 block text-base">Online Training</span>
+                                    <span>Εκπαίδευση στις «Πρώτες Βοήθειες Ψυχικής Υγείας». The National Child Traumatic Stress Network Learning Center.</span>
                                 </div>
                                 <div class="cv-list-item">
-                                    <span class="font-bold text-brand-900 block text-base">2015: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
-                                    <span>Σεμινάριο στη Διαπαιδαγώγηση Παιδιών και Εφήβων.</span>
+                                    <span class="font-bold text-brand-900 block text-base">Κέντρο ημέρας Βαβέλ</span>
+                                    <span>Σεμινάριο: «Προσφυγική συνθήκη: μεταξύ ανθεκτικότητας και ευαλωτότητας».</span>
                                 </div>
                             </div>
                         </div>
@@ -520,7 +491,7 @@
                 </div>
 
                  <!-- Image Container -->
-                 <div class="w-full lg:w-5/12 order-1 lg:order-2 relative reveal-up flex flex-col gap-8 lg:sticky lg:top-28 lg:self-start">
+                 <div class="w-full lg:w-5/12 order-1 lg:order-2 relative reveal-up flex flex-col gap-8">
                     <div class="relative rounded-[40px] overflow-hidden shadow-soft group">
                         <img src="https://github.com/agelmet/Image-hosting-/blob/main/52f729ac-1e21-4951-a6fd-e1f917040141.webp?raw=true" 
                              alt="Maria S. Gkioka Portrait" 
@@ -657,6 +628,26 @@
         </div>
     </section>
 
+    <!-- ARTICLES SECTION (Contentful Integration) -->
+    <section id="articles-section" class="py-24 relative bg-brand-50 border-t border-brand-100">
+        <div class="max-w-4xl mx-auto px-6">
+             <div class="text-center mb-12 reveal-up">
+                <span class="text-brand-500 font-bold uppercase tracking-widest text-sm mb-2 block">Blog</span>
+                <h2 class="font-serif text-4xl text-brand-900 mb-2">Άρθρα & Νέα</h2>
+                <div class="w-24 h-1 bg-accent-green mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Dynamic Container -->
+            <div id="articles-list" class="space-y-8 min-h-[200px]">
+                <!-- Loading State Styled -->
+                <div class="animate-pulse space-y-4">
+                    <div class="h-64 bg-brand-100 rounded-2xl"></div>
+                    <div class="h-64 bg-brand-100 rounded-2xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER / CONTACT -->
     <footer id="contact" class="bg-brand-900 text-brand-100 py-16 lg:py-24 relative overflow-hidden">
         <!-- Abstract Decoration -->
@@ -702,7 +693,6 @@
                     <h4 class="text-accent-green font-bold uppercase tracking-widest text-xs mb-6">Ωραριο</h4>
                     <p class="text-brand-200 mb-2">Δευτέρα - Παρασκευή</p>
                     <p class="text-white font-serif italic mb-4">Κατόπιν Ραντεβού</p>
-                    <p class="text-brand-300 text-sm leading-relaxed mb-4">Δια ζώσης στο Αιγάλεω<br/>Online για εφήβους (15+), ενήλικες &amp; συμβουλευτική γονέων</p>
                     <a href="https://www.instadoctor.gr/booking/656a5b3a8cab8?o=656f2b946e627&rwg_token=AFd1xnEpb7NtcC4cW2m5uzfVjn1Z3xD0N4XdhsOfAHq5bH5VUlgU8EwIp0kHakxSuZVm-M5eqhbE4DvNWeKdzig2RtFdGjhcEjNvOgdIwrsJfD6H5tGOGOw%3D" 
                        target="_blank"
                        class="inline-block mt-2 text-xs border-b border-accent-green pb-1 hover:text-accent-green transition-colors">
@@ -742,105 +732,35 @@
             </div>
             
             <!-- Article Body -->
-            <div class="prose prose-lg prose-brand mx-auto text-brand-700 leading-relaxed font-light bio-body">
-                <p>Είμαι Συμβουλευτική Ψυχολόγος, απόφοιτη του University of Indianapolis, Athens Campus και κάτοχος Master's στην Συμβουλευτική Ψυχολογία από το City University of Seattle. Έχω πολυετή επαγγελματική εμπειρία στην ψυχολογική αξιολόγηση και συμβουλευτική υποστήριξη παιδιών, εφήβων και ενηλίκων, καθώς και στη συμβουλευτική γονέων.</p>
-                <p>Η επαγγελματική μου πορεία έχει επικεντρωθεί ιδιαίτερα στην ψυχική υγεία παιδιών και εφήβων. Έχω συνεργαστεί με την Μονάδα Εφηβικής Υγείας της Β΄ Παιδιατρικής Κλινικής του Πανεπιστημίου Αθηνών, στο Νοσοκομείο Παίδων «Π. &amp; Α. Κυριακού», όπου παρείχα ατομική συμβουλευτική υποστήριξη σε εφήβους και νεαρούς ενήλικες, ενώ συμμετείχα και στον συντονισμό ομάδων με στόχο την ανάπτυξη κοινωνικών και συναισθηματικών δεξιοτήτων αλλά και στην ομαδική ψυχοεκπαίδευση γονέων εφήβων με διαταραχές πρόσληψης τροφής.</p>
-                <p>Έχω μετεκπαιδευτεί στη Γνωσιακή-Συμπεριφορική Θεραπεία, στη Συστημική Συμβουλευτική και Ψυχοθεραπεία παιδιών και εφήβων, στη Συμβουλευτική Γονέων και την Σχολική Ψυχολογία. Το 2026 ολοκλήρωσα επίσης εκπαίδευση στο WISC-V, ενισχύοντας περαιτέρω την κατάρτισή μου στην αξιολόγηση παιδιών ενώ συνεχίζω την επαγγελματική μου επιμόρφωση παρακολουθώντας το Διεθνές Μετεκπαιδευτικό Πρόγραμμα στην Συστημική Ψυχοθεραπεία στο ΕΚΠΑ.</p>
-                <p>Παράλληλα με την κλινική μου δραστηριότητα, έχω συμμετάσχει σε ερευνητικά και ευρωπαϊκά προγράμματα με αντικείμενο τον σχολικό εκφοβισμό, την κοινωνική και συναισθηματική ανάπτυξη παιδιών και εφήβων, την ψυχική ανθεκτικότητα, καθώς και την ψυχοκοινωνική υποστήριξη ευάλωτων ομάδων. Η ερευνητική μου εμπειρία περιλαμβάνει επίσης παρουσιάσεις σε ελληνικά και διεθνή συνέδρια.</p>
-                <p>Στην εργασία μου θεωρώ ιδιαίτερα σημαντική τη δημιουργία μιας σχέσης εμπιστοσύνης, αποδοχής και ασφάλειας. Προσεγγίζω κάθε άνθρωπο ως μοναδικό, λαμβάνοντας υπόψη τις προσωπικές του ανάγκες, τις σχέσεις και το ευρύτερο περιβάλλον του. Στόχος μου είναι να δημιουργείται ένας χώρος όπου το άτομο μπορεί να κατανοήσει καλύτερα τον εαυτό του και τις δυσκολίες που αντιμετωπίζει, να αναπτύξει νέες δεξιότητες και να ενισχύσει την ψυχική του ανθεκτικότητα.</p>
-                <p>Η συνεργασία με τους γονείς αποτελεί επίσης σημαντικό μέρος της δουλειάς μου, ιδιαίτερα όταν πρόκειται για παιδιά και εφήβους, καθώς θεωρώ ότι η υποστήριξη του οικογενειακού περιβάλλοντος μπορεί να συμβάλει ουσιαστικά στην ψυχική ευημερία και την ανάπτυξή τους.</p>
+            <div class="prose prose-lg prose-brand mx-auto text-brand-700 leading-relaxed font-light">
+                
+                <h3 class="bio-section-title">Σπουδές</h3>
+                <p>Είναι πτυχιούχος Ψυχολογίας από το <strong>University of Indianapolis</strong> (αρ. άδειας: 1070) και κάτοχος Μεταπτυχιακού Τίτλου (MSc) στη Συμβουλευτική Ψυχολογία από το <strong>City University of Seattle</strong>.</p>
 
-                <h3 class="bio-section-title">Εκπαίδευση &amp; Κατάρτιση</h3>
-                <div class="space-y-5 text-brand-700 not-prose mt-6">
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2013- 2016: City University of Seattle</span>
-                        <span>Master of Arts, Συμβουλευτική Ψυχολογία</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2009- 2012: University of Indianapolis</span>
-                        <span>Bachelor of Arts, Ψυχολογία (Αρ. Αδείας: 1070)</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2026: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
-                        <span><a href="https://www.psychotherapy.cce.uoa.gr/" target="_blank" rel="noopener" class="underline decoration-accent-green/50 underline-offset-4 hover:text-accent-green transition-colors">Διεθνές Μετεκπαιδευτικό Πρόγραμμα στη Συμβουλευτική και Ψυχοθεραπεία</a></span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2026: ΔΙ.ΚΕ.ΨΥ.</span>
-                        <span>Ψυχομετρικές Δοκιμασίες Αξιολόγησης Νοημοσύνης WISC-V.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2025: Εταιρεία Γνωσιακών Συμπεριφοριστικών Σπουδών</span>
-                        <span>Εξειδικευμένα Εργαστήρια στη Γνωσιακή – Συμπεριφοριστική Θεραπεία Παιδιών και Εφήβων.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2024: ΔΙ.ΚΕ.ΨΥ.</span>
-                        <span>Παιγνιοθεραπεία σε Παιδιά και Εφήβους.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2024: ΕΝΤΡΟΠΙΑ</span>
-                        <span>Συστημική Συμβουλευτική και Ψυχοθεραπεία Παιδιών και Εφήβων &amp; Συμβουλευτική Γονέων.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2021: Πανεπιστήμιο Αιγαίου</span>
-                        <span>Μετεκπαίδευση στη Σχολική Ψυχολογία.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2017: Εταιρεία Ψυχολογικής Υποστήριξης και Θεραπείας</span>
-                        <span>Μετεκπαίδευση στη Γνωσιακή – Συμπεριφορική Ψυχοθεραπεία.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2015-2016: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
-                        <span>Μετεκπαίδευση στις Ψυχικές Διαταραχές στην Εφηβεία: Διάγνωση και Θεραπευτική Αντιμετώπιση.</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">2015: Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΚΕΔΙΒΙΜ ΕΚΠΑ)</span>
-                        <span>Σεμινάριο στη Διαπαιδαγώγηση Παιδιών και Εφήβων.</span>
-                    </div>
-                </div>
+                <h3 class="bio-section-title">Μετεκπαίδευση</h3>
+                <p>Έχει εκπαιδευτεί στη <strong>Γνωσιακή – Συμπεριφορική Ψυχοθεραπεία (CBT)</strong>, καθώς και στη <strong>Συστημική Συμβουλευτική</strong> και Ψυχοθεραπεία Παιδιών / Εφήβων.</p>
 
-                <h3 class="bio-section-title">Επαγγελματική Εμπειρία</h3>
-                <div class="space-y-5 text-brand-700 not-prose mt-6">
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Συμβουλευτική Ψυχολόγος, ΜΑ</span>
-                        <span class="block">Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2019 - Σήμερα</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Ερευνήτρια / Εξωτερική Συνεργάτης</span>
-                        <span class="block">Ελληνικό Ινστιτούτο για τον Ο.Η.Ε., Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2017 - 2019</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Βοηθός Ερευνητή</span>
-                        <span class="block">Μ.Κ.Ο. «ΦΑΡΟΣ», Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2016 - 2018</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Επιστημονική Συνεργάτης / Συμβουλευτική Ψυχολόγος</span>
-                        <span class="block">Μονάδα Εφηβικής Υγείας, Β΄ Παιδιατρική Κλινική Πανεπιστημίου Αθηνών, Νοσοκομείο Παίδων «Π. &amp; Α. Κυριακού», Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2015 - 2018</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Ερευνήτρια</span>
-                        <span class="block">«Μαζί για την Εφηβική Υγεία» &amp; Μονάδα Εφηβικής Υγείας, Β΄ Παιδιατρική Κλινική Πανεπιστημίου Αθηνών, Νοσοκομείο Παίδων «Π. &amp; Α. Κυριακού», Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2015 - 2016</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Πρακτική άσκηση</span>
-                        <span class="block">Νευροψυχιατρική Κλινική «Παναγία η Γρηγορούσα», Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2015</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Πρακτική άσκηση</span>
-                        <span class="block">Hellas Employee Assistance Programs (EAP), Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2012</span>
-                    </div>
-                    <div class="cv-list-item">
-                        <span class="font-bold text-brand-900 block text-base">Πρακτική άσκηση</span>
-                        <span class="block">Σικιαρίδειο Ίδρυμα, Ελλάδα</span>
-                        <span class="inline-block mt-1 text-xs font-bold uppercase tracking-widest text-accent-green">2011</span>
-                    </div>
-                </div>
+                <h3 class="bio-section-title">Συνεχής Επιμόρφωση</h3>
+                <p>Παρακολουθεί συστηματικά σεμινάρια, επιδιώκοντας τη διαρκή επικαιροποίηση των γνώσεών της και δίνοντας ιδιαίτερη έμφαση στην έγκυρη και τεκμηριωμένη αξιολόγηση.</p>
+
+                <h3 class="bio-section-title">Επαγγελματική Πορεία</h3>
+                <p>Έχει αποκτήσει σημαντική εμπειρία τόσο ως κλινικός όσο και ως ερευνήτρια σε ιδιωτικά κέντρα και ΜΚΟ. Στο παρελθόν έχει διατελέσει:</p>
+                <ul class="bio-list">
+                    <li>Επιστημονική Συνεργάτης / Συμβουλευτική Ψυχολόγος στη Μονάδα Εφηβικής Υγείας της Β’ Παιδιατρικής Κλινικής του Πανεπιστημίου Αθηνών, στο Νοσοκομείο Παίδων «Π. & Α. Κυριακού».</li>
+                    <li>Συνεργάτης του Ελληνικού Ινστιτούτου για τον Ο.Η.Ε.</li>
+                </ul>
+
+                <h3 class="bio-section-title">Τομείς Εξειδίκευσης</h3>
+                <p>Στην κλινική της πράξη διαθέτει ιδιαίτερη εμπειρία στη διαχείριση και θεραπεία των παρακάτω:</p>
+                <ul class="bio-list">
+                    <li>Αγχώδεις Διαταραχές & Κατάθλιψη</li>
+                    <li>Διαχείριση Θυμού & Πένθους</li>
+                    <li>Δυσκολίες στις Διαπροσωπικές Σχέσεις & Σχέσεις Γονέων-Παιδιών</li>
+                    <li>Διαταραχές Πρόσληψης Τροφής</li>
+                    <li>Ενδοσχολικός Εκφοβισμός (Bullying)</li>
+                    <li>Υπερβολική Χρήση Παιχνιδιών & Διαδικτύου</li>
+                    <li>Μαθησιακές Δυσκολίες & ΔΕΠ-Υ (Διαταραχή Ελλειμματικής Προσοχής και Υπερκινητικότητας)</li>
+                </ul>
             </div>
 
             <!-- Footer of Article -->
@@ -853,6 +773,36 @@
         </div>
     </div>
 
+
+    <!-- ARTICLE READING MODAL (Hidden by default) -->
+    <div id="article-modal" class="fixed inset-0 z-[60] bg-brand-50 hidden overflow-y-auto">
+        <!-- Close Button -->
+        <button onclick="closeArticle()" class="fixed top-6 right-6 z-[70] p-3 bg-white/80 backdrop-blur-md rounded-full shadow-lg text-brand-900 hover:bg-brand-900 hover:text-white transition-all duration-300 group cursor-pointer">
+            <span class="sr-only">Close</span>
+            <i data-lucide="x" class="w-6 h-6 group-hover:rotate-90 transition-transform"></i>
+        </button>
+
+        <div class="max-w-3xl mx-auto px-6 py-24 lg:py-32 min-h-screen">
+            <!-- Article Header -->
+            <div class="mb-12 text-center border-b border-brand-200 pb-12">
+                <span id="modal-date" class="block text-accent-green font-bold uppercase tracking-widest text-sm mb-4"></span>
+                <h1 id="modal-title" class="font-serif text-4xl md:text-5xl lg:text-6xl text-brand-900 leading-tight"></h1>
+            </div>
+            
+            <!-- Article Body -->
+            <div id="modal-body" class="prose prose-lg prose-brand mx-auto text-brand-700 leading-relaxed font-light">
+                <!-- Content injected here -->
+            </div>
+
+            <!-- Footer of Article -->
+            <div class="mt-16 pt-16 border-t border-brand-200 text-center">
+                <button onclick="closeArticle()" class="inline-flex items-center text-accent-green hover:text-brand-900 font-bold uppercase tracking-widest text-sm transition-colors cursor-pointer">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Πισω στα αρθρα
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- SERVICES MODAL -->
     <div id="service-modal" class="fixed inset-0 z-[60] bg-brand-50 hidden overflow-y-auto">
@@ -1105,6 +1055,116 @@
                     }
                 });
             }
+    
+            // 5. CONTENTFUL INTEGRATION (Optimized)
+            const client = contentful.createClient({
+                space: 'q3pnkhzgn26g', 
+                accessToken: 'gBi6nx4IZtDkhmuCVcW5DptjG5EfGaMlMtGoZC4a2ME',
+                environment: 'master'
+            });
+    
+            // --- GLOBAL VARIABLES TO STORE FETCHED DATA ---
+            window.globalArticles = [];
+    
+            function formatDate(dateString) {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                return new Date(dateString).toLocaleDateString('el-GR', options);
+            }
+    
+            function renderBody(field) {
+                if (!field) return '';
+                // Rich text handling
+                if (field.nodeType === 'document') { 
+                    return field.content.map(node => {
+                        if (node.nodeType === 'paragraph') {
+                            const text = node.content.map(c => c.value).join('');
+                            return text ? `<p class="mb-4 text-brand-700 leading-relaxed">${text}</p>` : '';
+                        }
+                        return ''; 
+                    }).join('');
+                }
+                return `<p class="mb-4 text-brand-700 leading-relaxed">${field}</p>`;
+            }
+    
+            // --- ARTICLE MODAL LOGIC (Global Scope Helpers) ---
+            window.openArticle = function(index) {
+                const entry = window.globalArticles[index];
+                if (!entry) return;
+    
+                const title = entry.fields.article1 || "Τίτλος Άρθρου";
+                const body = renderBody(entry.fields.description);
+                const date = formatDate(entry.sys.createdAt);
+    
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('modal-date').textContent = date;
+                document.getElementById('modal-body').innerHTML = body;
+    
+                const modal = document.getElementById('article-modal');
+                if (modal) modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Lock scroll
+                
+                // Re-initialize icons inside modal just in case
+                lucide.createIcons();
+            }
+    
+            window.closeArticle = function() {
+                const modal = document.getElementById('article-modal');
+                if (modal) modal.classList.add('hidden');
+                document.body.style.overflow = ''; // Unlock scroll
+            }
+    
+            client.getEntries({ order: '-sys.createdAt' })
+                .then((response) => {
+                    const container = document.getElementById('articles-list');
+                    if (!container) return;
+                    
+                    if (response.items.length === 0) {
+                        container.innerHTML = "<p class='text-center text-brand-500'>Δεν βρέθηκαν άρθρα προς το παρόν.</p>";
+                        return;
+                    }
+    
+                    container.innerHTML = ""; // Clear loading state
+                    window.globalArticles = response.items; // Save for modal usage
+    
+                    response.items.forEach((entry, index) => {
+                        const title = entry.fields.article1 || "Τίτλος Άρθρου";
+                        const body = renderBody(entry.fields.description); 
+                        const date = formatDate(entry.sys.createdAt);
+    
+                        // Add animation delay based on index
+                        const delayClass = index % 2 === 0 ? 'delay-0' : 'delay-100';
+    
+                        // HTML Template for Article Card
+                        const articleHTML = `
+                            <article class="bg-white rounded-2xl p-8 border border-brand-100 shadow-soft hover:shadow-lg transition-all duration-500 transform hover:-translate-y-1 reveal-up ${delayClass}">
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <span class="px-3 py-1 bg-brand-100 text-accent-green text-xs font-bold uppercase tracking-wider rounded-full">Blog</span>
+                                    <span class="text-xs text-brand-400 font-sans">${date}</span>
+                                </div>
+                                <h3 class="font-serif text-2xl text-brand-900 mb-4 hover:text-accent-green transition-colors cursor-pointer" onclick="openArticle(${index})">${title}</h3>
+                                <div class="prose prose-brand text-brand-600 line-clamp-3 mb-6">
+                                    ${body}
+                                </div>
+                                <button onclick="openArticle(${index})" class="text-accent-green text-sm font-bold uppercase tracking-widest hover:text-brand-800 transition-colors flex items-center group cursor-pointer">
+                                    Διαβαστε περισσοτερα 
+                                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                                </button>
+                            </article>
+                        `;
+                        container.innerHTML += articleHTML;
+                    });
+                    
+                    // Re-trigger observer for new elements
+                    document.querySelectorAll('#articles-list .reveal-up').forEach(el => {
+                        observer.observe(el);
+                    });
+                    lucide.createIcons(); // Refresh icons for new elements
+                })
+                .catch((error) => {
+                    console.error(error);
+                    const container = document.getElementById('articles-list');
+                    if (container) container.innerHTML = `<p class="text-center text-red-400">Σφάλμα φόρτωσης: ${error.message}</p>`;
+                });
         });
     </script>
 </body>
