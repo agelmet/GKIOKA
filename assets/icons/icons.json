@@ -1,0 +1,16 @@
+{
+ "source": {
+  "kind": "file",
+  "ref": "assets/maria-gkioka-psychologos-logo.webp"
+ },
+ "source_md5": "a8a09646bdfe6904f4b4740683985f4e",
+ "version": "b6191e7e",
+ "tile": "#ffffff",
+ "crop": ".1925,0,.8075,.9225",
+ "header": [
+  "file",
+  "assets/maria-gkioka-psychologos-logo.webp",
+  "a8a09646bdfe6904f4b4740683985f4e"
+ ],
+ "made": "2026-10-26"
+}
